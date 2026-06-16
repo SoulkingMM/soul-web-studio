@@ -223,6 +223,46 @@
       margin: 1.5rem auto;
     }
 
+    /* ── À PROPOS ── */
+    .a-propos { background: var(--bg-primary); }
+    .a-propos-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .a-propos-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .a-propos-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+    .a-propos-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .a-propos-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
     /* ── RÉALISATIONS ── */
     .realisations { background: var(--bg-secondary); }
     .realisations-grid {
@@ -583,6 +623,20 @@
       font-size: 0.8rem;
       color: var(--text-muted);
     }
+    .mentions-legales {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0.7;
+    }
+    .mentions-legales a {
+      color: var(--gold);
+      text-decoration: none;
+    }
     .footer-text a {
       color: var(--gold);
       text-decoration: none;
@@ -644,6 +698,37 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="section a-propos" id="a-propos">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="section-label">Qui suis-je</span>
+        <h2 class="section-title">À propos</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="a-propos-items fade-in">
+        <div class="a-propos-item">
+          <div class="a-propos-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <p class="a-propos-text">Je suis un jeune freelance passionné par le web, toujours à la recherche de nouvelles façons de créer des expériences en ligne.</p>
+        </div>
+        <div class="a-propos-item">
+          <div class="a-propos-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <p class="a-propos-text">Je crée des sites rapides et modernes pour les commerces locaux qui veulent se démarquer sur internet.</p>
+        </div>
+        <div class="a-propos-item">
+          <div class="a-propos-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <p class="a-propos-text">Mon objectif : vous donner une vraie présence en ligne à prix accessible, sans compromis sur la qualité.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -835,6 +920,10 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+    <div class="mentions-legales">
+      Responsable : Maaty Manchour · Contact : <a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a><br>
+      Hébergement : GitHub Pages · Ce site ne collecte pas de données personnelles sauf via le formulaire de contact (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>).
+    </div>
     <p class="footer-text">&copy; 2026 <a href="#">Soul Web Studio</a> — Tous droits réservés</p>
   </footer>
 
