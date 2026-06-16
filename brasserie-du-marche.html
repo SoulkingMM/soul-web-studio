@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brasserie du Marché — Restaurant traditionnel français</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --paper: #f4ede4;
+      --paper-dark: #e8ddd0;
+      --paper-stain: #ddd0be;
+      --ink: #2c2416;
+      --ink-light: #5a4d3c;
+      --red: #8b2500;
+      --red-dark: #6b1c00;
+      --blue: #1e3a5f;
+      --cream: #faf6f0;
+      --gold: #b8860b;
+      --white: #fffdf8;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lora', Georgia, serif; color: var(--ink);
+      background: var(--paper);
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,165,140,0.08) 28px, rgba(180,165,140,0.08) 29px),
+        radial-gradient(ellipse at 20% 50%, rgba(200,185,155,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 30%, rgba(180,160,130,0.1) 0%, transparent 60%);
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
+    }
+
+    /* DECORATIVE BORDER */
+    .page-border {
+      position: fixed; inset: 8px; border: 2px solid var(--paper-stain);
+      pointer-events: none; z-index: 50;
+    }
+    .page-border::before, .page-border::after {
+      content: ''; position: absolute; width: 12px; height: 12px;
+      border: 2px solid var(--red);
+    }
+    .page-border::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+    .page-border::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+    /* NAV */
+    .nav {
+      position: relative; z-index: 10;
+      text-align: center; padding: 2rem 1.5rem 0;
+    }
+    .nav-top-line {
+      font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--ink-light); margin-bottom: 0.5rem; font-family: 'Lora', serif;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 4vw, 1.8rem);
+      font-weight: 900; color: var(--red); text-decoration: none;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-separator {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .nav-separator::before, .nav-separator::after {
+      content: ''; flex: 1; max-width: 120px; height: 1px; background: var(--paper-stain);
+    }
+    .nav-separator span {
+      font-family: 'Caveat', cursive; font-size: 0.9rem; color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* HERO — vintage poster */
+    .hero {
+      text-align: center; padding: 4rem 2rem 3rem; position: relative;
+    }
+    .hero-stamp {
+      display: inline-block; padding: 0.5rem 1.5rem;
+      border: 3px double var(--red); color: var(--red);
+      font-family: 'Playfair Display', serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transform: rotate(-2deg); margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900; color: var(--ink); line-height: 0.9;
+      text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 0.5rem;
+    }
+    .hero h1 .script {
+      display: block; font-family: 'Caveat', cursive; font-size: 0.4em;
+      color: var(--red); text-transform: none; font-weight: 400;
+      letter-spacing: 0; transform: rotate(-1deg); margin-top: 0.3em;
+    }
+    .hero-tagline {
+      font-family: 'Caveat', cursive; font-size: clamp(1.2rem, 3vw, 1.6rem);
+      color: var(--ink-light); margin: 1.5rem auto 2rem; max-width: 450px;
+    }
+    .hero-ornament {
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+      color: var(--paper-stain); font-size: 1.2rem; margin-bottom: 2.5rem;
+    }
+    .hero-ornament::before, .hero-ornament::after {
+      content: ''; width: 60px; height: 1px; background: var(--paper-stain);
+    }
+    .btn-vintage {
+      display: inline-block; padding: 0.8rem 2.5rem;
+      background: var(--red); color: var(--cream);
+      text-decoration: none; font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; border-radius: 0;
+      border: none; transition: all 0.3s;
+      box-shadow: 3px 3px 0 var(--red-dark);
+    }
+    .btn-vintage:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red-dark); }
+
+    /* SECTION COMMON */
+    .section { padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto; }
+    .section-ornament {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .section-ornament .label {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.5rem; display: block;
+    }
+    .section-ornament h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 900; color: var(--ink); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.25rem;
+    }
+    .section-ornament .subtitle {
+      font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--ink-light);
+    }
+    .section-ornament .line {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .section-ornament .line::before, .section-ornament .line::after {
+      content: ''; width: 40px; height: 1px; background: var(--red);
+    }
+    .section-ornament .line span { color: var(--red); font-size: 0.8rem; }
+
+    /* CARTE — vintage menu */
+    .carte-category { margin-bottom: 2.5rem; }
+    .carte-cat-title {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+      color: var(--red); text-transform: uppercase; letter-spacing: 0.1em;
+      text-align: center; margin-bottom: 1rem; position: relative;
+    }
+    .carte-cat-title::after {
+      content: ''; display: block; width: 30px; height: 2px;
+      background: var(--red); margin: 0.5rem auto 0;
+    }
+    .carte-item {
+      display: flex; align-items: baseline; gap: 0.5rem;
+      padding: 0.5rem 0; font-size: 0.95rem;
+    }
+    .carte-dish { font-weight: 600; color: var(--ink); }
+    .carte-dots {
+      flex: 1; border-bottom: 1px dotted var(--paper-stain);
+      min-width: 20px; margin-bottom: 0.3em;
+    }
+    .carte-price {
+      font-family: 'Playfair Display', serif; font-weight: 700;
+      color: var(--red); white-space: nowrap;
+    }
+    .carte-desc {
+      font-family: 'Caveat', cursive; font-size: 0.9rem;
+      color: var(--ink-light); padding-left: 1rem; margin-top: -0.2rem; margin-bottom: 0.3rem;
+    }
+
+    /* AMBIANCE — postcard block */
+    .ambiance {
+      background: var(--white); border: 1px solid var(--paper-stain);
+      padding: 3rem 2rem; margin: 2rem 1.5rem; max-width: 800px;
+      margin-left: auto; margin-right: auto; text-align: center;
+      position: relative;
+    }
+    .ambiance::before {
+      content: ''; position: absolute; inset: 6px;
+      border: 1px solid var(--paper-stain);
+    }
+    .ambiance h3 {
+      font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .ambiance p {
+      font-size: 0.95rem; color: var(--ink-light); line-height: 1.9;
+      max-width: 500px; margin: 0 auto 1.5rem; font-style: italic;
+    }
+    .ambiance-tags {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+    }
+    .ambiance-tag {
+      padding: 0.3rem 1rem; border: 1px solid var(--red);
+      color: var(--red); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* HOURS */
+    .hours-grid { max-width: 450px; margin: 0 auto; }
+    .hour-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.6rem 0; border-bottom: 1px dotted var(--paper-stain);
+    }
+    .hour-row:last-child { border-bottom: none; }
+    .hour-day { font-weight: 600; color: var(--ink); font-size: 0.95rem; }
+    .hour-time { color: var(--ink-light); font-size: 0.9rem; }
+    .hour-closed { font-family: 'Caveat', cursive; color: var(--paper-stain); font-size: 1rem; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 4rem 2rem;
+      background: var(--red); margin: 3rem 1.5rem;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 6px; border: 1px solid rgba(250,246,240,0.2);
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--cream); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+    }
+    .cta-section p {
+      font-family: 'Caveat', cursive; font-size: 1.2rem; color: rgba(250,246,240,0.7);
+      margin-bottom: 2rem;
+    }
+    .btn-vintage-light {
+      display: inline-block; padding: 0.8rem 2.5rem;
+      background: var(--cream); color: var(--red);
+      text-decoration: none; font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; transition: all 0.3s;
+      box-shadow: 3px 3px 0 var(--red-dark);
+    }
+    .btn-vintage-light:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red-dark); }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 3rem 1.5rem 2rem;
+      border-top: 2px double var(--paper-stain);
+      max-width: 800px; margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900;
+      color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .footer-addr {
+      font-family: 'Caveat', cursive; font-size: 1rem; color: var(--ink-light);
+      line-height: 1.6;
+    }
+    .footer-copy {
+      font-size: 0.7rem; color: var(--paper-stain); margin-top: 2rem;
+      font-family: 'Lora', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-border"></div>
+
+  <nav class="nav">
+    <div class="nav-top-line">Restaurant — Cuisine traditionnelle française</div>
+    <a href="#" class="nav-logo">Brasserie du Marché</a>
+    <div class="nav-separator"><span>depuis 1952</span></div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-stamp">Fait Maison</div>
+    <h1>
+      Brasserie
+      <span class="script">du Marché</span>
+    </h1>
+    <p class="hero-tagline">Cuisine traditionnelle française, produits frais du marché, recettes de grand-mère</p>
+    <div class="hero-ornament">❧</div>
+    <a href="#carte" class="btn-vintage">Voir la carte</a>
+  </section>
+
+  <section class="section" id="carte">
+    <div class="section-ornament">
+      <span class="label">Notre carte</span>
+      <h2>À la carte</h2>
+      <div class="subtitle">les classiques de la maison</div>
+      <div class="line"><span>✦</span></div>
+    </div>
+
+    <div class="carte-category">
+      <h3 class="carte-cat-title">Entrées</h3>
+      <div class="carte-item">
+        <span class="carte-dish">Soupe à l'oignon gratinée</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">9 €</span>
+      </div>
+      <div class="carte-desc">Oignons caramélisés, croûtons, gruyère fondu</div>
+      <div class="carte-item">
+        <span class="carte-dish">Salade de chèvre chaud</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">11 €</span>
+      </div>
+      <div class="carte-desc">Mesclun, miel, noix de Grenoble</div>
+      <div class="carte-item">
+        <span class="carte-dish">Terrine du chef</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">10 €</span>
+      </div>
+      <div class="carte-desc">Terrine maison, cornichons, pain de campagne</div>
+    </div>
+
+    <div class="carte-category">
+      <h3 class="carte-cat-title">Plats</h3>
+      <div class="carte-item">
+        <span class="carte-dish">Entrecôte grillée</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">22 €</span>
+      </div>
+      <div class="carte-desc">Frites maison, sauce au poivre vert</div>
+      <div class="carte-item">
+        <span class="carte-dish">Confit de canard</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">19 €</span>
+      </div>
+      <div class="carte-desc">Pommes sarladaises, mesclun</div>
+      <div class="carte-item">
+        <span class="carte-dish">Filet de bar</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">21 €</span>
+      </div>
+      <div class="carte-desc">Légumes de saison, beurre blanc</div>
+    </div>
+
+    <div class="carte-category">
+      <h3 class="carte-cat-title">Desserts</h3>
+      <div class="carte-item">
+        <span class="carte-dish">Crème brûlée</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">8 €</span>
+      </div>
+      <div class="carte-desc">Vanille de Madagascar</div>
+      <div class="carte-item">
+        <span class="carte-dish">Tarte Tatin</span>
+        <span class="carte-dots"></span>
+        <span class="carte-price">9 €</span>
+      </div>
+      <div class="carte-desc">Pommes caramélisées, crème fraîche d'Isigny</div>
+    </div>
+  </section>
+
+  <div class="ambiance">
+    <h3>L'esprit brasserie</h3>
+    <p>Un lieu chaleureux où se mêlent tradition et convivialité. Terrasse ombragée en été, cheminée crépitante en hiver.</p>
+    <div class="ambiance-tags">
+      <span class="ambiance-tag">Terrasse</span>
+      <span class="ambiance-tag">Fait maison</span>
+      <span class="ambiance-tag">Produits frais</span>
+      <span class="ambiance-tag">Vins naturels</span>
+      <span class="ambiance-tag">Groupes</span>
+    </div>
+  </div>
+
+  <section class="section" id="horaires">
+    <div class="section-ornament">
+      <span class="label">Horaires</span>
+      <h2>Nous retrouver</h2>
+      <div class="subtitle">à table !</div>
+      <div class="line"><span>✦</span></div>
+    </div>
+    <div class="hours-grid">
+      <div class="hour-row"><span class="hour-day">Lundi</span><span class="hour-closed">Fermé</span></div>
+      <div class="hour-row"><span class="hour-day">Mardi – Vendredi</span><span class="hour-time">12h – 14h30 / 19h – 22h30</span></div>
+      <div class="hour-row"><span class="hour-day">Samedi</span><span class="hour-time">12h – 15h / 19h – 23h</span></div>
+      <div class="hour-row"><span class="hour-day">Dimanche</span><span class="hour-time">12h – 15h</span></div>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <h2>Réservez votre table</h2>
+    <p>On vous garde la meilleure place !</p>
+    <a href="#" class="btn-vintage-light">Réserver</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">Brasserie du Marché</div>
+    <div class="footer-addr">
+      8 Place du Marché, 75004 Paris<br>
+      Téléphone : 01 43 00 00 00
+    </div>
+    <div class="footer-copy">&copy; 2026 Brasserie du Marché — Site créé par Soul Web Studio</div>
+  </footer>
+
+</body>
+</html>
