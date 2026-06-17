@@ -11,13 +11,12 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #111111;
-      --bg-dark: #0c0c0c;
+      --bg: #0a0a0a;
+      --bg-alt: #111111;
       --red: #8B0000;
-      --red-light: #a01010;
-      --white: #f5f5f5;
-      --gray: #888888;
-      --gray-dim: #555555;
+      --white: #ffffff;
+      --gray: #aaaaaa;
+      --gray-dim: #666666;
       --border: rgba(255, 255, 255, 0.08);
     }
 
@@ -30,102 +29,120 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-
     ::selection { background: var(--red); color: var(--white); }
+
+    /* ── RED TOP LINE ── */
+    .top-line {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--red); z-index: 200;
+    }
 
     /* ── NAV ── */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.25rem 2rem;
+      position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+      padding: 0.9rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
-      transition: background 0.3s, backdrop-filter 0.3s;
-    }
-    .nav.scrolled {
-      background: rgba(17, 17, 17, 0.92);
-      backdrop-filter: blur(12px);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.2rem; font-weight: 700;
       color: var(--white); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 0.08em;
+      text-transform: uppercase; letter-spacing: 0.04em;
     }
     .nav-logo span { color: var(--red); }
-    .nav-links {
-      display: flex; list-style: none; gap: 2rem; align-items: center;
+    .nav-cta {
+      padding: 10px 20px; background: var(--red);
+      color: var(--white); text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 0; transition: background 0.2s;
     }
-    .nav-links a {
-      color: var(--gray); text-decoration: none;
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--red-light); }
+    .nav-cta:hover { background: #a00000; }
 
-    /* ── HERO ASYMÉTRIQUE ── */
+    /* ── TICKER ── */
+    .ticker {
+      margin-top: 52px;
+      background: var(--red); color: var(--white);
+      padding: 0.5rem 0; overflow: hidden; white-space: nowrap;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 18s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: grid; grid-template-columns: 1fr;
-      align-items: center;
-      padding: 8rem 2rem 4rem;
+      display: flex; align-items: center;
+      padding: 2rem 2rem 4rem;
       position: relative;
     }
     .hero-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: 3rem; align-items: center;
+      gap: 2rem; align-items: center;
       max-width: 1100px; margin: 0 auto; width: 100%;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
     }
     .hero-left h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: clamp(3.5rem, 10vw, 5rem);
       font-weight: 700; text-transform: uppercase;
-      line-height: 0.95; letter-spacing: -0.01em;
-      color: var(--white);
+      line-height: 0.9; letter-spacing: -0.02em;
     }
-    .hero-bar {
-      width: 80px; height: 3px;
-      background: var(--red);
-      margin-top: 1.5rem;
+    .hero-left h1 .line1 {
+      display: block; color: var(--white);
+      font-size: clamp(4rem, 12vw, 7.5rem);
+    }
+    .hero-left h1 .line2 {
+      display: block; color: var(--red);
+      font-size: clamp(4rem, 12vw, 7.5rem);
     }
     .hero-right {
-      max-width: 420px;
+      max-width: 400px;
     }
     .hero-tagline {
-      font-size: 1rem; color: var(--gray);
+      font-size: 0.95rem; color: var(--gray);
       font-weight: 300; line-height: 1.7;
       margin-bottom: 2rem;
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .btn {
-      display: inline-block; padding: 0.9rem 2.2rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem; font-weight: 600;
+      display: inline-block; padding: 0.85rem 2rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; border-radius: 2px;
-      transition: all 0.25s; cursor: pointer;
+      text-decoration: none; border-radius: 0;
+      transition: all 0.2s; cursor: pointer;
     }
-    .btn-red {
-      background: var(--red); color: var(--white);
-      border: none;
-    }
-    .btn-red:hover {
-      background: var(--red-light);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
-    }
-    .btn-ghost {
+    .btn-red { background: var(--red); color: var(--white); border: none; }
+    .btn-red:hover { background: #a00000; }
+    .btn-outline {
       background: transparent; color: var(--white);
-      border: 1px solid var(--gray-dim);
+      border: 1px solid var(--white);
     }
-    .btn-ghost:hover {
-      border-color: var(--white); color: var(--white);
-    }
+    .btn-outline:hover { background: var(--white); color: var(--bg); }
 
     @media (min-width: 768px) {
-      .hero { padding: 0 3rem; }
-      .hero-grid { grid-template-columns: 1.2fr 1fr; }
-      .hero-left h1 { font-size: clamp(4rem, 7vw, 5rem); }
+      .hero { padding: 2rem 3.75rem 4rem; }
+      .hero-grid { grid-template-columns: 1.3fr 1fr; }
     }
 
     /* ── SERVICES ── */
@@ -139,32 +156,26 @@
     .services-label {
       font-size: 0.65rem; font-weight: 600;
       letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 0.75rem;
+      color: var(--red); margin-bottom: 0.5rem;
     }
     .services-title {
       font-family: 'Oswald', sans-serif;
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700; text-transform: uppercase;
-      color: var(--white);
     }
     .services-grid {
-      display: grid; grid-template-columns: 1fr;
-      gap: 2rem;
+      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
     }
     .service-card {
       position: relative;
       padding: 2.5rem 2rem 2rem;
       border: 1px solid var(--border);
-      border-radius: 4px;
       overflow: hidden;
       transition: border-color 0.3s;
     }
-    .service-card:hover {
-      border-color: rgba(139, 0, 0, 0.3);
-    }
+    .service-card:hover { border-color: rgba(139, 0, 0, 0.3); }
     .service-num {
-      position: absolute;
-      top: -10px; right: 15px;
+      position: absolute; top: -12px; right: 15px;
       font-family: 'Oswald', sans-serif;
       font-size: 6rem; font-weight: 700;
       color: rgba(139, 0, 0, 0.08);
@@ -172,148 +183,119 @@
     }
     .service-name {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.25rem; font-weight: 600;
-      text-transform: uppercase; color: var(--white);
-      margin-bottom: 0.5rem; position: relative;
+      font-size: 1.2rem; font-weight: 600;
+      text-transform: uppercase; margin-bottom: 0.4rem;
+      position: relative;
     }
     .service-desc {
-      font-size: 0.85rem; color: var(--gray);
+      font-size: 0.82rem; color: var(--gray);
       font-weight: 300; line-height: 1.6;
       position: relative;
     }
-    .service-prices {
-      margin-top: 1.25rem; position: relative;
-    }
+    .service-prices { margin-top: 1.25rem; position: relative; }
     .service-price-row {
-      display: flex; justify-content: space-between;
-      align-items: center; padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.45rem 0; border-bottom: 1px solid var(--border);
       font-size: 0.8rem;
     }
     .service-price-row:last-child { border-bottom: none; }
-    .service-price-label { color: var(--gray); font-weight: 400; }
+    .service-price-label { color: var(--gray); }
     .service-price-val {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem; font-weight: 600;
-      color: var(--red-light);
+      font-size: 1.1rem; font-weight: 600; color: var(--red);
     }
-
     @media (min-width: 768px) {
       .services-grid { grid-template-columns: repeat(3, 1fr); }
       .services { padding: 7rem 3rem; }
     }
 
-    /* ── HORAIRES / ADRESSE ── */
-    .info-section {
-      background: var(--bg-dark);
-      padding: 5rem 2rem;
-      text-align: center;
+    /* ── HORAIRES ── */
+    .horaires {
+      background: var(--bg-alt);
+      padding: 5rem 2rem; text-align: center;
     }
-    .info-inner {
-      max-width: 600px; margin: 0 auto;
-    }
-    .info-label {
+    .horaires-inner { max-width: 500px; margin: 0 auto; }
+    .horaires-label {
       font-size: 0.65rem; font-weight: 600;
       letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 0.75rem;
+      color: var(--red); margin-bottom: 0.5rem;
     }
-    .info-title {
+    .horaires-title {
       font-family: 'Oswald', sans-serif;
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700; text-transform: uppercase;
-      color: var(--white); margin-bottom: 2.5rem;
-    }
-    .hours-grid {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
     .hour-row {
       display: flex; justify-content: space-between;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 0; border-bottom: 1px solid var(--border);
       font-size: 0.9rem;
     }
-    .hour-day {
-      font-weight: 600; letter-spacing: 0.03em;
-      color: var(--white);
-    }
+    .hour-day { font-weight: 600; letter-spacing: 0.03em; }
     .hour-time { color: var(--gray); font-weight: 300; }
     .hour-closed {
       color: var(--red); font-weight: 600;
-      font-size: 0.75rem; letter-spacing: 0.08em;
+      font-size: 0.72rem; letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .info-address {
-      font-size: 0.9rem; color: var(--gray);
-      font-weight: 300; line-height: 1.8;
+    .horaires-address {
+      margin-top: 2.5rem; font-size: 0.85rem;
+      color: var(--gray); font-weight: 300; line-height: 1.8;
     }
-    .info-address strong {
-      color: var(--white); font-weight: 500;
-    }
+    .horaires-address strong { color: var(--white); font-weight: 500; }
 
     /* ── FOOTER ── */
     .footer {
-      background: #0a0a0a;
-      padding: 2.5rem 2rem;
+      background: #000000;
+      padding: 2rem;
+      text-align: center;
       border-top: 1px solid var(--border);
     }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; flex-wrap: wrap;
-      justify-content: space-between; align-items: center;
-      gap: 1rem;
-    }
-    .footer-brand {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-    }
-    .footer-brand span { color: var(--red); }
     .footer-copy {
-      font-size: 0.7rem; color: var(--gray-dim);
-      font-weight: 300;
+      font-size: 0.7rem; color: var(--gray-dim); font-weight: 300;
     }
-    .footer-credit a {
-      color: var(--gray-dim); text-decoration: none;
-      font-size: 0.7rem; font-weight: 300;
-      transition: color 0.2s;
-    }
-    .footer-credit a:hover { color: var(--gray); }
 
     /* ── FADE IN ── */
     .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
+      opacity: 0; transform: translateY(16px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
+  <!-- RED TOP LINE -->
+  <div class="top-line"></div>
+
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav">
     <a href="#" class="nav-logo">BARBER<span>KING</span></a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#horaires">Horaires</a></li>
-    </ul>
+    <a href="#" class="nav-cta">Réserver</a>
   </nav>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦&nbsp;
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid">
       <div class="hero-left fade-in">
-        <h1>BARBER<br>KING</h1>
-        <div class="hero-bar"></div>
+        <div class="hero-badge">Paris 18e — Barbershop</div>
+        <h1>
+          <span class="line1">BARBER</span>
+          <span class="line2">KING</span>
+        </h1>
       </div>
       <div class="hero-right fade-in" style="transition-delay: 0.15s;">
-        <p class="hero-tagline">Le barbier moderne pour l'homme qui sait ce qu'il veut. Pas de compromis, juste du skill.</p>
+        <p class="hero-tagline">Le barbier moderne pour l'homme qui sait ce qu'il veut. Pas de compromis.</p>
         <div class="hero-actions">
           <a href="#services" class="btn btn-red">Nos prestations</a>
-          <a href="#horaires" class="btn btn-ghost">Horaires</a>
+          <a href="#horaires" class="btn btn-outline">Horaires</a>
         </div>
       </div>
     </div>
@@ -326,7 +308,6 @@
       <h2 class="services-title">Nos services</h2>
     </div>
     <div class="services-grid">
-
       <div class="service-card fade-in">
         <div class="service-num">01</div>
         <h3 class="service-name">Coupes</h3>
@@ -337,7 +318,6 @@
           <div class="service-price-row"><span class="service-price-label">Coupe enfant</span><span class="service-price-val">15€</span></div>
         </div>
       </div>
-
       <div class="service-card fade-in" style="transition-delay: 0.1s;">
         <div class="service-num">02</div>
         <h3 class="service-name">Barbe</h3>
@@ -347,7 +327,6 @@
           <div class="service-price-row"><span class="service-price-label">Rasage traditionnel</span><span class="service-price-val">20€</span></div>
         </div>
       </div>
-
       <div class="service-card fade-in" style="transition-delay: 0.2s;">
         <div class="service-num">03</div>
         <h3 class="service-name">Combos</h3>
@@ -356,24 +335,23 @@
           <div class="service-price-row"><span class="service-price-label">Coupe + Barbe</span><span class="service-price-val">35€</span></div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- HORAIRES & ADRESSE -->
-  <section class="info-section" id="horaires">
-    <div class="info-inner">
+  <!-- HORAIRES -->
+  <section class="horaires" id="horaires">
+    <div class="horaires-inner">
       <div class="fade-in">
-        <div class="info-label">Infos pratiques</div>
-        <h2 class="info-title">Horaires & adresse</h2>
+        <div class="horaires-label">Infos pratiques</div>
+        <h2 class="horaires-title">Horaires & adresse</h2>
       </div>
-      <div class="hours-grid fade-in">
+      <div class="fade-in">
         <div class="hour-row"><span class="hour-day">Lundi</span><span class="hour-closed">Fermé</span></div>
         <div class="hour-row"><span class="hour-day">Mardi – Vendredi</span><span class="hour-time">09:30 – 20:00</span></div>
         <div class="hour-row"><span class="hour-day">Samedi</span><span class="hour-time">09:00 – 20:00</span></div>
         <div class="hour-row"><span class="hour-day">Dimanche</span><span class="hour-time">10:00 – 17:00</span></div>
       </div>
-      <div class="info-address fade-in">
+      <div class="horaires-address fade-in">
         <strong>BarberKing</strong><br>
         42 Rue des Abbesses, 75018 Paris<br>
         01 46 00 00 00
@@ -383,25 +361,15 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">BARBER<span>KING</span></div>
-      <div class="footer-copy">&copy; 2026 BarberKing</div>
-      <div class="footer-credit"><a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Site créé par Soul Web Studio</a></div>
-    </div>
+    <div class="footer-copy">&copy; 2026 BarberKing — Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener" style="color:#666;text-decoration:none;">Soul Web Studio</a></div>
   </footer>
 
   <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 
