@@ -795,6 +795,69 @@
       fill: currentColor;
     }
 
+    /* ── FAQ ── */
+    .faq { background: var(--bg-secondary); }
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none; border: none; outline: none;
+      padding: 1.25rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--white);
+      text-align: left;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      position: relative;
+      margin-left: 1rem;
+    }
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+      transition: transform 0.3s ease;
+    }
+    .faq-icon::before {
+      width: 12px; height: 1px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-icon::after {
+      width: 1px; height: 12px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-item.active .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+    .faq-answer p {
+      padding: 0 0 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
     /* ── FOOTER ── */
     .footer {
       background: #f8f7f5;
@@ -1312,6 +1375,47 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions fréquentes</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <button class="faq-question">C'est quoi la différence entre Essentiel et Premium ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>L'Essentiel c'est un site une page, idéal pour présenter votre activité simplement. Le Premium c'est un site multi-sections plus complet, avec la mise en ligne incluse et des modifications illimitées pendant 1 mois.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Je dois fournir quoi de mon côté ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs, de style ou des exemples de sites que vous aimez, n'hésitez pas à me les partager — je m'adapte à votre univers. Je m'occupe du reste.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps ça prend ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>Je vous livre une première version en 24 à 48h après réception de l'acompte et de vos informations.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Et si je veux modifier mon site après la livraison ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>Une modification est offerte avec l'Essentiel. Pour le Premium, les modifications sont illimitées pendant 1 mois. Ensuite, chaque modification est incluse dans l'abonnement Maintenance à 120€/an.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Mon site sera visible sur Google ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>Oui, chaque site est optimisé SEO de base pour apparaître sur Google. Les résultats prennent généralement quelques semaines selon la concurrence locale.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Je peux garder mon nom de domaine si j'en ai déjà un ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>Oui, si vous avez déjà un nom de domaine je peux l'utiliser directement. Sinon je peux vous aider à en choisir un.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Comment se passe le paiement ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><p>50% à la commande pour démarrer, 50% à la livraison une fois que vous validez le site. Paiement par virement bancaire.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-grid">
@@ -1375,6 +1479,15 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     document.querySelectorAll('.footer-col').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
   </script>
 
 </body>
