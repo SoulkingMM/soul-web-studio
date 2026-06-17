@@ -14,7 +14,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #f0ede8;
+      --bg-primary: #f8f7f5;
       --bg-secondary: #e8e4de;
       --bg-card: rgba(255, 255, 255, 0.6);
       --bg-card-hover: rgba(255, 255, 255, 0.8);
@@ -179,7 +179,7 @@
     }
     .btn-contact:hover {
       background: #1a1614;
-      color: #f0ede8;
+      color: #f8f7f5;
     }
     .hero-buttons {
       display: flex;
@@ -357,6 +357,63 @@
       stroke: currentColor;
       fill: none;
       stroke-width: 2;
+    }
+
+    /* ── CE QUE JE FAIS ── */
+    .services { background: var(--bg-primary); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .service-item {
+      background: var(--bg-card);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 6px;
+      padding: 2rem 2rem;
+      text-align: left;
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── MOBILE FIRST ── */
+    .mobile-first {
+      background: var(--bg-secondary);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .mobile-first-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .mobile-first h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .mobile-first p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
     }
 
     /* ── TARIFS ── */
@@ -864,7 +921,7 @@
       <div class="hero-badge">Freelance Web Designer</div>
       <h1>Soul <span class="gold">Web</span> Studio</h1>
       <p class="hero-tagline">
-        Je crée des sites web professionnels pour les commerces locaux.<br>
+        Je donne une présence en ligne à votre activité.<br>Propre, rapide, fait à la main.<br>
         Livré en <strong>48h</strong>, à partir de <strong>200€</strong>.
       </p>
       <div class="hero-buttons">
@@ -967,6 +1024,35 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- CE QUE JE FAIS -->
+  <section class="section services" id="services">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">Ce que je fais</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="services-grid fade-in">
+        <div class="service-item">
+          <h3 class="service-name">Site vitrine</h3>
+          <p class="service-desc">Un site une page ou multi-sections pour présenter votre activité et attirer de nouveaux clients.</p>
+        </div>
+        <div class="service-item">
+          <h3 class="service-name">Hébergement & Maintenance</h3>
+          <p class="service-desc">Votre site en ligne, sécurisé et mis à jour. Je gère tout pour vous.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE FIRST -->
+  <section class="section mobile-first">
+    <div class="mobile-first-inner fade-in">
+      <h2>Conçu pour mobile.</h2>
+      <p>Plus de 60% de vos clients vous cherchent sur téléphone. Chaque site que je crée est pensé mobile en premier.</p>
     </div>
   </section>
 
