@@ -797,32 +797,94 @@
 
     /* ── FOOTER ── */
     .footer {
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
+      background: #f8f7f5;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 4rem 1.5rem 2.5rem;
+      position: relative;
     }
-    .footer-text {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30%;
+      height: 1px;
+      background: #b07d3a;
+      filter: blur(4px);
     }
-    .mentions-legales {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-col {
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .footer-col.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .footer-brand-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1a1614;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand-name span { color: var(--gold); }
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: #999;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .footer-heading {
       font-size: 0.7rem;
-      color: var(--text-secondary);
+      font-weight: 600;
+      color: #1a1614;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-links a {
+      color: #999;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: #b07d3a;
+    }
+    .footer-legal {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 0.68rem;
+      color: #999;
       font-weight: 300;
       line-height: 1.8;
-      opacity: 0.7;
     }
-    .mentions-legales a {
-      color: var(--gold);
+    .footer-legal a {
+      color: #b07d3a;
       text-decoration: none;
     }
-    .footer-text a {
-      color: var(--gold);
-      text-decoration: none;
+    @media (min-width: 640px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
     }
 
     /* ── RESPONSIVE ── */
@@ -1252,11 +1314,37 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="mentions-legales">
-      Responsable : Maaty Manchour · Contact : <a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a><br>
-      Hébergement : GitHub Pages · Ce site ne collecte pas de données personnelles sauf via le formulaire de contact (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>).
+    <div class="footer-grid">
+      <div class="footer-col" style="transition-delay: 0.1s;">
+        <div class="footer-brand-name">Soul <span>Web</span> Studio</div>
+        <p class="footer-copyright">&copy; 2026 Soul Web Studio.<br>Tous droits réservés.</p>
+      </div>
+      <div class="footer-col" style="transition-delay: 0.2s;">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Site vitrine</a></li>
+          <li><a href="#services">Hébergement</a></li>
+          <li><a href="#services">Maintenance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="transition-delay: 0.3s;">
+        <div class="footer-heading">Légal</div>
+        <ul class="footer-links">
+          <li><a href="#contact">Mentions légales</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="transition-delay: 0.4s;">
+        <div class="footer-heading">Réseaux</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/soulwebstudio/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal">
+        Responsable : Maaty Manchour · Contact : <a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a><br>
+        Hébergement : GitHub Pages · Ce site ne collecte pas de données personnelles sauf via le formulaire de contact (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>).
+      </div>
     </div>
-    <p class="footer-text">&copy; 2026 <a href="#">Soul Web Studio</a> — Tous droits réservés</p>
   </footer>
 
   <script>
@@ -1286,6 +1374,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.footer-col').forEach(el => observer.observe(el));
   </script>
 
 </body>
