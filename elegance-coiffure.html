@@ -172,15 +172,24 @@
       border-radius: 2px;
       position: relative;
     }
-    .presta-accent .presta-num {
+    .presta-accent-inner {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .presta-accent .presta-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.5rem;
       font-weight: 300;
       color: var(--rose);
       line-height: 1;
+    }
+    .presta-accent .presta-photo-hint {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--rose);
+      margin-top: 0.4rem;
     }
     @media (min-width: 768px) {
       .presta-row { grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -344,11 +353,11 @@
         <h3 class="presta-name">Coupe femme</h3>
         <p class="presta-desc">Coupe, brushing et conseil personnalisé. Un moment rien que pour vous, du shampooing au coiffage final.</p>
       </div>
-      <div class="presta-accent"><span class="presta-num">01</span></div>
+      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">01</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><span class="presta-num">02</span></div>
+      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">02</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
       <div class="presta-text">
         <h3 class="presta-name">Coupe homme</h3>
         <p class="presta-desc">Coupe précise, dégradé, finitions soignées. Un style net qui vous ressemble.</p>
@@ -360,11 +369,11 @@
         <h3 class="presta-name">Coloration & Mèches</h3>
         <p class="presta-desc">Balayage, couleur complète ou mèches subtiles. Des produits de qualité pour un résultat naturel et durable.</p>
       </div>
-      <div class="presta-accent"><span class="presta-num">03</span></div>
+      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">03</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><span class="presta-num">04</span></div>
+      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">04</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
       <div class="presta-text">
         <h3 class="presta-name">Soins & Coiffage</h3>
         <p class="presta-desc">Soins profonds, kératine, lissage. Vos cheveux retrouvent éclat et vitalité.</p>
