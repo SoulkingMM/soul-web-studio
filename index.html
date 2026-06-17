@@ -843,12 +843,16 @@
       transform: translate(-50%, -50%) rotate(90deg);
     }
     .faq-answer {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
+      transition: grid-template-rows 0.5s ease;
     }
     .faq-item.active .faq-answer {
-      max-height: 200px;
+      grid-template-rows: 1fr;
+    }
+    .faq-answer-inner {
+      overflow: hidden;
     }
     .faq-answer p {
       padding: 0 0 1.25rem;
@@ -1386,31 +1390,31 @@
       <div class="faq-list fade-in">
         <div class="faq-item">
           <button class="faq-question">C'est quoi la différence entre Essentiel et Premium ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>L'Essentiel c'est un site une page, idéal pour présenter votre activité simplement. Le Premium c'est un site multi-sections plus complet, avec la mise en ligne incluse et des modifications illimitées pendant 1 mois.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>L'Essentiel c'est un site une page, idéal pour présenter votre activité simplement. Le Premium c'est un site multi-sections plus complet, avec la mise en ligne incluse et des modifications illimitées pendant 1 mois.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Je dois fournir quoi de mon côté ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs, de style ou des exemples de sites que vous aimez, n'hésitez pas à me les partager — je m'adapte à votre univers. Je m'occupe du reste.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs, de style ou des exemples de sites que vous aimez, n'hésitez pas à me les partager — je m'adapte à votre univers. Je m'occupe du reste.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Combien de temps ça prend ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>Je vous livre une première version en 24 à 48h après réception de l'acompte et de vos informations.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Je vous livre une première version en 24 à 48h après réception de l'acompte et de vos informations.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Et si je veux modifier mon site après la livraison ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>Une modification est offerte avec l'Essentiel. Pour le Premium, les modifications sont illimitées pendant 1 mois. Ensuite, chaque modification est incluse dans l'abonnement Maintenance à 120€/an.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Une modification est offerte avec l'Essentiel. Pour le Premium, les modifications sont illimitées pendant 1 mois. Ensuite, chaque modification est incluse dans l'abonnement Maintenance à 120€/an.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Mon site sera visible sur Google ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>Oui, chaque site est optimisé SEO de base pour apparaître sur Google. Les résultats prennent généralement quelques semaines selon la concurrence locale.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, chaque site est optimisé SEO de base pour apparaître sur Google. Les résultats prennent généralement quelques semaines selon la concurrence locale.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Je peux garder mon nom de domaine si j'en ai déjà un ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>Oui, si vous avez déjà un nom de domaine je peux l'utiliser directement. Sinon je peux vous aider à en choisir un.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, si vous avez déjà un nom de domaine je peux l'utiliser directement. Sinon je peux vous aider à en choisir un.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Comment se passe le paiement ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><p>50% à la commande pour démarrer, 50% à la livraison une fois que vous validez le site. Paiement par virement bancaire.</p></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>50% à la commande pour démarrer, 50% à la livraison une fois que vous validez le site. Paiement par virement bancaire.</p></div></div>
         </div>
       </div>
     </div>
