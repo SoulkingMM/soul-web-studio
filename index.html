@@ -14,19 +14,19 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #111111;
-      --bg-card: #161616;
-      --bg-card-hover: #1a1a1a;
+      --bg-primary: #f0ede8;
+      --bg-secondary: #e8e4de;
+      --bg-card: rgba(255, 255, 255, 0.6);
+      --bg-card-hover: rgba(255, 255, 255, 0.8);
       --gold: #c9a84c;
       --gold-light: #d4b96a;
       --gold-soft: #e8d5a3;
       --gold-dim: rgba(201, 168, 76, 0.15);
-      --white: #ffffff;
-      --text-primary: #f0f0f0;
-      --text-secondary: #a0a0a0;
-      --text-muted: #666666;
-      --border: rgba(255, 255, 255, 0.06);
+      --white: #1a1614;
+      --text-primary: #1a1614;
+      --text-secondary: #888888;
+      --text-muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -53,8 +53,8 @@
       transition: background 0.3s, backdrop-filter 0.3s;
     }
     .nav.scrolled {
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
@@ -172,6 +172,21 @@
       border-color: var(--gold);
       color: var(--gold);
     }
+    .btn-contact {
+      background: transparent;
+      color: #1a1614;
+      border: 1px solid #1a1614;
+    }
+    .btn-contact:hover {
+      background: #1a1614;
+      color: #f0ede8;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     .hero-scroll {
       position: absolute;
       bottom: 2.5rem;
@@ -276,17 +291,17 @@
       background: var(--bg-card);
       border-radius: 6px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
       transition: all 0.4s;
     }
     .real-card:hover {
-      border-color: rgba(201, 168, 76, 0.2);
+      border-color: rgba(201, 168, 76, 0.3);
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
     }
     .real-thumb {
       aspect-ratio: 16/10;
-      background: var(--bg-primary);
+      background: var(--bg-secondary);
       position: relative;
       overflow: hidden;
     }
@@ -355,20 +370,20 @@
     }
     .tarif-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
       border-radius: 6px;
       padding: 2.5rem 2rem;
       position: relative;
       transition: all 0.4s;
     }
     .tarif-card:hover {
-      border-color: rgba(201, 168, 76, 0.2);
+      border-color: rgba(201, 168, 76, 0.3);
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     }
     .tarif-card.featured {
       border-color: rgba(201, 168, 76, 0.3);
-      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201, 168, 76, 0.04) 100%);
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201, 168, 76, 0.08) 100%);
     }
     .tarif-popular {
       position: absolute;
@@ -498,7 +513,7 @@
     }
     .tarifs-option {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
       border-radius: 8px;
       padding: 1.25rem 1.5rem;
       display: flex;
@@ -619,8 +634,8 @@
     .contact-form textarea {
       width: 100%;
       padding: 0.85rem 1rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.6);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
       border-radius: 4px;
       color: var(--white);
       font-family: inherit;
@@ -809,8 +824,8 @@
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: rgba(201, 168, 76, 0.9);
-      box-shadow: 0 0 8px 2px rgba(201, 168, 76, 0.5);
+      background: rgba(201, 168, 76, 0.7);
+      box-shadow: 0 0 8px 2px rgba(201, 168, 76, 0.3);
     }
     .meteor::after {
       content: '';
@@ -852,7 +867,10 @@
         Je crée des sites web professionnels pour les commerces locaux.<br>
         Livré en <strong>48h</strong>, à partir de <strong>200€</strong>.
       </p>
-      <a href="#realisations" class="btn btn-gold">Voir mes réalisations</a>
+      <div class="hero-buttons">
+        <a href="#realisations" class="btn btn-gold">Voir mes réalisations</a>
+        <a href="#contact" class="btn btn-contact">Me contacter</a>
+      </div>
     </div>
     <div class="hero-scroll">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
