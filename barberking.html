@@ -70,14 +70,17 @@
       font-family: 'Oswald', sans-serif;
       font-size: 0.7rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex;
     }
     .ticker-inner {
       display: inline-block;
-      animation: ticker 18s linear infinite;
+      white-space: nowrap;
+      flex-shrink: 0;
+      animation: ticker 20s linear infinite;
     }
     @keyframes ticker {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(-100%); }
     }
 
     /* ── HERO ── */
@@ -276,9 +279,7 @@
 
   <!-- TICKER -->
   <div class="ticker">
-    <div class="ticker-inner">
-      SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦&nbsp;
-    </div>
+    <div class="ticker-inner">SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ </div><div class="ticker-inner">SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ </div>
   </div>
 
   <!-- HERO -->
