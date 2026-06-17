@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soul Web Studio — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111111;
+      color: #f5f5f5;
+      padding: 3rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .header h1 span { color: #c9a84c; }
+    .header p {
+      font-size: 0.8rem;
+      color: #888;
+      font-weight: 300;
+    }
+    .previews {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .browser-window {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .browser-bar {
+      background: #2a2a2a;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .browser-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .browser-dots span:nth-child(1) { background: #ff5f57; }
+    .browser-dots span:nth-child(2) { background: #ffbd2e; }
+    .browser-dots span:nth-child(3) { background: #28c840; }
+    .browser-url {
+      flex: 1;
+      background: #1a1a1a;
+      border-radius: 4px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.65rem;
+      color: #999;
+      font-family: 'Inter', monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .browser-label {
+      text-align: center;
+      padding: 0.5rem;
+      background: #2a2a2a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.65rem;
+      color: #666;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .browser-window iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Soul <span>Web</span> Studio</h1>
+    <p>Aperçu des réalisations</p>
+  </div>
+
+  <div class="previews">
+
+    <div class="browser-window">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">soulwebstudio.fr</div>
+      </div>
+      <iframe src="index.html" loading="lazy"></iframe>
+      <div class="browser-label">Soul Web Studio — Portfolio</div>
+    </div>
+
+    <div class="browser-window">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">barberking.soulwebstudio.fr</div>
+      </div>
+      <iframe src="barberking.html" loading="lazy"></iframe>
+      <div class="browser-label">BarberKing — Barbier moderne</div>
+    </div>
+
+    <div class="browser-window">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">elegance-coiffure.soulwebstudio.fr</div>
+      </div>
+      <iframe src="elegance-coiffure.html" loading="lazy"></iframe>
+      <div class="browser-label">Élégance Coiffure — Salon parisien</div>
+    </div>
+
+    <div class="browser-window">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">brasserie-du-marche.soulwebstudio.fr</div>
+      </div>
+      <iframe src="brasserie-du-marche.html" loading="lazy"></iframe>
+      <div class="browser-label">Brasserie du Marché — Restaurant</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
