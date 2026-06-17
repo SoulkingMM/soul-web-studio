@@ -166,19 +166,21 @@
     }
     .presta-accent {
       display: none;
-      height: 80px;
-      border: 1px solid var(--rose-border);
+      height: 100px;
+      background: #f0e8e0;
+      border: 0.5px solid #e0cfc4;
       border-radius: 2px;
       position: relative;
     }
-    .presta-accent::after {
-      content: '';
+    .presta-accent .presta-num {
       position: absolute;
-      width: 8px; height: 8px;
-      background: var(--rose);
-      border-radius: 50%;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--rose);
+      line-height: 1;
     }
     @media (min-width: 768px) {
       .presta-row { grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -342,11 +344,11 @@
         <h3 class="presta-name">Coupe femme</h3>
         <p class="presta-desc">Coupe, brushing et conseil personnalisé. Un moment rien que pour vous, du shampooing au coiffage final.</p>
       </div>
-      <div class="presta-accent"></div>
+      <div class="presta-accent"><span class="presta-num">01</span></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"></div>
+      <div class="presta-accent"><span class="presta-num">02</span></div>
       <div class="presta-text">
         <h3 class="presta-name">Coupe homme</h3>
         <p class="presta-desc">Coupe précise, dégradé, finitions soignées. Un style net qui vous ressemble.</p>
@@ -358,11 +360,11 @@
         <h3 class="presta-name">Coloration & Mèches</h3>
         <p class="presta-desc">Balayage, couleur complète ou mèches subtiles. Des produits de qualité pour un résultat naturel et durable.</p>
       </div>
-      <div class="presta-accent"></div>
+      <div class="presta-accent"><span class="presta-num">03</span></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"></div>
+      <div class="presta-accent"><span class="presta-num">04</span></div>
       <div class="presta-text">
         <h3 class="presta-name">Soins & Coiffage</h3>
         <p class="presta-desc">Soins profonds, kératine, lissage. Vos cheveux retrouvent éclat et vitalité.</p>
