@@ -539,6 +539,62 @@
       font-weight: 400;
     }
 
+    /* ── PROCESS ── */
+    .process { background: var(--bg-primary); }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      text-align: left;
+    }
+    .process-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .process-step-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .process-step-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    @media (min-width: 768px) {
+      .process-steps {
+        flex-direction: row;
+        max-width: 100%;
+        gap: 1rem;
+      }
+      .process-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+      }
+    }
+
     /* ── CONTACT ── */
     .contact {
       background: var(--bg-secondary);
@@ -1002,6 +1058,54 @@
             <div class="tarifs-option-price">10€<span>/mois</span></div>
             <div class="tarifs-option-name">Hébergement seul</div>
             <div class="tarifs-option-desc">Si vous gérez vous-même votre site</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="section process" id="process">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="section-label">Étapes</span>
+        <h2 class="section-title">Comment ça marche</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="process-steps fade-in">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <div>
+            <div class="process-step-title">On discute</div>
+            <p class="process-step-desc">Envoyez-moi un message avec votre activité et ce que vous souhaitez sur votre site.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <div>
+            <div class="process-step-title">Acompte 50%</div>
+            <p class="process-step-desc">Vous réglez la moitié (100€) pour démarrer. Je commence dès réception.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <div>
+            <div class="process-step-title">Création du site</div>
+            <p class="process-step-desc">Je vous livre une preview en 24-48h pour validation.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <div>
+            <div class="process-step-title">Validation & paiement</div>
+            <p class="process-step-desc">Vous validez, vous réglez le solde (100€), je génère la facture.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">5</div>
+          <div>
+            <div class="process-step-title">Mise en ligne</div>
+            <p class="process-step-desc">On se connecte 30 min ensemble et votre site est en ligne.</p>
           </div>
         </div>
       </div>
