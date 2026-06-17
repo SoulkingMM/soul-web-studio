@@ -478,6 +478,59 @@
       color: var(--text-muted);
     }
 
+    .tarifs-options {
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .tarifs-options-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .tarifs-options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .tarifs-option {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+    .tarifs-option-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .tarifs-option-price span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+    .tarifs-option-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+    .tarifs-option-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin-top: 0.2rem;
+    }
     .tarifs-footer {
       text-align: center;
       margin-top: 2.5rem;
@@ -879,11 +932,15 @@
             </li>
             <li>
               <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              SEO de base
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               1 modification offerte
             </li>
             <li class="addon">
               <span class="addon-plus">+</span>
-              Mise en ligne + nom de domaine : +25€ (recommandé)
+              Option mise en ligne : +25€ (recommandé)
             </li>
           </ul>
         </div>
@@ -914,15 +971,15 @@
             </li>
             <li>
               <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              SEO optimisé
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               Mise en ligne incluse
             </li>
             <li>
               <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              Modifications illimitées 1 mois
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              Optimisé SEO
+              Modifications illimitées pendant 1 mois
             </li>
             <li>
               <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
@@ -931,6 +988,22 @@
           </ul>
         </div>
 
+      </div>
+
+      <div class="tarifs-options fade-in">
+        <h3 class="tarifs-options-title">Options après livraison</h3>
+        <div class="tarifs-options-grid">
+          <div class="tarifs-option">
+            <div class="tarifs-option-price">20€<span>/mois</span></div>
+            <div class="tarifs-option-name">Maintenance tout compris</div>
+            <div class="tarifs-option-desc">Hébergement + mises à jour + support</div>
+          </div>
+          <div class="tarifs-option">
+            <div class="tarifs-option-price">10€<span>/mois</span></div>
+            <div class="tarifs-option-name">Hébergement seul</div>
+            <div class="tarifs-option-desc">Si vous gérez vous-même votre site</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
