@@ -39,6 +39,13 @@
       display: flex; justify-content: center;
       padding: 1.25rem 1.5rem;
       pointer-events: none;
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .nav.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
     }
     .nav-pill {
       pointer-events: all;
@@ -784,6 +791,24 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Nav hide/show
+    const navEl = document.getElementById('nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 200) {
+        navEl.classList.add('hidden');
+      } else {
+        navEl.classList.remove('hidden');
+      }
+      lastScroll = y;
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (e.clientY < 80) {
+        navEl.classList.remove('hidden');
+      }
+    });
 
     // Tubelight nav — track active section on scroll
     const navItems = document.querySelectorAll('.nav-item[data-section]');
