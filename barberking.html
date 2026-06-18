@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BarberKing — Barbier moderne</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="BarberKing, barbier moderne à Paris 11e. Coupes, dégradés, rasage traditionnel. Prenez rendez-vous dès maintenant.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://soulwebstudio.fr/barberking.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -794,15 +798,12 @@
 
     // Nav hide/show
     const navEl = document.getElementById('nav');
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > 200) {
+      if (window.scrollY > 200) {
         navEl.classList.add('hidden');
       } else {
         navEl.classList.remove('hidden');
       }
-      lastScroll = y;
     });
     document.addEventListener('mousemove', (e) => {
       if (e.clientY < 80) {

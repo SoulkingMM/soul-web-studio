@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brasserie du Marché — Restaurant traditionnel français</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Brasserie du Marché, restaurant traditionnel français à Versailles. Cuisine maison, produits frais du marché. Réservez votre table.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://soulwebstudio.fr/brasserie-du-marche.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -347,7 +351,7 @@
     <div class="nav-separator"><span>depuis 1952</span></div>
   </nav>
 
-  <section class="hero">
+  <section class="hero fade-in">
     <div class="hero-stamp">Fait Maison</div>
     <h1>
       Brasserie
@@ -359,7 +363,7 @@
   </section>
 
   <section class="section" id="carte">
-    <div class="section-ornament">
+    <div class="section-ornament fade-in">
       <span class="label">Notre carte</span>
       <h2>À la carte</h2>
       <div class="subtitle">les classiques de la maison</div>
@@ -427,7 +431,7 @@
     </div>
   </section>
 
-  <div class="ambiance">
+  <div class="ambiance fade-in">
     <h3>L'esprit brasserie</h3>
     <p>Un lieu chaleureux où se mêlent tradition et convivialité. Terrasse ombragée en été, cheminée crépitante en hiver.</p>
     <div class="ambiance-tags">
@@ -440,7 +444,7 @@
   </div>
 
   <section class="section" id="horaires">
-    <div class="section-ornament">
+    <div class="section-ornament fade-in">
       <span class="label">Horaires</span>
       <h2>Nous retrouver</h2>
       <div class="subtitle">à table !</div>
@@ -454,7 +458,7 @@
     </div>
   </section>
 
-  <div class="cta-section">
+  <div class="cta-section fade-in">
     <h2>Réservez votre table</h2>
     <p>On vous garde la meilleure place !</p>
     <a href="#" class="btn-vintage-light">Réserver</a>
@@ -462,13 +466,13 @@
 
   <!-- LOCALISATION -->
   <section class="localisation" id="localisation">
-    <div class="section-ornament">
+    <div class="section-ornament fade-in">
       <span class="label">Venir nous voir</span>
       <h2>Localisation</h2>
       <div class="subtitle">on vous attend !</div>
       <div class="line"><span>✦</span></div>
     </div>
-    <div class="localisation-grid">
+    <div class="localisation-grid fade-in">
       <div class="localisation-map">
         <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.1260%2C48.8030%2C2.1340%2C48.8070&amp;layer=mapnik&amp;marker=48.8050%2C2.1300" loading="lazy" title="Carte Brasserie du Marché"></iframe>
       </div>
@@ -489,7 +493,7 @@
 
   <!-- AVIS -->
   <div class="avis">
-    <div class="avis-header">
+    <div class="avis-header fade-in">
       <h3 style="font-family:'Caveat',cursive; font-size:1.8rem; color:var(--red); margin-bottom:0.75rem;">Ce qu'on dit de nous</h3>
       <div class="avis-stars">★★★★★</div>
       <div class="avis-score">4.7<span>/5</span></div>
@@ -527,8 +531,17 @@
       3 Place du Marché, 78000 Versailles<br>
       Téléphone : 01 39 00 00 00
     </div>
-    <div class="footer-copy">&copy; 2026 Brasserie du Marché — Site créé par Soul Web Studio</div>
+    <div class="footer-copy">&copy; 2026 Brasserie du Marché — Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">Soul Web Studio</a></div>
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
