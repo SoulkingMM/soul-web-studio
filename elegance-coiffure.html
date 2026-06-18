@@ -77,31 +77,41 @@
 
     /* ── HERO CENTRÉ ── */
     .hero {
+      position: relative;
       min-height: 100vh; min-height: 100svh;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       padding: 120px 2rem 4rem;
+      overflow: hidden;
     }
-    .hero-content { max-width: 600px; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+    }
+    .hero-content { max-width: 600px; position: relative; z-index: 1; }
     .hero-label {
       font-size: 0.65rem; font-weight: 500;
       letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--rose);
+      color: var(--rose-light);
       margin-bottom: 2rem;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.8rem, 7vw, 4.5rem);
       font-weight: 300; line-height: 1.15;
-      color: var(--text);
+      color: #ffffff;
       margin-bottom: 1.5rem;
     }
     .hero h1 em {
       font-style: italic; font-weight: 400;
-      color: var(--rose);
+      color: var(--rose-light);
     }
     .hero-sub {
-      font-size: 0.95rem; color: var(--text-light);
+      font-size: 0.95rem; color: rgba(255, 255, 255, 0.8);
       font-weight: 300; line-height: 1.7;
       margin-bottom: 2.5rem;
     }
@@ -118,18 +128,24 @@
       color: var(--rose); border: 1px solid var(--rose);
     }
     .btn-rose-outline:hover {
-      background: var(--rose); color: var(--white);
+      background: var(--rose); color: #ffffff;
+    }
+    .hero .btn-rose-outline {
+      color: #ffffff; border-color: rgba(255, 255, 255, 0.5);
+    }
+    .hero .btn-rose-outline:hover {
+      background: var(--rose); border-color: var(--rose); color: #ffffff;
     }
     .hero-scroll {
       margin-top: 3rem;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.5);
       font-size: 0.65rem; letter-spacing: 0.15em;
       text-transform: uppercase;
     }
     .hero-scroll span {
       display: block; margin-top: 0.5rem;
       width: 1px; height: 40px;
-      background: var(--rose-border);
+      background: rgba(255, 255, 255, 0.3);
       margin-left: auto; margin-right: auto;
     }
 
@@ -177,30 +193,31 @@
     }
     .presta-accent {
       display: none;
-      height: 100px;
-      background: #f0e8e0;
-      border: 0.5px solid #e0cfc4;
-      border-radius: 2px;
+      height: 220px;
+      border-radius: 4px;
       position: relative;
+      overflow: hidden;
+    }
+    .presta-accent img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .presta-accent-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.35);
     }
     .presta-accent-inner {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
+      text-align: center; z-index: 1;
     }
     .presta-accent .presta-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.5rem;
       font-weight: 300;
-      color: var(--rose);
+      color: #ffffff;
       line-height: 1;
-    }
-    .presta-accent .presta-photo-hint {
-      font-size: 12px;
-      font-style: italic;
-      color: var(--rose);
-      margin-top: 0.4rem;
     }
     @media (min-width: 768px) {
       .presta-row { grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -392,6 +409,78 @@
       .avis-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
+    /* ── FAQ ── */
+    .faq {
+      background: var(--bg);
+      padding: 5rem 2rem;
+    }
+    .faq-inner { max-width: 700px; margin: 0 auto; }
+    .faq-header {
+      text-align: center; margin-bottom: 3rem;
+    }
+    .faq-list { }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none; border: none; outline: none;
+      padding: 1.25rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--text);
+      text-align: left;
+      transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--rose); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      position: relative;
+      margin-left: 1rem;
+    }
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--rose);
+      transition: transform 0.3s ease;
+    }
+    .faq-icon::before {
+      width: 12px; height: 1px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-icon::after {
+      width: 1px; height: 12px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-item.active .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.5s ease;
+    }
+    .faq-item.active .faq-answer {
+      grid-template-rows: 1fr;
+    }
+    .faq-answer-inner {
+      overflow: hidden;
+    }
+    .faq-answer p {
+      padding: 0 0 1.25rem;
+      font-size: 0.84rem;
+      color: var(--text-light);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
     /* ── FADE IN ── */
     .fade-in {
       opacity: 0;
@@ -418,6 +507,8 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content fade-in">
       <div class="hero-label">Salon de coiffure — Paris</div>
       <h1>L'art de la coiffure,<br>au féminin comme au <em>masculin</em></h1>
@@ -444,11 +535,11 @@
         <h3 class="presta-name">Coupe femme</h3>
         <p class="presta-desc">Coupe, brushing et conseil personnalisé. Un moment rien que pour vous, du shampooing au coiffage final.</p>
       </div>
-      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">01</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
+      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Salon de coiffure" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">01</span></div></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">02</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
+      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Coupe homme" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">02</span></div></div>
       <div class="presta-text">
         <h3 class="presta-name">Coupe homme</h3>
         <p class="presta-desc">Coupe précise, dégradé, finitions soignées. Un style net qui vous ressemble.</p>
@@ -460,11 +551,11 @@
         <h3 class="presta-name">Coloration & Mèches</h3>
         <p class="presta-desc">Balayage, couleur complète ou mèches subtiles. Des produits de qualité pour un résultat naturel et durable.</p>
       </div>
-      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">03</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
+      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Coloration" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">03</span></div></div>
     </div>
 
     <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><div class="presta-accent-inner"><span class="presta-num">04</span><div class="presta-photo-hint">(Photo du salon à intégrer)</div></div></div>
+      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800" alt="Soins capillaires" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">04</span></div></div>
       <div class="presta-text">
         <h3 class="presta-name">Soins & Coiffage</h3>
         <p class="presta-desc">Soins profonds, kératine, lissage. Vos cheveux retrouvent éclat et vitalité.</p>
@@ -581,6 +672,44 @@
     </div>
   </section>
 
+  <div class="sep"></div>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="faq-inner">
+      <div class="faq-header fade-in">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Questions fréquentes</h2>
+      </div>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <button class="faq-question">Puis-je réserver en ligne ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, utilisez le bouton "Réserver" en haut de page pour choisir votre créneau directement en ligne.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps dure une prestation ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Une coupe femme dure environ 45 minutes à 1h. Une coloration complète peut prendre 2h selon la technique choisie.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Faut-il venir avec les cheveux lavés ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Non, nous nous occupons de tout — shampoing et soin inclus dans chaque prestation.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quels produits utilisez-vous ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Nous travaillons exclusivement avec des produits professionnels haut de gamme, respectueux de la fibre capillaire.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Proposez-vous des forfaits ou abonnements ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, nous proposons des forfaits fidélité. Renseignez-vous directement au salon ou via le formulaire de contact.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quelle est votre politique d'annulation ?<span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Nous vous demandons de prévenir au moins 24h à l'avance en cas d'annulation, afin de proposer le créneau à d'autres clients.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
@@ -606,6 +735,15 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
   </script>
 
 </body>
