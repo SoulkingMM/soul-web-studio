@@ -237,6 +237,86 @@
     }
     .btn-vintage-light:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red-dark); }
 
+    /* LOCALISATION */
+    .localisation {
+      padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto;
+    }
+    .localisation-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+    }
+    .localisation-map {
+      border: 1px solid var(--paper-stain);
+      overflow: hidden;
+    }
+    .localisation-map iframe {
+      width: 100%; height: 300px; border: none;
+    }
+    .localisation-info {
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .localisation-address {
+      font-size: 0.95rem; color: var(--ink-light); line-height: 1.9;
+    }
+    .localisation-address strong {
+      color: var(--ink); font-weight: 600;
+    }
+    @media (min-width: 768px) {
+      .localisation-grid { grid-template-columns: 1.2fr 0.8fr; }
+      .localisation-map iframe { height: 100%; min-height: 280px; }
+    }
+
+    /* AVIS */
+    .avis {
+      background: var(--white); border: 1px solid var(--paper-stain);
+      padding: 3rem 2rem; margin: 2rem 1.5rem;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+      position: relative;
+    }
+    .avis::before {
+      content: ''; position: absolute; inset: 6px;
+      border: 1px solid var(--paper-stain);
+    }
+    .avis-header {
+      text-align: center; margin-bottom: 2.5rem; position: relative;
+    }
+    .avis-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900; color: var(--ink);
+      line-height: 1;
+    }
+    .avis-score span { font-size: 1.1rem; color: var(--ink-light); font-weight: 400; }
+    .avis-stars { color: var(--gold); font-size: 1.2rem; margin: 0.5rem 0 0.25rem; }
+    .avis-count {
+      font-family: 'Caveat', cursive;
+      font-size: 0.95rem; color: var(--ink-light);
+    }
+    .avis-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+      position: relative;
+    }
+    .avis-card {
+      border-bottom: 1px dotted var(--paper-stain);
+      padding-bottom: 1.25rem;
+    }
+    .avis-card:last-child { border-bottom: none; padding-bottom: 0; }
+    .avis-card-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .avis-card-name {
+      font-weight: 600; color: var(--ink); font-size: 0.95rem;
+    }
+    .avis-card-stars { color: var(--gold); font-size: 0.85rem; }
+    .avis-card-text {
+      font-size: 0.9rem; color: var(--ink-light); line-height: 1.7;
+      font-style: italic;
+    }
+    .avis-disclaimer {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.65rem; color: var(--paper-stain);
+      font-family: 'Lora', serif; position: relative;
+    }
+
     /* FOOTER */
     .footer {
       text-align: center; padding: 3rem 1.5rem 2rem;
@@ -380,11 +460,72 @@
     <a href="#" class="btn-vintage-light">Réserver</a>
   </div>
 
+  <!-- LOCALISATION -->
+  <section class="localisation" id="localisation">
+    <div class="section-ornament">
+      <span class="label">Venir nous voir</span>
+      <h2>Localisation</h2>
+      <div class="subtitle">on vous attend !</div>
+      <div class="line"><span>✦</span></div>
+    </div>
+    <div class="localisation-grid">
+      <div class="localisation-map">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.1260%2C48.8030%2C2.1340%2C48.8070&amp;layer=mapnik&amp;marker=48.8050%2C2.1300" loading="lazy" title="Carte Brasserie du Marché"></iframe>
+      </div>
+      <div class="localisation-info">
+        <p class="localisation-address">
+          <strong>Brasserie du Marché</strong><br>
+          3 Place du Marché<br>
+          78000 Versailles<br><br>
+          <strong>Téléphone</strong><br>
+          01 39 00 00 00<br><br>
+          <strong>Accès</strong><br>
+          RER C — Versailles Rive Gauche<br>
+          Parking Place du Marché
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <div class="avis">
+    <div class="avis-header">
+      <h3 style="font-family:'Caveat',cursive; font-size:1.8rem; color:var(--red); margin-bottom:0.75rem;">Ce qu'on dit de nous</h3>
+      <div class="avis-stars">★★★★★</div>
+      <div class="avis-score">4.7<span>/5</span></div>
+      <div class="avis-count">Basé sur 89 avis</div>
+    </div>
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="avis-card-top">
+          <span class="avis-card-name">Marie-Claire</span>
+          <span class="avis-card-stars">★★★★★</span>
+        </div>
+        <p class="avis-card-text">Un vrai goût de tradition. Le confit de canard est une merveille et la tarte Tatin nous a rappelé celle de notre grand-mère. Service chaleureux.</p>
+      </div>
+      <div class="avis-card">
+        <div class="avis-card-top">
+          <span class="avis-card-name">Philippe</span>
+          <span class="avis-card-stars">★★★★★</span>
+        </div>
+        <p class="avis-card-text">Notre cantine du samedi midi. Les produits sont frais, la carte change avec les saisons et la terrasse en été est un bonheur. On recommande les yeux fermés.</p>
+      </div>
+      <div class="avis-card">
+        <div class="avis-card-top">
+          <span class="avis-card-name">Camille</span>
+          <span class="avis-card-stars">★★★★☆</span>
+        </div>
+        <p class="avis-card-text">Très bonne cuisine, cadre authentique et personnel souriant. Un peu bruyant le week-end mais l'ambiance fait partie du charme. L'entrecôte est parfaite.</p>
+      </div>
+    </div>
+    <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
+  </div>
+
   <footer class="footer">
     <div class="footer-logo">Brasserie du Marché</div>
     <div class="footer-addr">
-      8 Place du Marché, 75004 Paris<br>
-      Téléphone : 01 43 00 00 00
+      3 Place du Marché, 78000 Versailles<br>
+      Téléphone : 01 39 00 00 00
     </div>
     <div class="footer-copy">&copy; 2026 Brasserie du Marché — Site créé par Soul Web Studio</div>
   </footer>

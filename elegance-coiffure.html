@@ -313,6 +313,85 @@
       color: var(--rose); text-decoration: none;
     }
 
+    /* ── LOCALISATION ── */
+    .localisation {
+      padding: 5rem 2rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .localisation-header {
+      text-align: center; margin-bottom: 3rem;
+    }
+    .localisation-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+    }
+    .localisation-map {
+      border: 0.5px solid var(--rose-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .localisation-map iframe {
+      width: 100%; height: 300px; border: none;
+    }
+    .localisation-info {
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .localisation-address {
+      font-size: 0.9rem; color: var(--text-light); font-weight: 300; line-height: 1.9;
+    }
+    .localisation-address strong {
+      color: var(--text); font-weight: 500;
+    }
+    @media (min-width: 768px) {
+      .localisation-grid { grid-template-columns: 1.2fr 0.8fr; }
+      .localisation-map iframe { height: 100%; min-height: 280px; }
+    }
+
+    /* ── AVIS ── */
+    .avis {
+      background: var(--white);
+      padding: 5rem 2rem;
+    }
+    .avis-inner { max-width: 900px; margin: 0 auto; }
+    .avis-header {
+      text-align: center; margin-bottom: 3rem;
+    }
+    .avis-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 600; color: var(--text);
+      line-height: 1;
+    }
+    .avis-score span { font-size: 1.2rem; color: var(--text-muted); font-weight: 400; }
+    .avis-stars { color: var(--rose); font-size: 1.2rem; margin: 0.5rem 0 0.25rem; }
+    .avis-count { font-size: 0.75rem; color: var(--text-muted); }
+    .avis-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+    }
+    .avis-card {
+      background: var(--bg);
+      border: 0.5px solid var(--rose-border);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .avis-card-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .avis-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500; color: var(--text);
+    }
+    .avis-card-stars { color: var(--rose); font-size: 0.85rem; }
+    .avis-card-text {
+      font-size: 0.82rem; color: var(--text-light); font-weight: 300; line-height: 1.7;
+    }
+    .avis-disclaimer {
+      text-align: center; margin-top: 2rem;
+      font-size: 0.65rem; color: var(--text-muted); font-style: italic;
+    }
+    @media (min-width: 768px) {
+      .avis-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     /* ── FADE IN ── */
     .fade-in {
       opacity: 0;
@@ -434,6 +513,71 @@
         <div><div class="tarif-name">Soin kératine</div><div class="tarif-desc">Réparation & brillance</div></div>
         <div class="tarif-price">40€</div>
       </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- LOCALISATION -->
+  <section class="localisation" id="localisation">
+    <div class="localisation-header fade-in">
+      <div class="section-label">Nous trouver</div>
+      <h2 class="section-title">Localisation</h2>
+    </div>
+    <div class="localisation-grid fade-in">
+      <div class="localisation-map">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.3360%2C48.8760%2C2.3430%2C48.8800&amp;layer=mapnik&amp;marker=48.8780%2C2.3395" loading="lazy" title="Carte Élégance Coiffure"></iframe>
+      </div>
+      <div class="localisation-info">
+        <p class="localisation-address">
+          <strong>Élégance Coiffure</strong><br>
+          12 Rue des Martyrs<br>
+          75009 Paris<br><br>
+          <strong>Téléphone</strong><br>
+          01 48 00 00 00<br><br>
+          <strong>Métro</strong><br>
+          Notre-Dame-de-Lorette (ligne 12)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- AVIS -->
+  <section class="avis" id="avis">
+    <div class="avis-inner">
+      <div class="avis-header fade-in">
+        <div class="section-label">Témoignages</div>
+        <h2 class="section-title">Avis clients</h2>
+        <div class="avis-stars">★★★★★</div>
+        <div class="avis-score">4.8<span>/5</span></div>
+        <div class="avis-count">Basé sur 63 avis</div>
+      </div>
+      <div class="avis-grid">
+        <div class="avis-card fade-in">
+          <div class="avis-card-top">
+            <span class="avis-card-name">Charlotte</span>
+            <span class="avis-card-stars">★★★★★</span>
+          </div>
+          <p class="avis-card-text">Un vrai moment de détente. Ma coloriste a parfaitement compris ce que je voulais, le résultat est naturel et lumineux. Le salon est magnifique en plus.</p>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-card-top">
+            <span class="avis-card-name">Sophie</span>
+            <span class="avis-card-stars">★★★★★</span>
+          </div>
+          <p class="avis-card-text">Meilleure coupe que j'ai eue depuis longtemps. L'équipe prend le temps d'écouter et de conseiller. Je ne change plus de salon !</p>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-card-top">
+            <span class="avis-card-name">Julien</span>
+            <span class="avis-card-stars">★★★★☆</span>
+          </div>
+          <p class="avis-card-text">Très bon service, ambiance calme et soignée. La coupe homme est précise et le brushing impeccable. Seul bémol : pas toujours facile d'avoir un créneau.</p>
+        </div>
+      </div>
+      <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
     </div>
   </section>
 
