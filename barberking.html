@@ -33,80 +33,72 @@
     }
     ::selection { background: var(--red); color: var(--white); }
 
-    /* ── RED TOP LINE ── */
-    .top-line {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--red); z-index: 200;
-    }
-
-    /* ── NAV ── */
+    /* ── NAV TUBELIGHT ── */
     .nav {
-      position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
-      padding: 1rem 2.5rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: center;
+      padding: 1.25rem 1.5rem;
+      pointer-events: none;
     }
-    .nav-left {
-      display: flex; align-items: center; gap: 2.5rem;
+    .nav-pill {
+      pointer-events: all;
+      display: flex; align-items: center; gap: 0.25rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.3rem;
+      border-radius: 100px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     }
-    .nav-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem; font-weight: 700;
-      color: var(--white); text-decoration: none;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .nav-logo span { color: var(--red); }
-    .nav-links {
-      display: none; list-style: none;
-      gap: 2rem; align-items: center;
-    }
-    .nav-links a {
+    .nav-item {
+      position: relative;
       color: var(--gray); text-decoration: none;
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      padding: 10px 24px; background: var(--red);
-      color: var(--white); text-decoration: none;
       font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem; font-weight: 600;
+      font-size: 0.68rem; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .nav-cta:hover {
-      background: var(--red-hover);
-      transform: translateY(-2px);
-    }
-    @media (min-width: 768px) {
-      .nav-links { display: flex; }
-    }
-
-    /* ── TICKER ── */
-    .ticker {
-      margin-top: 64px;
-      background: var(--red); color: var(--white);
-      padding: 0.55rem 0; overflow: hidden; white-space: nowrap;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      display: flex;
-    }
-    .ticker-inner {
-      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      border-radius: 100px;
+      transition: color 0.3s, background 0.3s;
       white-space: nowrap;
-      flex-shrink: 0;
-      animation: ticker 20s linear infinite;
     }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+    .nav-item:hover { color: var(--white); }
+    .nav-item.active {
+      color: var(--white);
+      background: rgba(139, 0, 0, 0.15);
+    }
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      width: 30px; height: 3px;
+      background: var(--red);
+      border-radius: 0 0 4px 4px;
+    }
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      top: -6px; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 12px;
+      background: rgba(139, 0, 0, 0.35);
+      border-radius: 50%;
+      filter: blur(6px);
+    }
+    .nav-item.is-cta {
+      background: var(--red);
+      color: var(--white);
+      font-weight: 600;
+      margin-left: 0.25rem;
+    }
+    .nav-item.is-cta:hover {
+      background: var(--red-hover);
+    }
+    .nav-item.is-cta::before,
+    .nav-item.is-cta::after { display: none; }
+
+    @media (max-width: 767px) {
+      .nav-item.hide-mobile { display: none; }
+      .nav-item { padding: 0.6rem 1rem; font-size: 0.6rem; }
     }
 
     /* ── HERO ── */
@@ -556,27 +548,17 @@
 </head>
 <body>
 
-  <!-- RED TOP LINE -->
-  <div class="top-line"></div>
-
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="#" class="nav-logo">BARBER<span>KING</span></a>
-      <ul class="nav-links">
-        <li><a href="#services">Prestations</a></li>
-        <li><a href="#horaires">Horaires</a></li>
-        <li><a href="#localisation">Localisation</a></li>
-        <li><a href="#avis">Avis</a></li>
-      </ul>
+  <!-- NAV TUBELIGHT -->
+  <nav class="nav" id="nav">
+    <div class="nav-pill">
+      <a href="#" class="nav-item active" data-section="hero">Accueil</a>
+      <a href="#services" class="nav-item" data-section="services">Prestations</a>
+      <a href="#horaires" class="nav-item hide-mobile" data-section="horaires">Horaires</a>
+      <a href="#localisation" class="nav-item hide-mobile" data-section="localisation">Lieu</a>
+      <a href="#avis" class="nav-item hide-mobile" data-section="avis">Avis</a>
+      <a href="#" class="nav-item is-cta">Réserver</a>
     </div>
-    <a href="#" class="nav-cta">Prendre rendez-vous</a>
   </nav>
-
-  <!-- TICKER -->
-  <div class="ticker">
-    <div class="ticker-inner">SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ </div><div class="ticker-inner">SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ SKIN FADE ✦ TAPER ✦ COUPE ✦ BARBE ✦ DÉGRADÉ ✦ RASAGE ✦ </div>
-  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -802,6 +784,27 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Tubelight nav — track active section on scroll
+    const navItems = document.querySelectorAll('.nav-item[data-section]');
+    const sections = [];
+    navItems.forEach(item => {
+      const id = item.getAttribute('data-section');
+      const el = id === 'hero' ? document.querySelector('.hero') : document.getElementById(id);
+      if (el) sections.push({ el, item });
+    });
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(n => n.classList.remove('active'));
+          const match = sections.find(s => s.el === entry.target);
+          if (match) match.item.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -50% 0px' });
+
+    sections.forEach(s => navObserver.observe(s.el));
   </script>
 
 </body>

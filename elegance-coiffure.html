@@ -54,12 +54,14 @@
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem; font-weight: 400;
-      color: var(--text); text-decoration: none;
+      color: #ffffff; text-decoration: none;
       letter-spacing: 0.35em; text-transform: uppercase;
+      transition: color 0.4s ease;
     }
+    .nav.scrolled .nav-logo { color: var(--text); }
     .nav-bar {
       width: 40px; height: 1px;
-      background: var(--rose);
+      background: rgba(255, 255, 255, 0.4);
       margin: 0.6rem 0;
       transition: all 0.4s ease;
     }
@@ -68,12 +70,14 @@
       display: flex; list-style: none; gap: 2.5rem; align-items: center;
     }
     .nav-links a {
-      color: var(--text-light); text-decoration: none;
+      color: rgba(255, 255, 255, 0.7); text-decoration: none;
       font-size: 11px; font-weight: 400;
       letter-spacing: 3px; text-transform: uppercase;
       transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--rose); }
+    .nav-links a:hover { color: #ffffff; }
+    .nav.scrolled .nav-links a { color: var(--text-light); }
+    .nav.scrolled .nav-links a:hover { color: var(--rose); }
 
     /* ── HERO CENTRÉ ── */
     .hero {
