@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#1a1614" stroke-width="3"/>
+  <circle cx="100" cy="100" r="82" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+  <text x="100" y="112" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="72" font-weight="700" fill="#c9a84c" letter-spacing="-2">SW</text>
+  <line x1="68" y1="126" x2="132" y2="126" stroke="#c9a84c" stroke-width="1"/>
+  <text x="100" y="143" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="400" fill="#c9a84c" letter-spacing="8">STUDIO</text>
+</svg>
