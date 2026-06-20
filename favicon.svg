@@ -1,7 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="96" fill="#ffffff" stroke="#1a1614" stroke-width="3"/>
-  <circle cx="100" cy="100" r="82" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
-  <text x="100" y="112" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#c9a84c" letter-spacing="-2">SW</text>
-  <line x1="68" y1="126" x2="132" y2="126" stroke="#c9a84c" stroke-width="1"/>
-  <text x="100" y="143" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#c9a84c" letter-spacing="8">STUDIO</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4b96a"/>
+      <stop offset="100%" stop-color="#b8952e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Spirales vent -->
+  <path d="M8 38c-3-1-5-4-4-7s4-4 6-2c1 1 0 3-1 3s-2-1-1-2" fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M56 38c3-1 5-4 4-7s-4-4-6-2c-1 1 0 3 1 3s2-1 1-2" fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Corps nuage -->
+  <path d="M14 40 Q10 40 10 35 Q10 30 15 28 Q14 22 20 19 Q25 15 32 15 Q39 15 44 19 Q50 22 49 28 Q54 30 54 35 Q54 40 50 40 Z" fill="url(#g)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" filter="url(#glow)"/>
+  <!-- Yeux -->
+  <ellipse cx="25" cy="30" rx="3" ry="3.5" fill="#1a1614"/>
+  <ellipse cx="39" cy="30" rx="3" ry="3.5" fill="#1a1614"/>
+  <!-- Bouche -->
+  <ellipse cx="32" cy="37" rx="2.5" ry="3" fill="#1a1614"/>
 </svg>
