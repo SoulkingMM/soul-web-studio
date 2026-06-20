@@ -3,11 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Titre affiché dans l'onglet du navigateur et dans Google -->
   <title>Soul Web Studio — Création de sites web pour commerces locaux</title>
+
+  <!-- Favicon : icône dans l'onglet du navigateur -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Meta description : texte affiché sous le titre dans les résultats Google -->
   <meta name="description" content="Soul Web Studio crée des sites web professionnels pour artisans et commerces locaux. À partir de 200€, livré à partir de 48h.">
+
+  <!-- SEO : autorise Google à indexer cette page -->
   <meta name="robots" content="index, follow">
+
+  <!-- URL canonique : dit à Google quelle est l'adresse officielle de cette page -->
   <link rel="canonical" href="https://soulwebstudio.fr/">
+
+  <!-- Google Fonts : Playfair Display (titres) + Inter (texte) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1037,7 +1049,11 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ============================================ -->
+  <!-- NAV : Barre de navigation fixe en haut      -->
+  <!-- Se floute au scroll (classe .scrolled en JS) -->
+  <!-- Les liens sont cachés sur mobile             -->
+  <!-- ============================================ -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">Soul <span>Web</span> Studio</a>
     <ul class="nav-links">
@@ -1047,7 +1063,11 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ============================================ -->
+  <!-- HERO : Section d'accueil plein écran         -->
+  <!-- Animation 3D au scroll (perspective/rotateX) -->
+  <!-- Meteors = étoiles filantes dorées en fond    -->
+  <!-- ============================================ -->
   <section class="hero">
     <div class="meteors-container" id="meteors"></div>
     <div class="hero-glow"></div>
@@ -1070,7 +1090,10 @@
     </div>
   </section>
 
-  <!-- À PROPOS -->
+  <!-- ============================================ -->
+  <!-- À PROPOS : 3 points avec icônes SVG         -->
+  <!-- Parcours autodidacte, solo, sur-mesure       -->
+  <!-- ============================================ -->
   <section class="section a-propos" id="a-propos">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1101,7 +1124,11 @@
     </div>
   </section>
 
-  <!-- RÉALISATIONS -->
+  <!-- ============================================ -->
+  <!-- RÉALISATIONS : Grille de 3 démos clients     -->
+  <!-- Chaque carte contient un iframe du site démo -->
+  <!-- + lien "Voir la démo" vers le .html          -->
+  <!-- ============================================ -->
   <section class="section realisations" id="realisations">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1161,7 +1188,10 @@
     </div>
   </section>
 
-  <!-- CE QUE JE FAIS -->
+  <!-- ============================================ -->
+  <!-- CE QUE JE FAIS : 2 cartes services           -->
+  <!-- Site vitrine + Hébergement & Maintenance     -->
+  <!-- ============================================ -->
   <section class="section services" id="services">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1182,7 +1212,10 @@
     </div>
   </section>
 
-  <!-- MOBILE FIRST -->
+  <!-- ============================================ -->
+  <!-- MOBILE FIRST : Bloc texte centré             -->
+  <!-- Rappelle que les sites sont pensés mobile    -->
+  <!-- ============================================ -->
   <section class="section mobile-first">
     <div class="mobile-first-inner fade-in">
       <h2>Conçu pour mobile.</h2>
@@ -1190,7 +1223,11 @@
     </div>
   </section>
 
-  <!-- TARIFS -->
+  <!-- ============================================ -->
+  <!-- TARIFS : 2 offres (Essentiel 200€ / Premium 300€) -->
+  <!-- + options après livraison (maintenance/hébergement) -->
+  <!-- La carte "featured" a le badge "Recommandé"  -->
+  <!-- ============================================ -->
   <section class="section tarifs" id="tarifs">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1322,7 +1359,10 @@
     </div>
   </section>
 
-  <!-- COMMENT ÇA MARCHE -->
+  <!-- ============================================ -->
+  <!-- COMMENT ÇA MARCHE : 5 étapes numérotées     -->
+  <!-- Discuter → Acompte → Création → Validation → Mise en ligne -->
+  <!-- ============================================ -->
   <section class="section process" id="process">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1370,7 +1410,11 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ============================================ -->
+  <!-- CONTACT : Formulaire via Formspree           -->
+  <!-- Les soumissions arrivent sur mphenixoff@gmail -->
+  <!-- + lien Instagram @soulwebstudio              -->
+  <!-- ============================================ -->
   <section class="section contact" id="contact">
     <div class="contact-inner fade-in">
       <div class="contact-icon">
@@ -1404,7 +1448,11 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ============================================ -->
+  <!-- FAQ : Accordéon cliquable (7 questions)      -->
+  <!-- Animation CSS grid-template-rows: 0fr → 1fr -->
+  <!-- Un seul item ouvert à la fois                -->
+  <!-- ============================================ -->
   <section class="section faq" id="faq">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -1445,7 +1493,11 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <!-- FOOTER : 4 colonnes (marque, services, légal, réseaux) -->
+  <!-- Animation cascade au scroll (transition-delay)         -->
+  <!-- Lien vers mentions-legales.html                        -->
+  <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-col" style="transition-delay: 0.1s;">
@@ -1481,7 +1533,10 @@
   </footer>
 
   <script>
-    // Meteors
+    // ============================================
+    // METEORS : Génère 15 étoiles filantes aléatoires
+    // dans le conteneur #meteors du hero
+    // ============================================
     (function() {
       const container = document.getElementById('meteors');
       const count = 15;
@@ -1495,6 +1550,11 @@
       }
     })();
 
+    // ============================================
+    // SCROLL : Navbar fond au scroll + animation 3D du hero
+    // Le hero commence incliné (rotateX 8deg, scale 0.95)
+    // et se redresse progressivement au scroll
+    // ============================================
     const nav = document.getElementById('nav');
     const hero = document.querySelector('.hero');
     const heroHeight = hero.offsetHeight;
@@ -1510,6 +1570,11 @@
       hero.style.opacity = opacity;
     });
 
+    // ============================================
+    // FADE-IN : IntersectionObserver qui ajoute la classe
+    // 'visible' quand un élément entre dans le viewport
+    // Utilisé sur les .fade-in et les colonnes du footer
+    // ============================================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1519,6 +1584,11 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     document.querySelectorAll('.footer-col').forEach(el => observer.observe(el));
 
+    // ============================================
+    // FAQ ACCORDÉON : Un seul item ouvert à la fois
+    // Toggle la classe 'active' sur le .faq-item parent
+    // L'animation se fait via grid-template-rows en CSS
+    // ============================================
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;

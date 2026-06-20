@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ============================================ -->
+  <!-- HEAD : Métadonnées, SEO, polices             -->
+  <!-- noindex/nofollow : page démo, pas indexée    -->
+  <!-- Polices : Playfair Display (titres vintage)   -->
+  <!--         + Caveat (cursive manuscrite)          -->
+  <!--         + Lora (corps de texte serif)          -->
+  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brasserie du Marché — Restaurant traditionnel français</title>
@@ -343,14 +350,26 @@
 </head>
 <body>
 
+  <!-- ============================================ -->
+  <!-- BORDURE DÉCORATIVE : Cadre fixe avec coins    -->
+  <!-- rouges style affiche vintage                   -->
+  <!-- ============================================ -->
   <div class="page-border"></div>
 
+  <!-- ============================================ -->
+  <!-- NAV : Sous-titre + logo rouge + séparateur    -->
+  <!-- Style menu de restaurant traditionnel          -->
+  <!-- ============================================ -->
   <nav class="nav">
     <div class="nav-top-line">Restaurant — Cuisine traditionnelle française</div>
     <a href="#" class="nav-logo">Brasserie du Marché</a>
     <div class="nav-separator"><span>depuis 1952</span></div>
   </nav>
 
+  <!-- ============================================ -->
+  <!-- HERO : Titre vintage + tampon "Fait Maison"   -->
+  <!-- Ornement décoratif + bouton "Voir la carte"   -->
+  <!-- ============================================ -->
   <section class="hero fade-in">
     <div class="hero-stamp">Fait Maison</div>
     <h1>
@@ -362,6 +381,11 @@
     <a href="#carte" class="btn-vintage">Voir la carte</a>
   </section>
 
+  <!-- ============================================ -->
+  <!-- CARTE : Menu du restaurant style vintage      -->
+  <!-- 3 catégories : Entrées, Plats, Desserts       -->
+  <!-- Lignes pointillées entre plat et prix          -->
+  <!-- ============================================ -->
   <section class="section" id="carte">
     <div class="section-ornament fade-in">
       <span class="label">Notre carte</span>
@@ -431,6 +455,10 @@
     </div>
   </section>
 
+  <!-- ============================================ -->
+  <!-- AMBIANCE : Bloc "carte postale" avec double   -->
+  <!-- bordure, description + tags (Terrasse, etc.)  -->
+  <!-- ============================================ -->
   <div class="ambiance fade-in">
     <h3>L'esprit brasserie</h3>
     <p>Un lieu chaleureux où se mêlent tradition et convivialité. Terrasse ombragée en été, cheminée crépitante en hiver.</p>
@@ -443,6 +471,10 @@
     </div>
   </div>
 
+  <!-- ============================================ -->
+  <!-- HORAIRES : Jours et heures d'ouverture        -->
+  <!-- Lundi fermé, service midi et soir              -->
+  <!-- ============================================ -->
   <section class="section" id="horaires">
     <div class="section-ornament fade-in">
       <span class="label">Horaires</span>
@@ -458,13 +490,20 @@
     </div>
   </section>
 
+  <!-- ============================================ -->
+  <!-- CTA RÉSERVATION : Bloc rouge avec bouton      -->
+  <!-- "Réserver" style vintage inversé               -->
+  <!-- ============================================ -->
   <div class="cta-section fade-in">
     <h2>Réservez votre table</h2>
     <p>On vous garde la meilleure place !</p>
     <a href="#" class="btn-vintage-light">Réserver</a>
   </div>
 
-  <!-- LOCALISATION -->
+  <!-- ============================================ -->
+  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
+  <!-- Place du Marché, Versailles                    -->
+  <!-- ============================================ -->
   <section class="localisation" id="localisation">
     <div class="section-ornament fade-in">
       <span class="label">Venir nous voir</span>
@@ -491,7 +530,11 @@
     </div>
   </section>
 
-  <!-- AVIS -->
+  <!-- ============================================ -->
+  <!-- AVIS CLIENTS : Note 4.7/5 + 3 avis           -->
+  <!-- Style carte postale avec double bordure       -->
+  <!-- Avis illustratifs (personnalisables)           -->
+  <!-- ============================================ -->
   <div class="avis">
     <div class="avis-header fade-in">
       <h3 style="font-family:'Caveat',cursive; font-size:1.8rem; color:var(--red); margin-bottom:0.75rem;">Ce qu'on dit de nous</h3>
@@ -525,6 +568,10 @@
     <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
   </div>
 
+  <!-- ============================================ -->
+  <!-- FOOTER : Logo, adresse, crédit Soul Web Studio -->
+  <!-- Séparateur double ligne style vintage          -->
+  <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-logo">Brasserie du Marché</div>
     <div class="footer-addr">
@@ -535,6 +582,12 @@
   </footer>
 
   <script>
+    // ============================================
+    // FADE-IN : IntersectionObserver pour les
+    // animations d'apparition au scroll
+    // Ajoute 'visible' quand l'élément entre
+    // dans le viewport (seuil 10%)
+    // ============================================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

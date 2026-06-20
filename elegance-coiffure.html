@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ============================================ -->
+  <!-- HEAD : Métadonnées, SEO, polices             -->
+  <!-- noindex/nofollow : page démo, pas indexée    -->
+  <!-- Polices : Cormorant Garamond (titres élégants) -->
+  <!--         + DM Sans (corps de texte)            -->
+  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Élégance Coiffure — Salon de coiffure parisien</title>
@@ -503,7 +509,11 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ============================================ -->
+  <!-- NAV : Logo centré + barre décorative + liens  -->
+  <!-- Passe de transparente à fond crème au scroll   -->
+  <!-- Le logo passe de blanc à noir au scroll        -->
+  <!-- ============================================ -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">Élégance</a>
     <div class="nav-bar"></div>
@@ -513,7 +523,11 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ============================================ -->
+  <!-- HERO : Plein écran, image salon Unsplash      -->
+  <!-- Overlay sombre + titre en Cormorant Garamond  -->
+  <!-- Bouton CTA outline + indicateur "Défiler"     -->
+  <!-- ============================================ -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -531,7 +545,11 @@
 
   <div class="sep"></div>
 
-  <!-- PRESTATIONS -->
+  <!-- ============================================ -->
+  <!-- PRESTATIONS : 4 lignes alternées texte/image  -->
+  <!-- Images Unsplash visibles uniquement en desktop -->
+  <!-- Classe .reverse pour alterner gauche/droite    -->
+  <!-- ============================================ -->
   <section class="prestations" id="prestations">
     <div class="prestations-header fade-in">
       <div class="section-label">Savoir-faire</div>
@@ -573,7 +591,10 @@
 
   <div class="sep"></div>
 
-  <!-- CITATION -->
+  <!-- ============================================ -->
+  <!-- CITATION : Citation de Coco Chanel            -->
+  <!-- En italique Cormorant Garamond                -->
+  <!-- ============================================ -->
   <section class="quote-section fade-in">
     <p class="quote-text">« La beauté commence au moment où vous décidez d'être vous-même. »</p>
     <div class="quote-author">Coco Chanel</div>
@@ -581,7 +602,10 @@
 
   <div class="sep"></div>
 
-  <!-- TARIFS -->
+  <!-- ============================================ -->
+  <!-- TARIFS : 6 cartes prix (coupe, colo, soin...) -->
+  <!-- Grille 1 col mobile → 2 col desktop           -->
+  <!-- ============================================ -->
   <section class="tarifs" id="tarifs">
     <div class="tarifs-header fade-in">
       <div class="section-label">Nos prix</div>
@@ -617,7 +641,10 @@
 
   <div class="sep"></div>
 
-  <!-- LOCALISATION -->
+  <!-- ============================================ -->
+  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
+  <!-- Rue des Martyrs, Paris 9e                     -->
+  <!-- ============================================ -->
   <section class="localisation" id="localisation">
     <div class="localisation-header fade-in">
       <div class="section-label">Nous trouver</div>
@@ -643,7 +670,10 @@
 
   <div class="sep"></div>
 
-  <!-- AVIS -->
+  <!-- ============================================ -->
+  <!-- AVIS CLIENTS : Note 4.8/5 + 3 cartes avis    -->
+  <!-- Avis illustratifs (personnalisables)           -->
+  <!-- ============================================ -->
   <section class="avis" id="avis">
     <div class="avis-inner">
       <div class="avis-header fade-in">
@@ -682,7 +712,11 @@
 
   <div class="sep"></div>
 
-  <!-- FAQ -->
+  <!-- ============================================ -->
+  <!-- FAQ : 6 questions fréquentes avec accordéon   -->
+  <!-- Animation via grid-template-rows en CSS       -->
+  <!-- Un seul item ouvert à la fois                 -->
+  <!-- ============================================ -->
   <section class="faq" id="faq">
     <div class="faq-inner">
       <div class="faq-header fade-in">
@@ -718,7 +752,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <!-- FOOTER : Logo, liens, crédit Soul Web Studio  -->
+  <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">Élégance Coiffure</div>
@@ -731,11 +767,19 @@
   </footer>
 
   <script>
+    // ============================================
+    // NAV SCROLL : Ajoute la classe 'scrolled'
+    // quand on dépasse 50px (change le fond + couleurs)
+    // ============================================
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
     });
 
+    // ============================================
+    // FADE-IN : IntersectionObserver pour les
+    // animations d'apparition au scroll
+    // ============================================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -744,6 +788,10 @@
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // ============================================
+    // FAQ ACCORDÉON : Un seul item ouvert à la fois
+    // Toggle la classe 'active' sur le .faq-item
+    // ============================================
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;

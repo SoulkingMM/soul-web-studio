@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- ============================================ -->
+  <!-- HEAD : Métadonnées, SEO, polices             -->
+  <!-- Favicon SVG partagé avec le portfolio        -->
+  <!-- noindex/nofollow : page démo, pas indexée    -->
+  <!-- Polices : Oswald (titres) + Inter (corps)    -->
+  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BarberKing — Barbier moderne</title>
@@ -559,7 +565,12 @@
 </head>
 <body>
 
-  <!-- NAV TUBELIGHT -->
+  <!-- ============================================ -->
+  <!-- NAV TUBELIGHT : Barre de navigation flottante -->
+  <!-- Effet pilule glassmorphism avec backdrop-filter -->
+  <!-- Le lien actif a un effet "tubelight" rouge     -->
+  <!-- Se cache au scroll > 200px, réapparaît au hover -->
+  <!-- ============================================ -->
   <nav class="nav" id="nav">
     <div class="nav-pill">
       <a href="#" class="nav-item active" data-section="hero">Accueil</a>
@@ -571,7 +582,11 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ============================================ -->
+  <!-- HERO : Plein écran avec image de fond Unsplash -->
+  <!-- Overlay sombre + titre BARBER/KING en gros     -->
+  <!-- Boutons CTA + flèche de scroll animée           -->
+  <!-- ============================================ -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -592,7 +607,10 @@
     </div>
   </section>
 
-  <!-- INFO BAR -->
+  <!-- ============================================ -->
+  <!-- BARRE D'INFO : Adresse, téléphone, horaires  -->
+  <!-- 3 colonnes avec icônes SVG                    -->
+  <!-- ============================================ -->
   <div class="info-bar fade-in">
     <div class="info-bar-inner">
       <div class="info-bar-item">
@@ -625,7 +643,11 @@
     </div>
   </div>
 
-  <!-- SERVICES -->
+  <!-- ============================================ -->
+  <!-- SERVICES : 3 cartes (Coupes, Barbe, Combos)  -->
+  <!-- Grille responsive 1 col mobile → 3 col desktop -->
+  <!-- Chaque carte a un numéro décoratif en fond     -->
+  <!-- ============================================ -->
   <section class="services" id="services">
     <div class="services-inner">
       <div class="section-header fade-in">
@@ -666,7 +688,10 @@
     </div>
   </section>
 
-  <!-- HORAIRES -->
+  <!-- ============================================ -->
+  <!-- HORAIRES : Tableau des jours et heures        -->
+  <!-- Lundi fermé, Mar-Ven 09:30-20:00, etc.        -->
+  <!-- ============================================ -->
   <section class="horaires" id="horaires">
     <div class="horaires-inner">
       <div class="section-header fade-in">
@@ -683,7 +708,11 @@
     </div>
   </section>
 
-  <!-- LOCALISATION -->
+  <!-- ============================================ -->
+  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
+  <!-- Carte en grayscale inversé pour thème sombre  -->
+  <!-- Grille 1 col mobile → 2 col desktop           -->
+  <!-- ============================================ -->
   <section class="localisation" id="localisation">
     <div class="localisation-inner">
       <div class="section-header fade-in">
@@ -714,7 +743,10 @@
     </div>
   </section>
 
-  <!-- AVIS -->
+  <!-- ============================================ -->
+  <!-- AVIS CLIENTS : Note 4.9/5 + 3 cartes avis    -->
+  <!-- Avis illustratifs (personnalisables)           -->
+  <!-- ============================================ -->
   <section class="avis" id="avis">
     <div class="avis-inner">
       <div class="section-header fade-in">
@@ -752,7 +784,10 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <!-- FOOTER : Logo, newsletter, réseaux sociaux   -->
+  <!-- Lien vers Soul Web Studio (créateur du site)  -->
+  <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -789,6 +824,10 @@
   </footer>
 
   <script>
+    // ============================================
+    // FADE-IN : Ajoute 'visible' aux éléments
+    // quand ils entrent dans le viewport
+    // ============================================
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -796,7 +835,10 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Nav hide/show
+    // ============================================
+    // NAV AUTO-HIDE : Cache la navbar au scroll > 200px
+    // Réapparaît quand la souris passe en haut (< 80px)
+    // ============================================
     const navEl = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -811,7 +853,11 @@
       }
     });
 
-    // Tubelight nav — track active section on scroll
+    // ============================================
+    // TUBELIGHT NAV : Suivi de section active au scroll
+    // Un 2e IntersectionObserver détecte quelle section
+    // est visible et déplace l'effet tubelight rouge
+    // ============================================
     const navItems = document.querySelectorAll('.nav-item[data-section]');
     const sections = [];
     navItems.forEach(item => {
