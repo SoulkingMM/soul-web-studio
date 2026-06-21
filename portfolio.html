@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ============================================ -->
+  <!-- HEAD : Page Portfolio Soul Web Studio         -->
+  <!-- Même style que le site (Inter + Playfair)    -->
+  <!-- ============================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Soul Web Studio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Découvrez les réalisations de Soul Web Studio : sites vitrines sur-mesure pour coiffeurs, barbiers, restaurants et commerces locaux.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://soulwebstudio.fr/portfolio.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #f8f7f5;
+      --bg-secondary: #e8e4de;
+      --bg-card: #faf9f7;
+      --gold: #c9a84c;
+      --gold-light: #d4b96a;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --text-primary: #1a1614;
+      --text-secondary: #888888;
+      --text-muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(248, 247, 245, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text-primary); text-decoration: none;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-back {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 8rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 700px; margin: 0 auto;
+    }
+    .hero-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600; color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .hero-intro {
+      font-size: 1.05rem; color: var(--text-secondary);
+      font-weight: 300; line-height: 1.8;
+      max-width: 550px; margin: 0 auto;
+    }
+
+    /* ── PROJETS ── */
+    .projects {
+      max-width: 1100px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .project {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0; margin-bottom: 3rem;
+      background: var(--bg-card);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 12px; overflow: hidden;
+      transition: all 0.4s;
+    }
+    .project:hover {
+      border-color: rgba(201, 168, 76, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    }
+    .project-thumb {
+      aspect-ratio: 16/9;
+      background: var(--bg-secondary);
+      position: relative; overflow: hidden;
+    }
+    .project-thumb iframe {
+      width: 200%; height: 200%;
+      border: none;
+      transform: scale(0.5);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .project-body {
+      padding: 2rem 2.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .project-tag {
+      display: inline-block; width: fit-content;
+      padding: 0.25rem 0.75rem;
+      background: var(--gold-dim); color: var(--gold);
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 100px; margin-bottom: 0.75rem;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.9rem; color: var(--text-secondary);
+      font-weight: 300; line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .project-details {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .project-detail {
+      padding: 0.3rem 0.7rem;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--gold); text-decoration: none;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.04em; transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.75rem; }
+    .project-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2;
+    }
+
+    @media (min-width: 768px) {
+      .project { grid-template-columns: 1.2fr 1fr; }
+      .project-thumb { aspect-ratio: auto; }
+      .project-body { padding: 2.5rem 3rem; }
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center; padding: 4rem 1.5rem;
+      background: var(--bg-secondary);
+    }
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cta h2 span { color: var(--gold); }
+    .cta p {
+      font-size: 0.92rem; color: var(--text-secondary);
+      font-weight: 300; margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block; padding: 0.85rem 2rem;
+      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 4px;
+      transition: all 0.3s; cursor: pointer; border: none;
+      background: var(--gold); color: var(--bg-primary);
+      box-shadow: 0 4px 20px rgba(184, 157, 102, 0.3);
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.72rem; color: var(--text-muted); font-weight: 300;
+    }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- NAV : Logo + lien retour                     -->
+  <!-- ============================================ -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Soul <span>Web</span> Studio</a>
+    <a href="index.html" class="nav-back">&larr; Retour au site</a>
+  </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO : Titre portfolio                       -->
+  <!-- ============================================ -->
+  <section class="hero">
+    <div class="hero-label">Portfolio</div>
+    <h1>Mes <span>réalisations</span></h1>
+    <div class="divider"></div>
+    <p class="hero-intro">Des sites vitrines sur-mesure, codés à la main, pensés pour convertir vos visiteurs en clients.</p>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PROJETS : Cartes horizontales                -->
+  <!-- ============================================ -->
+  <div class="projects">
+
+    <div class="project fade-in">
+      <div class="project-thumb">
+        <iframe src="elegance-coiffure.html" loading="lazy" title="Élégance Coiffure"></iframe>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Coiffure</span>
+        <h2 class="project-name">Élégance Coiffure</h2>
+        <p class="project-desc">Salon de coiffure parisien haut de gamme. Design élégant avec réservation en ligne, galerie de réalisations et avis clients intégrés.</p>
+        <div class="project-details">
+          <span class="project-detail">HTML / CSS / JS</span>
+          <span class="project-detail">Responsive</span>
+          <span class="project-detail">SEO optimisé</span>
+        </div>
+        <a href="elegance-coiffure.html" class="project-link" target="_blank">
+          Voir la démo
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project fade-in">
+      <div class="project-thumb">
+        <iframe src="brasserie-du-marche.html" loading="lazy" title="Brasserie du Marché"></iframe>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Restaurant</span>
+        <h2 class="project-name">Brasserie du Marché</h2>
+        <p class="project-desc">Restaurant traditionnel français. Présentation de la carte, horaires d'ouverture et ambiance chaleureuse mise en avant.</p>
+        <div class="project-details">
+          <span class="project-detail">HTML / CSS / JS</span>
+          <span class="project-detail">Responsive</span>
+          <span class="project-detail">Google Maps</span>
+        </div>
+        <a href="brasserie-du-marche.html" class="project-link" target="_blank">
+          Voir la démo
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="project fade-in">
+      <div class="project-thumb">
+        <iframe src="barberking.html" loading="lazy" title="BarberKing"></iframe>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Barbier</span>
+        <h2 class="project-name">BarberKing</h2>
+        <p class="project-desc">Salon de barbier moderne au style urbain. Animations dynamiques, prise de rendez-vous en ligne et galerie de coupes.</p>
+        <div class="project-details">
+          <span class="project-detail">HTML / CSS / JS</span>
+          <span class="project-detail">Responsive</span>
+          <span class="project-detail">Animations</span>
+        </div>
+        <a href="barberking.html" class="project-link" target="_blank">
+          Voir la démo
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CTA : Appel à l'action                       -->
+  <!-- ============================================ -->
+  <section class="cta">
+    <h2>Votre site pourrait être le <span>prochain</span></h2>
+    <p>Demandez votre devis gratuit en 2 minutes.</p>
+    <a href="index.html#devis" class="btn">Devis gratuit</a>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER : Logo + copyright                    -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="footer-brand">Soul <span>Web</span> Studio</div>
+    <p class="footer-copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>
+    // ============================================
+    // FADE-IN : IntersectionObserver
+    // ============================================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
