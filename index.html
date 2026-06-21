@@ -53,58 +53,56 @@
       overflow-x: hidden;
     }
 
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-light);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
     /* ── NAV ── */
     .nav {
       position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      padding: 0.75rem 1.75rem;
+      padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 2rem;
-      max-width: 720px;
-      width: calc(100% - 2rem);
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      transition: all 0.4s ease;
+      transition: background 0.3s, backdrop-filter 0.3s;
     }
     .nav.scrolled {
-      top: 0.75rem;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-      border-color: rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: var(--white);
       text-decoration: none;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      white-space: nowrap;
     }
     .nav-logo span { color: var(--gold); }
     .nav-links {
       display: none;
       list-style: none;
-      gap: 1.5rem;
+      gap: 2rem;
       align-items: center;
     }
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 500;
       letter-spacing: 0.04em;
       transition: color 0.2s;
-      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--gold); }
 
@@ -830,7 +828,7 @@
     }
     @media (min-width: 768px) {
       .section { padding: 8rem 2rem; }
-      .nav { padding: 0.75rem 2rem; }
+      .nav { padding: 1.25rem 3rem; }
       .nav-links { display: flex; }
     }
 
