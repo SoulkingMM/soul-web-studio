@@ -297,85 +297,6 @@
       line-height: 1.6;
     }
 
-    /* ── RÉALISATIONS ── */
-    .realisations { background: var(--bg-secondary); }
-    .realisations-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    .real-card {
-      background: var(--bg-card);
-      border-radius: 6px;
-      overflow: hidden;
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
-      transition: all 0.4s;
-    }
-    .real-card:hover {
-      border-color: rgba(201, 168, 76, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    }
-    .real-thumb {
-      aspect-ratio: 16/10;
-      background: var(--bg-secondary);
-      position: relative;
-      overflow: hidden;
-    }
-    .real-thumb iframe {
-      width: 200%;
-      height: 200%;
-      border: none;
-      transform: scale(0.5);
-      transform-origin: top left;
-      pointer-events: none;
-    }
-    .real-body { padding: 1.75rem; }
-    .real-tag {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: var(--gold-dim);
-      color: var(--gold);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 100px;
-      margin-bottom: 0.75rem;
-    }
-    .real-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 0.4rem;
-    }
-    .real-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      font-weight: 300;
-    }
-    .real-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: gap 0.2s;
-    }
-    .real-link:hover { gap: 0.75rem; }
-    .real-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-    }
-
     /* ── CE QUE JE FAIS ── */
     .services { background: var(--bg-primary); }
     .services-grid {
@@ -933,16 +854,12 @@
 
     /* ── RESPONSIVE ── */
     @media (min-width: 640px) {
-      .realisations-grid { grid-template-columns: repeat(2, 1fr); }
       .tarifs-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (min-width: 768px) {
       .section { padding: 8rem 2rem; }
       .nav { padding: 1.25rem 3rem; }
       .nav-links { display: flex; }
-    }
-    @media (min-width: 1024px) {
-      .realisations-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* ── ANIMATIONS ── */
@@ -1085,69 +1002,6 @@
   </section>
 
   <!-- ============================================ -->
-  <!-- RÉALISATIONS : Grille de 3 démos clients     -->
-  <!-- Chaque carte contient un iframe du site démo -->
-  <!-- + lien "Voir la démo" vers le .html          -->
-  <!-- ============================================ -->
-  <section class="section realisations" id="realisations">
-    <div class="section-inner">
-      <div class="section-header fade-in">
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">Mes réalisations</h2>
-        <div class="divider"></div>
-        <p class="section-subtitle">Des sites vitrines pensés pour convertir vos visiteurs en clients.</p>
-      </div>
-      <div class="realisations-grid">
-
-        <div class="real-card fade-in">
-          <div class="real-thumb">
-            <iframe src="elegance-coiffure.html" loading="lazy" title="Élégance Coiffure"></iframe>
-          </div>
-          <div class="real-body">
-            <span class="real-tag">Coiffure</span>
-            <h3 class="real-name">Élégance Coiffure</h3>
-            <p class="real-desc">Salon de coiffure parisien — design élégant et réservation en ligne.</p>
-            <a href="elegance-coiffure.html" class="real-link" target="_blank">
-              Voir la démo
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="real-card fade-in">
-          <div class="real-thumb">
-            <iframe src="brasserie-du-marche.html" loading="lazy" title="Brasserie du Marché"></iframe>
-          </div>
-          <div class="real-body">
-            <span class="real-tag">Restaurant</span>
-            <h3 class="real-name">Brasserie du Marché</h3>
-            <p class="real-desc">Restaurant traditionnel français — carte, horaires et ambiance.</p>
-            <a href="brasserie-du-marche.html" class="real-link" target="_blank">
-              Voir la démo
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="real-card fade-in">
-          <div class="real-thumb">
-            <iframe src="barberking.html" loading="lazy" title="BarberKing"></iframe>
-          </div>
-          <div class="real-body">
-            <span class="real-tag">Barbier</span>
-            <h3 class="real-name">BarberKing</h3>
-            <p class="real-desc">Salon de barbier moderne — style urbain et prise de rendez-vous.</p>
-            <a href="barberking.html" class="real-link" target="_blank">
-              Voir la démo
-              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ============================================ -->
   <!-- CE QUE JE FAIS : 2 cartes services           -->
   <!-- Site vitrine + Hébergement & Maintenance     -->
