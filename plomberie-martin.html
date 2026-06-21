@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Martin Plomberie — Plombier à Paris & Île-de-France</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Martin Plomberie — Plombier professionnel à Paris et Île-de-France. Dépannage, rénovation, installation. Devis gratuit en 24h.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f5f0;
+      --bg-dark: #0f1923;
+      --bg-card: #ffffff;
+      --blue: #1b4965;
+      --blue-light: #2a6f97;
+      --blue-dim: rgba(27, 73, 101, 0.06);
+      --accent: #62b6cb;
+      --accent-dim: rgba(98, 182, 203, 0.12);
+      --orange: #e07a2f;
+      --text: #1a1a1a;
+      --text-light: #555555;
+      --text-muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+      --white: #ffffff;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--blue-light); }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text); background: var(--bg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem; color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: none; list-style: none;
+      gap: 1.5rem; align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-light); text-decoration: none;
+      font-size: 0.8rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: var(--white) !important;
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-light); color: var(--white) !important; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+
+    /* ── HERO SPLIT ── */
+    .hero {
+      min-height: 100vh; min-height: 100svh;
+      display: grid; grid-template-columns: 1fr;
+      align-items: center;
+      padding: 6rem 1.5rem 3rem;
+      background: var(--bg-dark);
+      color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        padding: 0 4rem;
+        gap: 3rem;
+      }
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(98, 182, 203, 0.15);
+      color: var(--accent); font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 4px; margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400; line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1rem; color: rgba(255, 255, 255, 0.6);
+      font-weight: 300; margin-bottom: 2rem; line-height: 1.7;
+      max-width: 420px;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 0.85rem 2rem;
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none;
+      border-radius: 6px; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg-dark); }
+    .btn-primary:hover { background: #7ec8d8; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-visual {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem 0;
+    }
+    .hero-illustration {
+      width: 100%; max-width: 380px;
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, rgba(98, 182, 203, 0.1), rgba(27, 73, 101, 0.2));
+      border-radius: 20px; border: 1px solid rgba(98, 182, 203, 0.15);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1rem; padding: 2rem;
+    }
+    .hero-illustration svg {
+      width: 80px; height: 80px;
+      stroke: var(--accent); fill: none;
+      stroke-width: 1; opacity: 0.6;
+    }
+    .hero-illustration .hi-label {
+      font-size: 0.7rem; font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .hero-illustration .hi-phone {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: var(--accent);
+    }
+    @media (max-width: 767px) {
+      .hero-visual { display: none; }
+      .hero-text { text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+    }
+
+    /* ── STATS BAND ── */
+    .stats {
+      background: var(--blue);
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      text-align: center;
+    }
+    @media (min-width: 640px) { .stats-inner { grid-template-columns: repeat(4, 1fr); } }
+    .stat {
+      padding: 1.75rem 1rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem; color: rgba(255, 255, 255, 0.5);
+      font-weight: 400; margin-top: 0.35rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    /* ── SERVICES LIST ── */
+    .services { background: var(--white); }
+    .services-header {
+      margin-bottom: 3rem;
+    }
+    .section-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; color: var(--text); margin-bottom: 0.5rem;
+    }
+    .divider { width: 40px; height: 2px; background: var(--accent); margin: 1rem 0 0; }
+
+    .service-list { list-style: none; }
+    .service-item {
+      display: grid; grid-template-columns: 50px 1fr;
+      gap: 1.25rem; align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-item:last-child { border-bottom: none; }
+    .service-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: rgba(98, 182, 203, 0.3);
+      line-height: 1;
+    }
+    .service-name {
+      font-size: 1rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .service-desc {
+      font-size: 0.85rem; color: var(--text-light);
+      font-weight: 300; line-height: 1.7;
+    }
+
+    /* ── AVANT/APRÈS ── */
+    .before-after { background: var(--bg); }
+    .ba-header { text-align: center; margin-bottom: 3rem; }
+    .ba-header .divider { margin: 1rem auto 0; }
+    .ba-header p {
+      font-size: 0.88rem; color: var(--text-muted);
+      font-weight: 300; margin-top: 1rem;
+    }
+    .ba-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) { .ba-grid { grid-template-columns: 1fr 1fr; } }
+    .ba-item {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .ba-slider {
+      position: relative; width: 100%;
+      aspect-ratio: 4/3; overflow: hidden;
+      cursor: col-resize; user-select: none;
+      -webkit-user-select: none;
+    }
+    .ba-layer {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .ba-before {
+      background: linear-gradient(135deg, #d4c5a9 0%, #b8a88a 30%, #9c8f72 100%);
+      color: rgba(255, 255, 255, 0.7);
+      clip-path: inset(0 50% 0 0);
+    }
+    .ba-after {
+      background: linear-gradient(135deg, #e8f4f8 0%, #c5e3ec 30%, #a8d4e2 100%);
+      color: var(--blue);
+    }
+    .ba-before-inner, .ba-after-inner {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.5rem;
+    }
+    .ba-before-inner svg, .ba-after-inner svg {
+      width: 36px; height: 36px; opacity: 0.5;
+      stroke: currentColor; fill: none; stroke-width: 1.2;
+    }
+    .ba-handle {
+      position: absolute; top: 0; bottom: 0;
+      left: 50%; width: 3px;
+      background: var(--white);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      z-index: 2; transform: translateX(-50%);
+    }
+    .ba-handle::after {
+      content: ''; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231b4965' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M18 8l4 4-4 4M6 8l-4 4 4 4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .ba-label {
+      padding: 1rem 1.25rem; background: var(--white);
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+      border-top: 1px solid var(--border);
+    }
+    .ba-label span {
+      display: block; font-size: 0.72rem;
+      color: var(--text-muted); font-weight: 300; margin-top: 0.15rem;
+    }
+
+    /* ── ZONE ── */
+    .zone { background: var(--white); }
+    .zone-header { margin-bottom: 2.5rem; }
+    .zone-content {
+      display: grid; grid-template-columns: 1fr;
+      gap: 2rem; align-items: center;
+    }
+    @media (min-width: 768px) { .zone-content { grid-template-columns: 1fr 1fr; } }
+    .zone-map {
+      background: var(--bg);
+      border-radius: 10px; overflow: hidden;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--border);
+    }
+    .zone-map iframe { width: 100%; height: 100%; border: none; }
+    .zone-list { list-style: none; }
+    .zone-list li {
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; color: var(--text-light);
+      font-weight: 400;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .zone-list li::before {
+      content: ''; width: 8px; height: 8px;
+      background: var(--accent); border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .zone-list li:last-child { border-bottom: none; }
+
+    /* ── AVIS ── */
+    .avis { background: var(--bg); }
+    .avis-header { text-align: center; margin-bottom: 3rem; }
+    .avis-header .divider { margin: 1rem auto 0; }
+    .avis-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) { .avis-grid { grid-template-columns: repeat(2, 1fr); } }
+    .avis-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.75rem;
+    }
+    .avis-stars {
+      color: var(--orange); font-size: 0.85rem;
+      margin-bottom: 0.75rem; letter-spacing: 2px;
+    }
+    .avis-text {
+      font-size: 0.88rem; color: var(--text-light);
+      font-weight: 300; line-height: 1.7;
+      margin-bottom: 1rem; font-style: italic;
+    }
+    .avis-author { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+    .avis-loc { font-size: 0.7rem; color: var(--text-muted); font-weight: 300; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--bg-dark);
+      color: var(--white);
+      padding: 5rem 1.5rem;
+    }
+    .cta-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr;
+      gap: 2.5rem; align-items: center;
+    }
+    @media (min-width: 768px) { .cta-inner { grid-template-columns: 1fr auto; } }
+    .cta-text .section-title { color: var(--white); }
+    .cta-text p {
+      color: rgba(255, 255, 255, 0.5); font-weight: 300;
+      font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.7;
+    }
+    .cta-right {
+      display: flex; flex-direction: column;
+      gap: 1rem; align-items: flex-start;
+    }
+    .cta-info {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.88rem; color: rgba(255, 255, 255, 0.75);
+    }
+    .cta-info svg {
+      width: 20px; height: 20px;
+      stroke: var(--accent); fill: none; stroke-width: 1.5;
+      flex-shrink: 0;
+    }
+    @media (max-width: 767px) {
+      .cta-inner { text-align: center; }
+      .cta-right { align-items: center; }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #0a1118; color: rgba(255, 255, 255, 0.4);
+      padding: 2rem 1.5rem; text-align: center;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-copy { font-size: 0.72rem; font-weight: 300; }
+    .footer-copy a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav-logo">Martin <span>Plomberie</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#zone">Zone</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SPLIT -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">Disponible 7j/7</div>
+      <h1>Votre plombier de <span>confiance</span> à Paris</h1>
+      <p class="hero-sub">Dépannage en 1h, rénovation de salle de bain, installation sanitaire. Devis gratuit, sans surprise.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Demander un devis</a>
+        <a href="#realisations" class="btn btn-outline">Voir nos chantiers</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-illustration">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        <span class="hi-label">Urgence ? Appelez-nous</span>
+        <span class="hi-phone">01 46 00 00 00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Interventions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15</div>
+        <div class="stat-label">Ans d'expérience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9</div>
+        <div class="stat-label">Note Google</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">&lt;1h</div>
+        <div class="stat-label">Délai urgence</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES LIST -->
+  <section class="section services" id="services">
+    <div class="section-inner">
+      <div class="services-header fade-in">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">Ce que nous faisons</h2>
+        <div class="divider"></div>
+      </div>
+      <ul class="service-list">
+        <li class="service-item fade-in">
+          <span class="service-num">01</span>
+          <div>
+            <h3 class="service-name">Dépannage urgent</h3>
+            <p class="service-desc">Fuite, canalisation bouchée, panne de chauffe-eau. Intervention rapide en 1h sur Paris et proche banlieue.</p>
+          </div>
+        </li>
+        <li class="service-item fade-in">
+          <span class="service-num">02</span>
+          <div>
+            <h3 class="service-name">Salle de bain</h3>
+            <p class="service-desc">Rénovation complète ou partielle. Douche à l'italienne, baignoire, vasque, carrelage. Clé en main.</p>
+          </div>
+        </li>
+        <li class="service-item fade-in">
+          <span class="service-num">03</span>
+          <div>
+            <h3 class="service-name">Installation sanitaire</h3>
+            <p class="service-desc">Pose de WC, lavabo, robinetterie, cumulus. Travail propre et garanti. Devis détaillé avant intervention.</p>
+          </div>
+        </li>
+        <li class="service-item fade-in">
+          <span class="service-num">04</span>
+          <div>
+            <h3 class="service-name">Chauffage</h3>
+            <p class="service-desc">Installation, entretien et dépannage de chaudière gaz, radiateurs, plancher chauffant.</p>
+          </div>
+        </li>
+        <li class="service-item fade-in">
+          <span class="service-num">05</span>
+          <div>
+            <h3 class="service-name">Détection de fuite</h3>
+            <p class="service-desc">Recherche de fuite non destructive par caméra thermique. Rapport détaillé pour votre assurance.</p>
+          </div>
+        </li>
+        <li class="service-item fade-in">
+          <span class="service-num">06</span>
+          <div>
+            <h3 class="service-name">Rénovation complète</h3>
+            <p class="service-desc">Cuisine, salle de bain, appartement. On gère la plomberie et on coordonne les autres corps de métier.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AVANT / APRÈS -->
+  <section class="section before-after" id="realisations">
+    <div class="section-inner">
+      <div class="ba-header fade-in">
+        <span class="section-label">Avant / Après</span>
+        <h2 class="section-title">Nos réalisations</h2>
+        <div class="divider"></div>
+        <p>Glissez la barre pour comparer.</p>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-item fade-in">
+          <div class="ba-slider" data-ba>
+            <div class="ba-layer ba-after">
+              <div class="ba-after-inner">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                APRÈS
+              </div>
+            </div>
+            <div class="ba-layer ba-before">
+              <div class="ba-before-inner">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                AVANT
+              </div>
+            </div>
+            <div class="ba-handle"></div>
+          </div>
+          <div class="ba-label">Salle de bain · Paris 11e <span>Rénovation complète — douche italienne + double vasque</span></div>
+        </div>
+        <div class="ba-item fade-in">
+          <div class="ba-slider" data-ba>
+            <div class="ba-layer ba-after" style="background:linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 100%);">
+              <div class="ba-after-inner">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                APRÈS
+              </div>
+            </div>
+            <div class="ba-layer ba-before" style="background:linear-gradient(135deg, #c9b99a 0%, #a89070 30%, #8c7a5e 100%);">
+              <div class="ba-before-inner">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                AVANT
+              </div>
+            </div>
+            <div class="ba-handle"></div>
+          </div>
+          <div class="ba-label">Cuisine · Boulogne-Billancourt <span>Remplacement tuyauterie + pose évier et robinetterie</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONE -->
+  <section class="section zone" id="zone">
+    <div class="section-inner">
+      <div class="zone-header fade-in">
+        <span class="section-label">Zone d'intervention</span>
+        <h2 class="section-title">Où nous intervenons</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="zone-content fade-in">
+        <div class="zone-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.95410694685!2d2.2646349!3d48.8588443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1" loading="lazy" title="Zone d'intervention"></iframe>
+        </div>
+        <div>
+          <ul class="zone-list">
+            <li>Paris — tous arrondissements</li>
+            <li>Hauts-de-Seine (92)</li>
+            <li>Seine-Saint-Denis (93)</li>
+            <li>Val-de-Marne (94)</li>
+            <li>Yvelines (78)</li>
+            <li>Essonne (91)</li>
+            <li>Val-d'Oise (95)</li>
+            <li>Seine-et-Marne (77)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="section avis" id="avis">
+    <div class="section-inner">
+      <div class="avis-header fade-in">
+        <span class="section-label">Témoignages</span>
+        <h2 class="section-title">Ce que disent nos clients</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="avis-grid">
+        <div class="avis-card fade-in">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Intervention rapide pour une fuite sous l'évier. En moins d'une heure c'était réglé. Prix très correct et travail propre."</p>
+          <div class="avis-author">Sophie D.</div>
+          <div class="avis-loc">Paris 11e</div>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Rénovation complète de notre salle de bain. Le résultat est magnifique, les délais ont été respectés. Je recommande à 100%."</p>
+          <div class="avis-author">Marc & Julie L.</div>
+          <div class="avis-loc">Boulogne-Billancourt</div>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Très professionnel. A pris le temps de m'expliquer le problème et les options. Devis clair, pas de mauvaise surprise à la fin."</p>
+          <div class="avis-author">Karim B.</div>
+          <div class="avis-loc">Montreuil</div>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Remplacement de toute la tuyauterie d'un vieil appartement. Propre, rapide, et le prix annoncé au devis a été respecté."</p>
+          <div class="avis-author">Claire M.</div>
+          <div class="avis-loc">Saint-Mandé</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SPLIT -->
+  <section class="cta-section" id="contact">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Un projet ? Une urgence ?</h2>
+        <p>Appelez-nous directement ou demandez votre devis gratuit. Réponse en moins de 24h.</p>
+      </div>
+      <div class="cta-right">
+        <div class="cta-info">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          01 46 00 00 00
+        </div>
+        <div class="cta-info">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Lun-Sam · 7h-20h
+        </div>
+        <div class="cta-info">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Paris & Île-de-France
+        </div>
+        <a href="tel:+33146000000" class="btn btn-primary" style="margin-top:0.5rem;">Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">Martin <span>Plomberie</span></div>
+    <p class="footer-copy">&copy; 2026 Martin Plomberie · <a href="mentions-legales.html">Mentions légales</a> · Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Soul Web Studio</a></p>
+  </footer>
+
+  <script>
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+    document.querySelectorAll('[data-ba]').forEach(function(slider) {
+      var handle = slider.querySelector('.ba-handle');
+      var before = slider.querySelector('.ba-before');
+      var isDragging = false;
+      function move(x) {
+        var rect = slider.getBoundingClientRect();
+        var pos = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+        var pct = pos * 100;
+        handle.style.left = pct + '%';
+        before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      }
+      slider.addEventListener('mousedown', function(e) { isDragging = true; move(e.clientX); });
+      window.addEventListener('mousemove', function(e) { if (isDragging) move(e.clientX); });
+      window.addEventListener('mouseup', function() { isDragging = false; });
+      slider.addEventListener('touchstart', function(e) { isDragging = true; move(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove', function(e) { if (isDragging) move(e.touches[0].clientX); });
+      window.addEventListener('touchend', function() { isDragging = false; });
+    });
+
+    window.addEventListener('scroll', function() {
+      document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
