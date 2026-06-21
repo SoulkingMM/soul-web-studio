@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ============================================ -->
+  <!-- HEAD : Page À propos de Soul Web Studio      -->
+  <!-- Même style que le portfolio (Inter + Playfair) -->
+  <!-- ============================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos — Soul Web Studio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Découvrez Soul Web Studio : Maaty Manchour, développeur web freelance autodidacte. Sites sur-mesure pour artisans et commerces locaux, à partir de 200€.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://soulwebstudio.fr/a-propos.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #f8f7f5;
+      --bg-secondary: #e8e4de;
+      --gold: #c9a84c;
+      --gold-light: #d4b96a;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --text-primary: #1a1614;
+      --text-secondary: #888888;
+      --text-muted: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(248, 247, 245, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text-primary); text-decoration: none;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-back {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO À PROPOS ── */
+    .hero {
+      padding: 8rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 700px; margin: 0 auto;
+    }
+    .hero-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600; color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .hero-intro {
+      font-size: 1.05rem; color: var(--text-secondary);
+      font-weight: 300; line-height: 1.8;
+      max-width: 550px; margin: 0 auto;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 4rem 1.5rem;
+      max-width: 800px; margin: 0 auto;
+    }
+    .section-alt { background: var(--bg-secondary); }
+    .section-alt .section-inner {
+      max-width: 800px; margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .section-title span { color: var(--gold); }
+
+    /* ── MON HISTOIRE ── */
+    .story-block {
+      margin-bottom: 2.5rem;
+    }
+    .story-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .story-block p {
+      font-size: 0.92rem; color: var(--text-secondary);
+      font-weight: 300; line-height: 1.8;
+    }
+
+    /* ── VALEURS ── */
+    .values-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.5rem; margin-top: 1.5rem;
+    }
+    .value-card {
+      background: rgba(255, 255, 255, 0.6);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 6px;
+      padding: 1.75rem;
+      transition: all 0.3s;
+    }
+    .value-card:hover {
+      border-color: rgba(201, 168, 76, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    }
+    .value-icon {
+      width: 42px; height: 42px;
+      background: var(--gold-dim);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .value-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--gold); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .value-card h3 {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.4rem;
+    }
+    .value-card p {
+      font-size: 0.85rem; color: var(--text-secondary);
+      font-weight: 300; line-height: 1.7;
+    }
+    @media (min-width: 640px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── CHIFFRES ── */
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; text-align: center; margin-top: 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem; color: var(--text-secondary);
+      font-weight: 300; margin-top: 0.3rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center; padding: 4rem 1.5rem;
+    }
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cta p {
+      font-size: 0.92rem; color: var(--text-secondary);
+      font-weight: 300; margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-block; padding: 0.85rem 2rem;
+      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 4px;
+      transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--bg-primary);
+      box-shadow: 0 4px 20px rgba(184, 157, 102, 0.3);
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-instagram {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: #fff; text-decoration: none;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 4px; transition: all 0.3s;
+    }
+    .btn-instagram:hover { transform: translateY(-2px); }
+    .btn-instagram svg {
+      width: 16px; height: 16px; fill: currentColor;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.72rem; color: var(--text-muted); font-weight: 300;
+    }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- NAV : Logo + lien retour                     -->
+  <!-- ============================================ -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Soul <span>Web</span> Studio</a>
+    <a href="index.html" class="nav-back">&larr; Retour au site</a>
+  </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO : Titre + introduction personnelle      -->
+  <!-- ============================================ -->
+  <section class="hero">
+    <div class="hero-label">À propos</div>
+    <h1>Derrière Soul <span>Web</span> Studio</h1>
+    <div class="divider"></div>
+    <p class="hero-intro">Je m'appelle Maaty Manchour. Je crée des sites web sur-mesure pour les artisans et commerces locaux qui veulent une vraie présence en ligne — sans prise de tête, sans intermédiaire.</p>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- MON HISTOIRE : Parcours personnel            -->
+  <!-- ============================================ -->
+  <section class="section fade-in">
+    <h2 class="section-title">Mon <span>histoire</span></h2>
+
+    <div class="story-block">
+      <h3>Autodidacte depuis le lycée</h3>
+      <p>J'ai découvert le développement web en cours de NSI au lycée. Ce qui devait être un simple cours est devenu une passion. J'ai appris seul, projet après projet, en construisant des sites de plus en plus ambitieux. Aujourd'hui, je transforme cette passion en quelque chose de concret pour les commerces locaux qui méritent une présence en ligne à la hauteur de leur travail.</p>
+    </div>
+
+    <div class="story-block">
+      <h3>Pourquoi les commerces locaux ?</h3>
+      <p>Parce que je sais ce que c'est de chercher un artisan ou un commerce sur Google et de tomber sur un site des années 2000 — ou pire, pas de site du tout. Les grandes agences facturent des milliers d'euros pour un WordPress générique. Je propose l'inverse : un site fait main, sur-mesure, à un prix accessible, livré rapidement.</p>
+    </div>
+
+    <div class="story-block">
+      <h3>Ma façon de travailler</h3>
+      <p>Pas d'agence, pas d'intermédiaire, pas de template. C'est moi qui conçois, code et livre votre site du premier message jusqu'à la mise en ligne. Chaque site est unique, pensé pour votre activité, vos clients, votre style. Je travaille vite — 3 à 5 jours ouvrés — parce que quand vous avez besoin d'un site, vous en avez besoin maintenant, pas dans 3 mois.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- VALEURS : 4 cartes avec icônes               -->
+  <!-- ============================================ -->
+  <div class="section-alt">
+    <div class="section-inner fade-in">
+      <h2 class="section-title">Ce qui me <span>différencie</span></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Rapidité</h3>
+          <p>Votre site livré en 3 à 5 jours ouvrés. Option express 48h disponible pour les plus pressés.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Contact direct</h3>
+          <p>Vous parlez directement avec celui qui crée votre site. Pas de commercial, pas de chef de projet, pas de ticket support.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Code propre</h3>
+          <p>Pas de WordPress, pas de constructeur de pages. Du code HTML/CSS/JS écrit à la main, léger et rapide. Votre site charge en moins d'une seconde.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>Prix juste</h3>
+          <p>À partir de 200€ pour un site professionnel complet. Pas de frais cachés, pas d'abonnement obligatoire, pas de mauvaise surprise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CHIFFRES : Stats clés                        -->
+  <!-- ============================================ -->
+  <section class="section fade-in">
+    <h2 class="section-title">En <span>chiffres</span></h2>
+    <div class="stats">
+      <div>
+        <div class="stat-num">200€</div>
+        <div class="stat-label">À partir de</div>
+      </div>
+      <div>
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Livraison express</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Code sur-mesure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- CTA : Appel à l'action                       -->
+  <!-- ============================================ -->
+  <div class="section-alt">
+    <div class="cta">
+      <h2>Un projet en tête ?</h2>
+      <p>Demandez votre devis gratuit en 2 minutes, ou retrouvez-moi sur Instagram.</p>
+      <div class="cta-buttons">
+        <a href="index.html#devis" class="btn btn-gold">Devis gratuit</a>
+        <a href="https://www.instagram.com/soulwebstudio/" class="btn-instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          @soulwebstudio
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- FOOTER : Logo + copyright                    -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="footer-brand">Soul <span>Web</span> Studio</div>
+    <p class="footer-copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>
+    // ============================================
+    // FADE-IN : IntersectionObserver
+    // ============================================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

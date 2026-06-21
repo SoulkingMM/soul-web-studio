@@ -622,6 +622,94 @@
     }
     .devis-hidden { display: none !important; }
 
+    /* ── COMPARATIF (tableau Essentiel vs Premium) ── */
+    .comparatif { background: var(--bg-primary); }
+    .comparatif-table {
+      max-width: 800px; margin: 0 auto;
+      background: var(--bg-card);
+      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 6px; overflow: hidden;
+    }
+    .comparatif-head {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+      background: var(--gold-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .comparatif-head-cell {
+      padding: 1.25rem 1rem; text-align: center;
+    }
+    .comparatif-head-cell:first-child { text-align: left; }
+    .comparatif-head-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .comparatif-head-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--gold);
+      line-height: 1.2;
+    }
+    .comparatif-head-price small {
+      font-size: 0.75rem; font-weight: 400; color: var(--text-secondary);
+    }
+    .comparatif-badge {
+      display: inline-block; padding: 0.2rem 0.6rem;
+      background: var(--gold); color: var(--bg-primary);
+      font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 3px; margin-bottom: 0.35rem;
+    }
+    .comparatif-row {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparatif-row:last-child { border-bottom: none; }
+    .comparatif-row:hover { background: rgba(201, 168, 76, 0.03); }
+    .comparatif-cell {
+      padding: 0.85rem 1rem; display: flex;
+      align-items: center; font-size: 0.85rem;
+    }
+    .comparatif-cell:not(:first-child) {
+      justify-content: center; text-align: center;
+    }
+    .comparatif-feature {
+      font-weight: 500; color: var(--text-primary);
+    }
+    .comparatif-check {
+      color: var(--gold); font-size: 1rem;
+    }
+    .comparatif-cross {
+      color: var(--text-muted); font-size: 0.85rem;
+    }
+    .comparatif-cta {
+      display: flex; justify-content: center;
+      padding: 1.5rem; gap: 1rem;
+    }
+    .comparatif-btn {
+      display: inline-block; padding: 0.75rem 2rem;
+      font-family: inherit; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none;
+      border-radius: 4px; transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .comparatif-btn-gold {
+      background: var(--gold); color: var(--bg-primary);
+    }
+    .comparatif-btn-gold:hover { transform: translateY(-2px); }
+    .comparatif-btn-outline {
+      background: transparent; color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .comparatif-btn-outline:hover {
+      border-color: var(--gold); color: var(--gold);
+    }
+    @media (max-width: 600px) {
+      .comparatif-head, .comparatif-row {
+        grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      }
+      .comparatif-cell { padding: 0.7rem 0.5rem; font-size: 0.78rem; }
+      .comparatif-head-price { font-size: 1.1rem; }
+    }
+
     /* ── PROCESS ── */
     .process { background: var(--bg-primary); }
     .process-steps {
@@ -925,6 +1013,7 @@
     <a href="#" class="nav-logo">Soul <span>Web</span> Studio</a>
     <ul class="nav-links">
       <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
       <li><a href="#devis">Devis gratuit</a></li>
     </ul>
   </nav>
@@ -1086,6 +1175,104 @@
     <div class="mobile-first-inner fade-in">
       <h2>Conçu pour mobile.</h2>
       <p>Plus de 60% de vos clients vous cherchent sur téléphone. Chaque site que je crée est pensé mobile en premier.</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- COMPARATIF : Tableau Essentiel vs Premium     -->
+  <!-- Permet de voir les différences d'un coup d'oeil -->
+  <!-- ============================================ -->
+  <section class="section comparatif" id="tarifs">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="section-label">Offres</span>
+        <h2 class="section-title">Comparatif détaillé</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Découvrez ce qui est inclus dans chaque formule.</p>
+      </div>
+
+      <div class="comparatif-table fade-in">
+        <div class="comparatif-head">
+          <div class="comparatif-head-cell">
+            <div class="comparatif-head-label">Fonctionnalité</div>
+          </div>
+          <div class="comparatif-head-cell">
+            <div class="comparatif-head-label">Essentiel</div>
+            <div class="comparatif-head-price">200€</div>
+          </div>
+          <div class="comparatif-head-cell">
+            <div class="comparatif-badge">Recommandé</div>
+            <div class="comparatif-head-label">Premium</div>
+            <div class="comparatif-head-price">300€</div>
+          </div>
+        </div>
+
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Design professionnel responsive</div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">SEO de base</div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Favicon & Open Graph</div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Site multi-sections sur-mesure</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">SEO optimisé avancé</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Mise en ligne incluse</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Formulaire de contact personnalisé</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Google Maps & Calendly</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Galerie photos</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Mentions légales incluses</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Modifications illimitées (1 mois)</div>
+          <div class="comparatif-cell"><span class="comparatif-cross">✗</span></div>
+          <div class="comparatif-cell"><span class="comparatif-check">✓</span></div>
+        </div>
+        <div class="comparatif-row">
+          <div class="comparatif-cell comparatif-feature">Modifications offertes</div>
+          <div class="comparatif-cell">1</div>
+          <div class="comparatif-cell">Illimitées</div>
+        </div>
+
+        <div class="comparatif-cta">
+          <a href="#devis" class="comparatif-btn comparatif-btn-outline">Choisir Essentiel</a>
+          <a href="#devis" class="comparatif-btn comparatif-btn-gold">Choisir Premium →</a>
+        </div>
+      </div>
     </div>
   </section>
 
