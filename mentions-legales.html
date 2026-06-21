@@ -28,7 +28,12 @@
       --border: rgba(0, 0, 0, 0.08);
     }
 
-    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       color: var(--text-primary);

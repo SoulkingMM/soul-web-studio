@@ -33,7 +33,12 @@
       --gold: #b8860b;
       --white: #fffdf8;
     }
-    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--red-dark); }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Lora', Georgia, serif; color: var(--ink);
       background: var(--paper);
