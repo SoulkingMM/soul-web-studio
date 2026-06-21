@@ -633,6 +633,7 @@
       border: 0.5px solid rgba(255, 255, 255, 0.9);
       border-radius: 12px; padding: 2.5rem 2rem;
       position: relative; transition: all 0.3s;
+      display: flex; flex-direction: column;
     }
     .comparatif-card:hover {
       transform: translateY(-4px);
@@ -668,7 +669,7 @@
     }
     .comparatif-list {
       list-style: none; display: flex; flex-direction: column; gap: 0.75rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2rem; flex: 1;
     }
     .comparatif-list li {
       display: flex; align-items: flex-start; gap: 0.6rem;
@@ -1215,7 +1216,7 @@
             <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Galerie photos</li>
             <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Modifications illimitées (1 mois)</li>
           </ul>
-          <a href="#devis" class="comparatif-btn comparatif-btn-outline">Choisir Essentiel</a>
+          <a href="#devis" class="comparatif-btn comparatif-btn-outline" data-formule="essentiel">Choisir Essentiel</a>
         </div>
 
         <!-- Carte Premium -->
@@ -1236,7 +1237,7 @@
             <li><span class="comparatif-icon comparatif-icon--check">✓</span> Galerie photos</li>
             <li><span class="comparatif-icon comparatif-icon--check">✓</span> Modifications illimitées (1 mois)</li>
           </ul>
-          <a href="#devis" class="comparatif-btn comparatif-btn-gold">Choisir Premium →</a>
+          <a href="#devis" class="comparatif-btn comparatif-btn-gold" data-formule="premium">Choisir Premium →</a>
         </div>
 
       </div>
@@ -1751,6 +1752,15 @@
       });
 
       goTo(1);
+
+      // Pré-sélection formule depuis les boutons du comparatif
+      document.querySelectorAll('[data-formule]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var val = btn.dataset.formule;
+          var opt = card.querySelector('.devis-opt[data-value="' + val + '"]');
+          if (opt) opt.click();
+        });
+      });
     })();
   </script>
 
