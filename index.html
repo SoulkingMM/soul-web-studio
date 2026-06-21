@@ -105,6 +105,19 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--bg-primary) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: transform 0.2s, background 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      color: var(--bg-primary) !important;
+      background: var(--gold-light);
+    }
 
     /* ── HERO ── */
     .hero {
@@ -906,7 +919,7 @@
     <ul class="nav-links">
       <li><a href="portfolio.html">Réalisations</a></li>
       <li><a href="a-propos.html">À propos</a></li>
-      <li><a href="#devis">Lancer mon projet</a></li>
+      <li><a href="#devis" class="nav-cta">Lancer mon projet</a></li>
     </ul>
   </nav>
 
