@@ -431,7 +431,11 @@
     .devis-feat:hover { border-color: var(--text-secondary); }
     .devis-feat.selected { border-color: var(--gold); background: var(--gold-dim); }
     .devis-feat.locked { cursor: default; opacity: 0.6; }
-    .devis-feat-label { font-size: 0.82rem; }
+    .devis-feat-label { font-size: 0.82rem; display: block; }
+    .devis-feat-desc {
+      display: block; font-size: 0.7rem; color: var(--text-muted);
+      font-weight: 300; margin-top: 0.25rem; line-height: 1.4;
+    }
     .devis-feat-tag {
       font-size: 0.65rem; text-transform: uppercase;
       letter-spacing: 0.05em; color: var(--text-muted); white-space: nowrap;
@@ -1177,14 +1181,17 @@
           <div class="devis-feat-grid">
             <div class="devis-feat" data-feature="hebergement" data-price="119">
               <span class="devis-feat-label">Hébergement annuel</span>
+              <span class="devis-feat-desc">Votre site en ligne 24h/24, nom de domaine inclus.</span>
               <span class="devis-feat-tag">+119€/an</span>
             </div>
             <div class="devis-feat" data-feature="maintenance" data-price="149">
               <span class="devis-feat-label">Maintenance annuelle</span>
+              <span class="devis-feat-desc">Hébergement + mises à jour + modifications illimitées + support.</span>
               <span class="devis-feat-tag">+149€/an</span>
             </div>
             <div class="devis-feat" data-feature="express" data-price="40">
               <span class="devis-feat-label">Livraison express 48h</span>
+              <span class="devis-feat-desc">Votre site prêt en 48h au lieu de 3-5 jours.</span>
               <span class="devis-feat-tag">+40€</span>
             </div>
           </div>
