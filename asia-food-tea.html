@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asia Food & Tea — Restaurant Asiatique & Bubble Tea</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Asia Food & Tea — Restaurant asiatique, poke bowls, sushi et bubble tea artisanaux. Sur place ou à emporter.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0b0b0b;
+      --bg-card: #141414;
+      --bg-elevated: #1a1a1a;
+      --gold: #c9a55a;
+      --gold-light: #dfc07a;
+      --gold-dim: rgba(201, 165, 90, 0.12);
+      --cream: #f5efe6;
+      --white: #ffffff;
+      --text: #e8e4de;
+      --text-dim: #8a8580;
+      --text-muted: #5a5550;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-light: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text); background: var(--bg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(11, 11, 11, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--cream); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: none; list-style: none;
+      gap: 2rem; align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      color: var(--gold) !important;
+      border: 1px solid var(--gold);
+      padding: 0.5rem 1.25rem;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg) !important; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+
+    /* ── BURGER MOBILE ── */
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--cream); transition: all 0.3s;
+    }
+    .nav-burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .nav-burger.active span:nth-child(2) { opacity: 0; }
+    .nav-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (min-width: 768px) { .nav-burger { display: none; } }
+
+    .nav-overlay {
+      display: none; position: fixed; inset: 0; z-index: 98;
+      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+    }
+    .nav-overlay.open { display: block; }
+
+    @media (max-width: 767px) {
+      .nav-links {
+        display: flex; flex-direction: column;
+        position: fixed; top: 0; right: -280px; z-index: 99;
+        width: 280px; height: 100vh;
+        background: var(--bg-card);
+        padding: 5rem 2rem 2rem;
+        gap: 1.5rem; align-items: flex-start;
+        transition: right 0.35s ease;
+        border-left: 1px solid var(--border);
+      }
+      .nav-links.open { right: 0; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh; min-height: 100svh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top,
+        rgba(11, 11, 11, 0.95) 0%,
+        rgba(11, 11, 11, 0.5) 40%,
+        rgba(11, 11, 11, 0.2) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      padding: 0 2rem 5rem; max-width: 700px;
+    }
+    .hero-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 500; line-height: 1.1;
+      color: var(--cream); margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 0.95rem; color: var(--text-dim);
+      font-weight: 300; line-height: 1.8;
+      margin-bottom: 2.5rem; max-width: 480px;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 0.9rem 2.25rem;
+      font-family: inherit; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      cursor: pointer; border: none;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--bg);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      border: 1px solid var(--border-light);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SHOWCASE (3 photos) ── */
+    .showcase {
+      padding: 5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .showcase-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .showcase-inner { grid-template-columns: repeat(3, 1fr); } }
+    .showcase-item { position: relative; overflow: hidden; }
+    .showcase-item img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .showcase-item:hover img { transform: scale(1.05); }
+    .showcase-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    }
+    .showcase-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 500; color: var(--cream);
+    }
+    .showcase-caption p {
+      font-size: 0.72rem; color: var(--text-dim);
+      font-weight: 300; margin-top: 0.25rem;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 500; color: var(--cream);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .divider {
+      width: 40px; height: 1.5px;
+      background: var(--gold); margin: 1.25rem auto 0;
+    }
+
+    /* ── CARTE ── */
+    .carte { border-bottom: 1px solid var(--border); }
+    .carte-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 640px) { .carte-grid { grid-template-columns: 1fr 1fr; } }
+    .carte-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .carte-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 500; color: var(--cream);
+    }
+    .carte-desc {
+      font-size: 0.78rem; color: var(--text-muted);
+      font-weight: 300; margin-top: 0.2rem;
+    }
+    .carte-dots {
+      flex: 1; min-width: 20px;
+      border-bottom: 1px dotted var(--text-muted);
+      margin: 0 0.75rem; align-self: center;
+    }
+    .carte-price {
+      font-size: 0.95rem; font-weight: 500; color: var(--gold);
+      white-space: nowrap;
+    }
+    .carte-category {
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 2rem 0 0.75rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .carte-category:first-child { padding-top: 0; }
+
+    /* ── BUBBLE TEA ── */
+    .bubble-tea { background: var(--bg-card); border-bottom: 1px solid var(--border); }
+    .tea-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 480px) { .tea-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 768px) { .tea-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 960px) { .tea-grid { grid-template-columns: repeat(4, 1fr); } }
+    .tea-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: all 0.3s;
+    }
+    .tea-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .tea-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 500; color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .tea-sizes { display: flex; gap: 0.5rem; }
+    .tea-size {
+      font-size: 0.68rem; font-weight: 500; color: var(--text-dim);
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--border);
+    }
+    .tea-size strong { color: var(--gold); font-weight: 600; }
+
+    /* ── AVIS ── */
+    .avis { border-bottom: 1px solid var(--border); }
+    .avis-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) { .avis-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .avis-grid { grid-template-columns: repeat(3, 1fr); } }
+    .avis-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .avis-stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1rem; }
+    .avis-text {
+      font-size: 0.88rem; color: var(--text-dim);
+      font-weight: 300; line-height: 1.8;
+      font-style: italic; margin-bottom: 1.25rem;
+    }
+    .avis-author {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--cream); letter-spacing: 0.05em;
+    }
+    .avis-via { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    /* ── INFOS ── */
+    .infos { background: var(--bg-card); }
+    .infos-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media (min-width: 768px) { .infos-grid { grid-template-columns: 1fr 1fr; } }
+    .infos-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 500; color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .horaires-list { list-style: none; }
+    .horaires-list li {
+      display: flex; justify-content: space-between;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .horaires-list li:last-child { border-bottom: none; }
+    .horaires-day { font-weight: 400; color: var(--text-dim); }
+    .horaires-time { color: var(--text); font-weight: 300; }
+    .contact-list { list-style: none; }
+    .contact-list li {
+      padding: 0.65rem 0;
+      font-size: 0.85rem; color: var(--text-dim); font-weight: 300;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-list li:last-child { border-bottom: none; }
+    .contact-list li strong {
+      display: block; font-weight: 500;
+      color: var(--cream); font-size: 0.72rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center; padding: 6rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cta-section .section-title { margin-bottom: 0.75rem; }
+    .cta-section p {
+      color: var(--text-muted); font-weight: 300;
+      font-size: 0.92rem; margin-bottom: 2.5rem;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 3rem 2rem; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 500; color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.68rem; color: var(--text-muted); font-weight: 300;
+    }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="#" class="nav-logo">Asia <span>Food</span> & Tea</a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#carte">Carte</a></li>
+      <li><a href="#bubble-tea">Bubble Tea</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#infos">Infos</a></li>
+      <li><a href="#commander" class="nav-cta">Commander</a></li>
+    </ul>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="images/hero-crunchy.jpg" alt="Crunchy rolls Asia Food & Tea" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-label">Restaurant asiatique &middot; Bubble Tea</div>
+      <h1>Un voyage <em>glamour</em> de Paris à Canton</h1>
+      <p class="hero-sub">Sushi, poke bowls, crunchy rolls et plus de 40 bubble teas artisanaux. Sur place ou à emporter.</p>
+      <div class="hero-buttons">
+        <a href="#carte" class="btn btn-gold">Découvrir la carte</a>
+        <a href="#commander" class="btn btn-outline">Commander</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <div class="showcase">
+    <div class="showcase-inner">
+      <div class="showcase-item fade-in">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Poke bowl frais saumon avocat">
+        <div class="showcase-caption">
+          <h3>Poke Bowls</h3>
+          <p>Saumon frais, avocat, mangue, edamame</p>
+        </div>
+      </div>
+      <div class="showcase-item fade-in">
+        <img src="images/bubble-tea.jpg" alt="Bubble tea Asia Food & Tea">
+        <div class="showcase-caption">
+          <h3>Bubble Tea</h3>
+          <p>Plus de 40 saveurs artisanales</p>
+        </div>
+      </div>
+      <div class="showcase-item fade-in">
+        <img src="images/chicken-bowl.jpg" alt="Bowl poulet croustillant sésame">
+        <div class="showcase-caption">
+          <h3>Chicken Bowl</h3>
+          <p>Poulet croustillant, sweet chili, sésame</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARTE -->
+  <section class="section carte" id="carte">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="section-label">Notre carte</div>
+        <h2 class="section-title">Les <em>saveurs</em> du jour</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="carte-grid fade-in">
+        <div>
+          <div class="carte-category">Menu froid</div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Poke Bowl</div>
+              <div class="carte-desc">Riz vinaigré, saumon, avocat, edamame, mangue</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">9,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Plateau Sushi Mix</div>
+              <div class="carte-desc">12 pièces — sushi, sashimi, california, maki</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">10,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Crunchy Tiger</div>
+              <div class="carte-desc">8 pièces panées, saumon ou poulet, spicy mayo</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">8,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Chirashi Saumon</div>
+              <div class="carte-desc">Riz vinaigré, saumon frais, avocat, sésame</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">9,90 &euro;</div>
+          </div>
+        </div>
+        <div>
+          <div class="carte-category">Menu chaud</div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Bo Bun Nem</div>
+              <div class="carte-desc">Vermicelles, nems poulet, légumes frais</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">9,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Gyoza Chicken</div>
+              <div class="carte-desc">8 pièces grillées, poulet et légumes</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">6,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Yakitori Poulet</div>
+              <div class="carte-desc">4 brochettes grillées, riz nature</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">6,50 &euro;</div>
+          </div>
+          <div class="carte-item">
+            <div>
+              <div class="carte-name">Riz Cantonais</div>
+              <div class="carte-desc">Riz sauté, protéine au choix, topping</div>
+            </div>
+            <span class="carte-dots"></span>
+            <div class="carte-price">6,50 &euro;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUBBLE TEA -->
+  <section class="section bubble-tea" id="bubble-tea">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="section-label">Bubble Tea</div>
+        <h2 class="section-title">Plus de 40 <em>saveurs</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="tea-grid fade-in">
+        <div class="tea-card">
+          <div class="tea-name">Sucre Brun Tapioca</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>4,00&euro;</strong></span>
+            <span class="tea-size">M <strong>5,00&euro;</strong></span>
+            <span class="tea-size">L <strong>6,00&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Matcha Crème</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Taro Milk Tea</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Lait de Coco Gelée</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Thé Vert Pêche</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Oolong Ananas Citron</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Fraise Crème Fouettée</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>3,50&euro;</strong></span>
+            <span class="tea-size">M <strong>4,40&euro;</strong></span>
+            <span class="tea-size">L <strong>5,30&euro;</strong></span>
+          </div>
+        </div>
+        <div class="tea-card">
+          <div class="tea-name">Frappé au Raisin</div>
+          <div class="tea-sizes">
+            <span class="tea-size">S <strong>4,50&euro;</strong></span>
+            <span class="tea-size">M <strong>5,50&euro;</strong></span>
+            <span class="tea-size">L <strong>6,50&euro;</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="section avis" id="avis">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="section-label">Témoignages</div>
+        <h2 class="section-title">Ce qu'ils en <em>pensent</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="avis-grid fade-in">
+        <div class="avis-card">
+          <div class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-text">Les crunchy rolls sont incroyables, super frais. Le bubble tea au matcha est devenu mon addiction. Allez-y les yeux fermés.</p>
+          <div class="avis-author">Marie L.</div>
+          <div class="avis-via">Google</div>
+        </div>
+        <div class="avis-card">
+          <div class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-text">Meilleur poke bowl du coin, portions généreuses et produits frais. Le personnel est adorable. On y retourne chaque semaine.</p>
+          <div class="avis-author">Thomas D.</div>
+          <div class="avis-via">Google</div>
+        </div>
+        <div class="avis-card">
+          <div class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-text">Le bo bun est authentique et le bubble tea au taro est parfait. Bon rapport qualité-prix, service rapide même en heure de pointe.</p>
+          <div class="avis-author">Linh N.</div>
+          <div class="avis-via">Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS -->
+  <section class="section infos" id="infos">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <div class="section-label">Pratique</div>
+        <h2 class="section-title">Horaires & <em>contact</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="infos-grid fade-in">
+        <div class="infos-block">
+          <h3>Horaires d'ouverture</h3>
+          <ul class="horaires-list">
+            <li><span class="horaires-day">Lundi</span><span class="horaires-time">11h30 – 22h00</span></li>
+            <li><span class="horaires-day">Mardi</span><span class="horaires-time">11h30 – 22h00</span></li>
+            <li><span class="horaires-day">Mercredi</span><span class="horaires-time">11h30 – 22h00</span></li>
+            <li><span class="horaires-day">Jeudi</span><span class="horaires-time">11h30 – 22h00</span></li>
+            <li><span class="horaires-day">Vendredi</span><span class="horaires-time">11h30 – 23h00</span></li>
+            <li><span class="horaires-day">Samedi</span><span class="horaires-time">11h30 – 23h00</span></li>
+            <li><span class="horaires-day">Dimanche</span><span class="horaires-time">12h00 – 22h00</span></li>
+          </ul>
+        </div>
+        <div class="infos-block">
+          <h3>Nous trouver</h3>
+          <ul class="contact-list">
+            <li><strong>Adresse</strong>12 Rue de la Paix, 75002 Paris</li>
+            <li><strong>Téléphone</strong>01 42 00 00 00</li>
+            <li><strong>Email</strong>contact@asiafoodtea.fr</li>
+            <li><strong>Instagram</strong>@asiafoodtea</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="commander">
+    <h2 class="section-title">Une envie ? <em>Commandez</em></h2>
+    <p>Sur place, à emporter ou en livraison.</p>
+    <a href="tel:+33142000000" class="btn btn-gold">Appeler pour commander</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">Asia <span>Food</span> & Tea</div>
+    <p class="footer-copy">&copy; 2026 Asia Food & Tea &middot; <a href="mentions-legales.html">Mentions légales</a> &middot; Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Soul Web Studio</a></p>
+  </footer>
+
+  <script>
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+    var overlay = document.getElementById('navOverlay');
+    function toggleMenu() {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    burger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
+  </script>
+
+</body>
+</html>
