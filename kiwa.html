@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiwa — Sushi & Fusion Asiatique · Aix-en-Provence</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Kiwa — Restaurant sushi et fusion asiatique à Aix-en-Provence. Sashimi, maki, california, gyoza, tempura. Sur place, à emporter ou en livraison.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #0b0908; color: #f2ede6; font-family: 'Jost', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #c1121f; color: #fff; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0908; }
+    ::-webkit-scrollbar-thumb { background: #c9a24b; border-radius: 10px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 14px 44px;
+      background: rgba(11,9,8,.88); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,162,75,.16);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 13px; }
+    .nav-kanji {
+      display: grid; place-items: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid #c9a24b; color: #c9a24b;
+      font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1; }
+    .nav-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 700; letter-spacing: 7px; color: #f2ede6;
+    }
+    .nav-brand-sub {
+      font-size: 8.5px; letter-spacing: 3.5px; color: #9a9088;
+      text-transform: uppercase; margin-top: 3px;
+    }
+    .nav-links { display: none; align-items: center; gap: 28px; list-style: none; }
+    .nav-link {
+      position: relative; color: #cfc7bd;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; bottom: -5px;
+      width: 0; height: 1px; background: #c9a24b; transition: width .3s ease;
+    }
+    .nav-link:hover { color: #f2ede6; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-lang {
+      background: none; border: 1px solid rgba(201,162,75,.4); color: #c9a24b;
+      border-radius: 999px; padding: 7px 15px;
+      font-family: 'Jost',sans-serif; font-size: 10.5px; letter-spacing: 2.5px;
+      cursor: pointer; display: none; align-items: center; gap: 5px;
+    }
+    .nav-order {
+      background: #c1121f; color: #fff;
+      padding: 10px 22px; border-radius: 999px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+      box-shadow: 0 6px 22px rgba(193,18,31,.38); transition: box-shadow .25s;
+    }
+    .nav-order:hover { box-shadow: 0 10px 30px rgba(193,18,31,.5); }
+
+    /* Burger */
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: #f2ede6; transition: all 0.3s;
+    }
+    .nav-burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .nav-burger.active span:nth-child(2) { opacity: 0; }
+    .nav-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .nav-overlay {
+      display: none; position: fixed; inset: 0; z-index: 98;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+    }
+    .nav-overlay.open { display: block; }
+
+    @media (min-width: 960px) {
+      .nav-links { display: flex; }
+      .nav-lang { display: flex; }
+      .nav-burger { display: none; }
+    }
+    @media (max-width: 959px) {
+      .nav { padding: 14px 20px; }
+      .nav-links {
+        display: flex; flex-direction: column;
+        position: fixed; top: 0; right: -300px; z-index: 99;
+        width: 300px; height: 100vh;
+        background: #141210; padding: 5rem 2rem 2rem;
+        gap: 1.5rem; align-items: flex-start;
+        transition: right 0.35s ease;
+        border-left: 1px solid rgba(201,162,75,.16);
+      }
+      .nav-links.open { right: 0; }
+    }
+
+    /* ── HERO (variant 1 — split) ── */
+    .hero {
+      position: relative; min-height: 90vh;
+      display: flex; align-items: center; overflow: hidden;
+      border-bottom: 1px solid rgba(201,162,75,.13);
+    }
+    .hero-glow1 {
+      position: absolute; top: -15%; right: -8%; width: 56vw; height: 56vw;
+      background: radial-gradient(circle, rgba(193,18,31,.22) 0%, transparent 60%);
+      pointer-events: none; animation: shimmer 6s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -25%; left: -12%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(201,162,75,.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr;
+      align-items: center; gap: 48px;
+      width: 100%; max-width: 1340px; margin: 0 auto;
+      padding: 100px 24px 60px;
+      animation: fadeUp .9s ease both;
+    }
+    @media (min-width: 960px) {
+      .hero-grid { grid-template-columns: 1.1fr .9fr; padding: 72px 56px; }
+    }
+    .hero-kicker {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+    }
+    .hero-kicker-line { height: 1px; width: 44px; background: #c9a24b; }
+    .hero-kicker-text {
+      font-family: 'Noto Serif JP', serif; color: #c9a24b;
+      letter-spacing: 4px; font-size: 14px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(48px, 7.5vw, 112px); line-height: .9;
+      color: #f6f1ea; letter-spacing: -1px; margin-bottom: 6px;
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(20px, 2.6vw, 34px); color: #c9a24b; margin-bottom: 28px;
+    }
+    .hero-body {
+      max-width: 430px; color: #bcb3a8;
+      font-size: 16px; line-height: 1.8; font-weight: 300; margin-bottom: 38px;
+    }
+    .hero-buttons { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
+    .btn-gold {
+      background: #c9a24b; color: #1a1410;
+      padding: 15px 36px; border-radius: 999px;
+      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;
+      transition: all .25s;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,162,75,.35); }
+    .btn-ghost {
+      border: 1px solid rgba(242,237,230,.28); color: #f2ede6;
+      padding: 15px 36px; border-radius: 999px;
+      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: all .25s;
+    }
+    .btn-ghost:hover { border-color: #c9a24b; color: #c9a24b; }
+    .hero-stats { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+    .hero-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 600; line-height: 1;
+    }
+    .hero-stat-val.gold { color: #c9a24b; }
+    .hero-stat-label {
+      font-size: 10px; letter-spacing: 2px; color: #9a9088; text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .hero-stat-sep { width: 1px; height: 36px; background: rgba(201,162,75,.28); }
+    .hero-visual { position: relative; display: grid; place-items: center; }
+    .hero-circle1 {
+      position: absolute; width: 420px; height: 420px; max-width: 80vw; max-height: 80vw;
+      border: 1px solid rgba(201,162,75,.32); border-radius: 50%;
+    }
+    .hero-circle2 {
+      position: absolute; width: 510px; height: 510px; max-width: 95vw; max-height: 95vw;
+      border: 1px dashed rgba(201,162,75,.15); border-radius: 50%;
+      animation: spinSlow 70s linear infinite;
+    }
+    .hero-img-wrap {
+      width: 520px; max-width: 80vw; aspect-ratio: 1; border-radius: 50%;
+      overflow: hidden; position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 60%;
+      transition: transform .7s cubic-bezier(.22,.78,.22,1);
+    }
+    .hero-img-wrap:hover img { transform: scale(1.08); }
+
+    @media (max-width: 959px) {
+      .hero-visual { display: none; }
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 44px; flex-wrap: wrap; padding: 20px 24px;
+      background: #111009; border-bottom: 1px solid rgba(201,162,75,.1);
+    }
+    .strip-item {
+      font-family: 'Noto Serif JP', serif; color: #c9a24b;
+      font-size: 12px; letter-spacing: 3px;
+    }
+    .strip-dot { color: #4a4340; font-size: 10px; }
+
+    /* ── SECTIONS ── */
+    .section { max-width: 1280px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .section { padding: 112px 56px; } }
+    .section-kicker {
+      font-family: 'Noto Serif JP', serif; color: #c9a24b;
+      letter-spacing: 4px; font-size: 13px; display: block; margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+      font-size: clamp(38px, 5vw, 62px); color: #f6f1ea;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;
+    }
+    @media (min-width: 960px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 72px; } }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      aspect-ratio: 4/5; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0,0,0,.55);
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute; bottom: -22px; right: -22px;
+      background: #c1121f; color: #fff; padding: 22px 28px; border-radius: 10px;
+      box-shadow: 0 16px 38px rgba(193,18,31,.42);
+    }
+    .about-badge-year {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 44px; font-weight: 700; line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; opacity: .85;
+    }
+    .about h2 { margin: 14px 0 26px; }
+    .about-text {
+      color: #bcb3a8; font-size: 16px; line-height: 1.88; font-weight: 300; margin-bottom: 18px;
+    }
+    .about-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 36px; }
+    .about-stat-val {
+      font-family: 'Cormorant Garamond', serif; font-size: 32px;
+      font-weight: 600; line-height: 1;
+    }
+    .about-stat-val.gold { color: #c9a24b; }
+
+    /* ── DISHES ── */
+    .dishes {
+      background: #111009;
+      border-top: 1px solid rgba(201,162,75,.1);
+      border-bottom: 1px solid rgba(201,162,75,.1);
+      padding: 104px 24px;
+    }
+    @media (min-width: 768px) { .dishes { padding: 104px 56px; } }
+    .dishes-inner { max-width: 1280px; margin: 0 auto; }
+    .dishes-grid {
+      display: grid; grid-template-columns: 1fr; gap: 26px;
+    }
+    @media (min-width: 640px) { .dishes-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .dishes-grid { grid-template-columns: repeat(3, 1fr); } }
+    .dish-card {
+      border-radius: 10px; overflow: hidden;
+      background: #1c1714; border: 1px solid rgba(201,162,75,.12);
+      transition: transform .45s cubic-bezier(.22,.78,.22,1);
+    }
+    .dish-card:hover { transform: translateY(-10px); }
+    .dish-card:hover .dish-img img { transform: scale(1.08); }
+    .dish-img {
+      overflow: hidden; aspect-ratio: 4/3; background: #0e0b0a;
+    }
+    .dish-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .7s cubic-bezier(.22,.78,.22,1);
+    }
+    .dish-body { padding: 22px 24px 24px; }
+    .dish-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px; margin-bottom: 7px;
+    }
+    .dish-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 24px;
+      font-weight: 600; color: #f6f1ea;
+    }
+    .dish-price {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px;
+      color: #c9a24b; font-weight: 600; white-space: nowrap;
+    }
+    .dish-desc { color: #9a9088; font-size: 13.5px; font-weight: 300; line-height: 1.6; }
+
+    /* ── MENU ── */
+    .menu-section { max-width: 1240px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .menu-section { padding: 112px 56px; } }
+    .menu-tabs {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 52px;
+    }
+    .menu-tab {
+      background: transparent; color: #cfc7bd;
+      border: 1px solid rgba(201,162,75,.38);
+      padding: 12px 30px; border-radius: 999px;
+      font-family: 'Jost',sans-serif; font-size: 11.5px;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: background .25s, color .25s;
+    }
+    .menu-tab.active { background: #c9a24b; color: #1a1410; }
+    .menu-tab:hover:not(.active) { border-color: #c9a24b; color: #c9a24b; }
+    .menu-columns {
+      columns: 1; column-gap: 60px;
+    }
+    @media (min-width: 768px) { .menu-columns { columns: 2; } }
+    .menu-cat { break-inside: avoid; margin-bottom: 40px; }
+    .menu-cat-header {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,162,75,.2);
+    }
+    .menu-cat-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 26px;
+      font-weight: 600; color: #c9a24b;
+    }
+    .menu-cat-sub {
+      font-size: 10px; letter-spacing: 2px; color: #7a7068; text-transform: uppercase;
+    }
+    .menu-item {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 9px;
+    }
+    .menu-item-name { color: #ddd5c8; font-size: 15px; font-weight: 300; }
+    .menu-item-dots {
+      flex: 1; border-bottom: 1px dotted rgba(201,162,75,.25);
+      transform: translateY(-3px);
+    }
+    .menu-item-price {
+      font-family: 'Cormorant Garamond', serif; font-size: 18px;
+      color: #c9a24b; font-weight: 600; white-space: nowrap;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      background: #111009;
+      border-top: 1px solid rgba(201,162,75,.1);
+      border-bottom: 1px solid rgba(201,162,75,.1);
+      padding: 104px 24px;
+    }
+    @media (min-width: 768px) { .reviews { padding: 104px 56px; } }
+    .reviews-inner { max-width: 1240px; margin: 0 auto; }
+    .reviews-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 30px; flex-wrap: wrap; margin-bottom: 54px;
+    }
+    .reviews-score { display: flex; align-items: center; gap: 18px; }
+    .reviews-score-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 72px;
+      color: #c9a24b; font-weight: 700; line-height: 1;
+    }
+    .reviews-score-stars { color: #c9a24b; font-size: 20px; letter-spacing: 3px; }
+    .reviews-score-count {
+      font-size: 11px; letter-spacing: 1.5px; color: #9a9088;
+      text-transform: uppercase; margin-top: 5px;
+    }
+    .reviews-grid {
+      display: grid; grid-template-columns: 1fr; gap: 22px;
+    }
+    @media (min-width: 640px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+    .review-card {
+      background: #1c1714; border: 1px solid rgba(201,162,75,.13);
+      border-radius: 10px; padding: 30px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .review-author { display: flex; align-items: center; gap: 14px; }
+    .review-avatar {
+      display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #c1121f; color: #fff;
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .review-name { color: #f2ede6; font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+    .review-meta { color: #7a7068; font-size: 11.5px; letter-spacing: .5px; }
+    .review-rating { display: flex; align-items: center; gap: 10px; }
+    .review-stars { color: #c9a24b; font-size: 13px; letter-spacing: 2px; }
+    .review-when { color: #7a7068; font-size: 12px; }
+    .review-text { color: #bcb3a8; font-size: 14.5px; line-height: 1.78; font-weight: 300; }
+
+    /* ── GALLERY ── */
+    .gallery { max-width: 1320px; margin: 0 auto; padding: 104px 24px; }
+    @media (min-width: 768px) { .gallery { padding: 104px 56px; } }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 240px 240px; gap: 14px;
+    }
+    @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+    .gallery-cell {
+      overflow: hidden; border-radius: 8px;
+      border: 1px solid rgba(201,162,75,.12);
+    }
+    .gallery-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .8s cubic-bezier(.22,.78,.22,1);
+    }
+    .gallery-cell:hover img { transform: scale(1.06); }
+    .gallery-big { grid-column: span 2; grid-row: span 2; }
+    .gallery-row2 {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-top: 14px;
+    }
+    .gallery-row2 .gallery-cell { height: 220px; }
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-rows: 180px 180px; }
+      .gallery-big { grid-column: span 2; grid-row: span 2; }
+      .gallery-row2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── ORDER CTA ── */
+    .order-cta {
+      position: relative; padding: 100px 24px; text-align: center;
+      background: linear-gradient(160deg, #180b0b 0%, #0b0908 100%);
+      border-top: 1px solid rgba(201,162,75,.1);
+    }
+    @media (min-width: 768px) { .order-cta { padding: 100px 56px; } }
+    .order-cta-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(193,18,31,.28), transparent 58%);
+      pointer-events: none;
+    }
+    .order-cta-inner { position: relative; max-width: 660px; margin: 0 auto; }
+    .order-cta-body {
+      color: #bcb3a8; font-size: 16px; line-height: 1.8; font-weight: 300;
+      margin-bottom: 36px;
+    }
+    .order-buttons { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .btn-deliveroo {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #00ccbc; color: #063330;
+      padding: 16px 34px; border-radius: 999px;
+      font-weight: 600; font-size: 14px;
+      box-shadow: 0 10px 28px rgba(0,204,188,.3);
+    }
+    .btn-uber {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #06c167; color: #023318;
+      padding: 16px 34px; border-radius: 999px;
+      font-weight: 600; font-size: 14px;
+      box-shadow: 0 10px 28px rgba(6,193,103,.3);
+    }
+    .btn-phone {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(242,237,230,.3); color: #f2ede6;
+      padding: 16px 34px; border-radius: 999px;
+      font-weight: 400; font-size: 14px;
+    }
+    .btn-phone:hover { border-color: #c9a24b; color: #c9a24b; }
+
+    /* ── CONTACT ── */
+    .contact { max-width: 1240px; margin: 0 auto; padding: 104px 24px; }
+    @media (min-width: 768px) { .contact { padding: 104px 56px; } }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: stretch;
+    }
+    @media (min-width: 960px) { .contact-grid { grid-template-columns: 1fr 1.15fr; gap: 56px; } }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-icon { color: #c9a24b; font-size: 20px; margin-top: 1px; flex-shrink: 0; }
+    .contact-label {
+      font-size: 10px; letter-spacing: 2.5px; color: #7a7068;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .contact-value { color: #e0d8cf; font-size: 15.5px; line-height: 1.5; }
+    .contact-value a { color: #c9a24b; }
+    .contact-note { color: #7a7068; font-size: 13px; margin-top: 3px; }
+    .contact-map {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(201,162,75,.18); min-height: 350px;
+    }
+    .contact-map iframe {
+      width: 100%; height: 100%; min-height: 350px; border: 0;
+      filter: grayscale(.25) contrast(1.05) brightness(.88);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #080706; border-top: 1px solid rgba(201,162,75,.13);
+      padding: 56px 24px 36px;
+    }
+    @media (min-width: 768px) { .footer { padding: 56px 56px 36px; } }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .footer-cols { display: flex; gap: 52px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: #9a9088; font-size: 13px; transition: color .2s; }
+    .footer-col a:hover { color: #c9a24b; }
+    .footer-bottom {
+      max-width: 1240px; margin: 0 auto;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,.05);
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { color: #5a5249; font-size: 11.5px; }
+
+    /* ── FADE ── */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="#top" class="nav-logo">
+      <span class="nav-kanji">際</span>
+      <span class="nav-brand">
+        <span class="nav-brand-name">KIWA</span>
+        <span class="nav-brand-sub">Sushi · Fusion asiatique</span>
+      </span>
+    </a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a class="nav-link" href="#about">Présentation</a>
+      <a class="nav-link" href="#popular">Populaires</a>
+      <a class="nav-link" href="#menu">Carte</a>
+      <a class="nav-link" href="#reviews">Avis</a>
+      <a class="nav-link" href="#gallery">Galerie</a>
+      <a class="nav-link" href="#contact">Accès</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#order" class="nav-order">Commander</a>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">
+          <span class="hero-kicker-line"></span>
+          <span class="hero-kicker-text">際和 · 神楽</span>
+        </div>
+        <h1>L'art<br>du sushi</h1>
+        <p class="hero-sub">Cuisine fusion japonaise &amp; chinoise</p>
+        <p class="hero-body">Au cœur d'Aix-en-Provence, Kiwa réunit la finesse du sushi japonais et les saveurs de la cuisine chinoise dans une salle moderne ornée d'estampes et de lampions.</p>
+        <div class="hero-buttons">
+          <a href="#menu" class="btn-gold">Voir la carte</a>
+          <a href="#order" class="btn-ghost">Commander</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-val gold">4,5 ★</div>
+            <div class="hero-stat-label">398 avis</div>
+          </div>
+          <span class="hero-stat-sep"></span>
+          <div>
+            <div class="hero-stat-val">10–20€</div>
+            <div class="hero-stat-label">par personne</div>
+          </div>
+          <span class="hero-stat-sep"></span>
+          <div>
+            <div class="hero-stat-val">Aix</div>
+            <div class="hero-stat-label">en-Provence</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-circle1"></div>
+        <div class="hero-circle2"></div>
+        <div class="hero-img-wrap">
+          <img src="kiwa-assets/sushi-plate-crop.png" alt="Sushi Kiwa">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <span class="strip-item">Sur place</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">À emporter</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Livraison</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">04 42 26 31 93</span>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <div class="about-img">
+          <img src="kiwa-assets/round-platter-crop.png" alt="Grand plateau Kiwa">
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-year">2017</span>
+          <span class="about-badge-label">Depuis</span>
+        </div>
+      </div>
+      <div class="fade-in">
+        <span class="section-kicker">Notre maison</span>
+        <h2 class="section-title">Le raffinement, au fil des saisons</h2>
+        <p class="about-text">Kiwa propose une carte étoffée de fins plats japonais et chinois : sushis, sashimis, makis, california, temaki, mais aussi gyoza, tempura, nouilles et plats sautés. Tout est préparé minute, avec des produits frais sélectionnés chaque jour.</p>
+        <p class="about-text">Service rapide et soigné, ambiance feutrée : une adresse fiable pour un déjeuner sur le pouce comme pour un dîner à partager.</p>
+        <div class="about-stats">
+          <div>
+            <div class="about-stat-val gold">398+</div>
+            <div class="hero-stat-label">avis</div>
+          </div>
+          <div>
+            <div class="about-stat-val gold">60+</div>
+            <div class="hero-stat-label">plats</div>
+          </div>
+          <div>
+            <div class="about-stat-val" style="color:#f2ede6">日中</div>
+            <div class="hero-stat-label">Japon · Chine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR DISHES -->
+  <section class="dishes" id="popular">
+    <div class="dishes-inner">
+      <div style="text-align:center;margin-bottom:60px;" class="fade-in">
+        <span class="section-kicker">人気の料理</span>
+        <h2 class="section-title">Nos plats populaires</h2>
+      </div>
+      <div class="dishes-grid">
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/sushi-plate-crop.png" alt="Assortiment Sushi" style="object-position:center 60%"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Assortiment Sushi</h3><span class="dish-price">15,80€</span></div>
+            <p class="dish-desc">Saumon, thon &amp; california, gingembre, wasabi</p>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/maki-platter-dark.png" alt="Plateau Maki"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Plateau Maki</h3><span class="dish-price">16,50€</span></div>
+            <p class="dish-desc">Thon, saumon &amp; california sésame</p>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/sushi-boat.png" alt="Menu Kiwa Royal" style="object-position:center 20%"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Menu Kiwa Royal</h3><span class="dish-price">50,00€</span></div>
+            <p class="dish-desc">Pour 2 — sashimi, sushi, maki &amp; california</p>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/round-platter-crop.png" alt="Grand Plateau"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Grand Plateau</h3><span class="dish-price">23,80€</span></div>
+            <p class="dish-desc">L'assortiment généreux à partager</p>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/beef-stirfry-crop.png" alt="Bœuf sauté"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Bœuf sauté</h3><span class="dish-price">12,00€</span></div>
+            <p class="dish-desc">Poivrons, oignons &amp; sauce maison</p>
+          </div>
+        </div>
+        <div class="dish-card fade-in">
+          <div class="dish-img"><img src="kiwa-assets/sushi-plate-crop.png" alt="Carpaccio de saumon" style="object-position:center 40%"></div>
+          <div class="dish-body">
+            <div class="dish-header"><h3 class="dish-name">Carpaccio de saumon</h3><span class="dish-price">8,50€</span></div>
+            <p class="dish-desc">Sauce maison parfumée aux sésames</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div style="text-align:center;margin-bottom:48px;" class="fade-in">
+      <span class="section-kicker">お品書き</span>
+      <h2 class="section-title" style="margin-bottom:8px">La carte</h2>
+      <p style="color:#7a7068;font-size:13px;letter-spacing:1px">Prix indicatifs · TVA incluse</p>
+    </div>
+    <div class="menu-tabs fade-in">
+      <button class="menu-tab active" data-tab="carte">À la carte</button>
+      <button class="menu-tab" data-tab="entrees">Entrées &amp; accompagnements</button>
+      <button class="menu-tab" data-tab="formules">Formules &amp; menus</button>
+    </div>
+
+    <!-- CARTE -->
+    <div class="menu-panel active" id="panel-carte">
+      <div class="menu-columns">
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Sashimi</h3><span class="menu-cat-sub">à la pièce</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sashimi thon</span><span class="menu-item-dots"></span><span class="menu-item-price">7,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sashimi saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sashimi daurade</span><span class="menu-item-dots"></span><span class="menu-item-price">7,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Assortiment 12 pièces</span><span class="menu-item-dots"></span><span class="menu-item-price">14,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Assortiment 24 pièces</span><span class="menu-item-dots"></span><span class="menu-item-price">23,80€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Sushi</h3><span class="menu-cat-sub">2 pièces</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sushi thon</span><span class="menu-item-dots"></span><span class="menu-item-price">4,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sushi saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">3,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sushi crevette</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Sushi daurade</span><span class="menu-item-dots"></span><span class="menu-item-price">4,50€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Maki</h3><span class="menu-cat-sub">6 pièces</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki thon</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">4,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki surimi</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki avocat</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki thon spicy</span><span class="menu-item-dots"></span><span class="menu-item-price">5,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki fromage</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki crevette</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki concombre</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Maki radis marinés</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">California</h3><span class="menu-cat-sub">6 pièces</span></div>
+          <div class="menu-item"><span class="menu-item-name">Avocat, saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">5,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Avocat, thon</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Avocat, crevette</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Avocat, thon cuit</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Avocat, surimi</span><span class="menu-item-dots"></span><span class="menu-item-price">5,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Fromage, saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">5,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Fromage, saumon, avocat</span><span class="menu-item-dots"></span><span class="menu-item-price">6,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Ebi ten (avocat, crevette frite)</span><span class="menu-item-dots"></span><span class="menu-item-price">8,00€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Temaki</h3><span class="menu-cat-sub">1 pièce</span></div>
+          <div class="menu-item"><span class="menu-item-name">Temaki thon</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Temaki saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">4,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Temaki ebi ten</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Carpaccio &amp; Futomaki</h3><span class="menu-cat-sub">spécialités</span></div>
+          <div class="menu-item"><span class="menu-item-name">Carpaccio de saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">8,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Carpaccio de thon</span><span class="menu-item-dots"></span><span class="menu-item-price">10,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Futomaki 8 pcs</span><span class="menu-item-dots"></span><span class="menu-item-price">10,00€</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENTREES -->
+    <div class="menu-panel" id="panel-entrees">
+      <div class="menu-columns">
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">À frire</h3><span class="menu-cat-sub">croustillants</span></div>
+          <div class="menu-item"><span class="menu-item-name">Tempura crevettes 2p</span><span class="menu-item-dots"></span><span class="menu-item-price">4,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Kara age 5p (poulet frit)</span><span class="menu-item-dots"></span><span class="menu-item-price">6,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Nems aux crevettes 3p</span><span class="menu-item-dots"></span><span class="menu-item-price">3,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Nems au poulet 5p</span><span class="menu-item-dots"></span><span class="menu-item-price">3,50€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Vapeur</h3><span class="menu-cat-sub">Dim sum</span></div>
+          <div class="menu-item"><span class="menu-item-name">Shumai crevette 3p</span><span class="menu-item-dots"></span><span class="menu-item-price">3,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Gyoza 5p (poulet, légumes)</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Hagao 3p</span><span class="menu-item-dots"></span><span class="menu-item-price">3,50€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Accompagnements</h3><span class="menu-cat-sub">à partager</span></div>
+          <div class="menu-item"><span class="menu-item-name">Soupe miso</span><span class="menu-item-dots"></span><span class="menu-item-price">2,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Salade de crudités</span><span class="menu-item-dots"></span><span class="menu-item-price">2,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Salade d'algues</span><span class="menu-item-dots"></span><span class="menu-item-price">5,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Riz nature</span><span class="menu-item-dots"></span><span class="menu-item-price">2,50€</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULES -->
+    <div class="menu-panel" id="panel-formules">
+      <div class="menu-columns">
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Formule Chirashi</h3><span class="menu-cat-sub">soupe, salade</span></div>
+          <div class="menu-item"><span class="menu-item-name">Saumon</span><span class="menu-item-dots"></span><span class="menu-item-price">13,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Saumon, avocat</span><span class="menu-item-dots"></span><span class="menu-item-price">14,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Thon</span><span class="menu-item-dots"></span><span class="menu-item-price">15,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Thon, avocat</span><span class="menu-item-dots"></span><span class="menu-item-price">16,80€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Assortiment</span><span class="menu-item-dots"></span><span class="menu-item-price">15,80€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Menus composés</h3><span class="menu-cat-sub">soupe &amp; salade</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Végétarien</span><span class="menu-item-dots"></span><span class="menu-item-price">13,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Cali</span><span class="menu-item-dots"></span><span class="menu-item-price">13,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu J</span><span class="menu-item-dots"></span><span class="menu-item-price">16,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Maki</span><span class="menu-item-dots"></span><span class="menu-item-price">16,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Osaka</span><span class="menu-item-dots"></span><span class="menu-item-price">17,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Shake</span><span class="menu-item-dots"></span><span class="menu-item-price">17,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu E</span><span class="menu-item-dots"></span><span class="menu-item-price">19,00€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu D</span><span class="menu-item-dots"></span><span class="menu-item-price">21,50€</span></div>
+        </div>
+        <div class="menu-cat"><div class="menu-cat-header"><h3 class="menu-cat-name">Menus signature</h3><span class="menu-cat-sub">généreux</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Sushi</span><span class="menu-item-dots"></span><span class="menu-item-price">21,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Kyoto</span><span class="menu-item-dots"></span><span class="menu-item-price">21,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Sashimi</span><span class="menu-item-dots"></span><span class="menu-item-price">21,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Kiwa</span><span class="menu-item-dots"></span><span class="menu-item-price">24,50€</span></div>
+          <div class="menu-item"><span class="menu-item-name">Menu Kiwa Royal (2 pers.)</span><span class="menu-item-dots"></span><span class="menu-item-price">50,00€</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="reviews-inner">
+      <div class="reviews-top fade-in">
+        <div>
+          <span class="section-kicker">お客様の声</span>
+          <h2 class="section-title">Ils ont aimé Kiwa</h2>
+        </div>
+        <div class="reviews-score">
+          <span class="reviews-score-num">4,5</span>
+          <div>
+            <div class="reviews-score-stars">★★★★★</div>
+            <div class="reviews-score-count">398 avis · Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-in">
+          <div class="review-author"><span class="review-avatar">T</span><div><div class="review-name">Timeo Morsilli</div><div class="review-meta">4 avis · 2 photos</div></div></div>
+          <div class="review-rating"><span class="review-stars">★★★★★</span><span class="review-when">il y a 3 mois</span></div>
+          <p class="review-text">Efficace et de bonne qualité. Le service est vraiment rapide, un vrai plus pour un déjeuner sur le pouce. Les sushis sont frais et font bien le travail. Une adresse fiable.</p>
+        </div>
+        <div class="review-card fade-in">
+          <div class="review-author"><span class="review-avatar">J</span><div><div class="review-name">Jean-Pierre C.</div><div class="review-meta">Local Guide · 125 avis</div></div></div>
+          <div class="review-rating"><span class="review-stars">★★★★★</span><span class="review-when">il y a 4 semaines</span></div>
+          <p class="review-text">De bons sushis, plutôt bien faits. Humble mais vous y trouverez un bel aperçu de la cuisine japonaise en plus de plats chinois connus. Modeste mais bon !</p>
+        </div>
+        <div class="review-card fade-in">
+          <div class="review-author"><span class="review-avatar">F</span><div><div class="review-name">François Drouin</div><div class="review-meta">2 avis</div></div></div>
+          <div class="review-rating"><span class="review-stars">★★★★★</span><span class="review-when">il y a 3 mois</span></div>
+          <p class="review-text">Restaurant incroyable ! J'y vais depuis 5-6 mois pour manger de la bonne nourriture saine et cela répond totalement à mes envies. Le personnel est d'une gentillesse honorable !</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div style="text-align:center;margin-bottom:52px;" class="fade-in">
+      <span class="section-kicker">写真</span>
+      <h2 class="section-title">En images</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-cell gallery-big"><img src="kiwa-assets/sushi-boat.png" alt="Barque sushi" style="object-position:center 15%"></div>
+      <div class="gallery-cell"><img src="kiwa-assets/sushi-plate-crop.png" alt="Sushis" style="object-position:center 60%"></div>
+      <div class="gallery-cell"><img src="kiwa-assets/beef-stirfry-crop.png" alt="Bœuf sauté"></div>
+      <div class="gallery-cell" style="grid-column:span 2"><img src="kiwa-assets/maki-platter-dark.png" alt="Plateau maki"></div>
+    </div>
+    <div class="gallery-row2">
+      <div class="gallery-cell"><img src="kiwa-assets/round-platter-crop.png" alt="Grand plateau"></div>
+      <div class="gallery-cell"><img src="kiwa-assets/sushi-plate-crop.png" alt="Sushi plate" style="object-position:center 40%"></div>
+      <div class="gallery-cell"><img src="kiwa-assets/beef-stirfry-crop.png" alt="Plat chaud"></div>
+    </div>
+  </section>
+
+  <!-- ORDER CTA -->
+  <section class="order-cta" id="order">
+    <div class="order-cta-glow"></div>
+    <div class="order-cta-inner">
+      <span class="section-kicker">出前 · ご注文</span>
+      <h2 class="section-title" style="margin-bottom:18px">Commandez en ligne</h2>
+      <p class="order-cta-body">Faites-vous livrer ou commandez à emporter en quelques clics sur Deliveroo ou Uber Eats — ou appelez-nous directement.</p>
+      <div class="order-buttons">
+        <a href="https://deliveroo.fr" target="_blank" rel="noopener" class="btn-deliveroo">Deliveroo</a>
+        <a href="https://www.ubereats.com" target="_blank" rel="noopener" class="btn-uber">Uber Eats</a>
+        <a href="tel:0442263193" class="btn-phone">✆ 04 42 26 31 93</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <span class="section-kicker">アクセス</span>
+        <h2 class="section-title" style="margin-bottom:36px">Nous trouver</h2>
+        <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:36px;">
+          <div class="contact-item">
+            <span class="contact-icon">◉</span>
+            <div><div class="contact-label">Adresse</div><div class="contact-value">8 Rue Paul Bert<br>13100 Aix-en-Provence</div></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✆</span>
+            <div><div class="contact-label">Téléphone</div><div class="contact-value"><a href="tel:0442263193">04 42 26 31 93</a></div></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">◷</span>
+            <div><div class="contact-label">Horaires</div><div class="contact-value">Ouvre à 12:00</div><div class="contact-note">Midi &amp; soir · 7j/7</div></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⌘</span>
+            <div><div class="contact-label">Site web</div><div class="contact-value"><a href="https://kiwasushi.com" target="_blank" rel="noopener">kiwasushi.com</a></div></div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=8+Rue+Paul+Bert+13100+Aix-en-Provence" target="_blank" rel="noopener" class="btn-gold">Itinéraire</a>
+      </div>
+      <div class="contact-map fade-in">
+        <iframe title="Kiwa — Aix-en-Provence" src="https://www.google.com/maps?q=8+Rue+Paul+Bert+13100+Aix-en-Provence&output=embed" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="nav-logo">
+        <span class="nav-kanji">際</span>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;letter-spacing:7px;color:#f2ede6">KIWA</div>
+          <div style="font-size:9px;letter-spacing:3px;color:#9a9088;text-transform:uppercase;margin-top:3px">Sushi · Fusion · Aix-en-Provence</div>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <a class="nav-link" href="#menu">Carte</a>
+          <a class="nav-link" href="#reviews">Avis</a>
+          <a class="nav-link" href="#gallery">Galerie</a>
+          <a class="nav-link" href="#contact">Accès</a>
+        </div>
+        <div class="footer-col">
+          <span style="color:#9a9088;font-size:13px">8 Rue Paul Bert</span>
+          <span style="color:#9a9088;font-size:13px">13100 Aix-en-Provence</span>
+          <a href="tel:0442263193" style="color:#c9a24b;font-size:13px">04 42 26 31 93</a>
+          <a href="https://kiwasushi.com" target="_blank" rel="noopener" style="color:#c9a24b;font-size:13px">kiwasushi.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Kiwa · Tous droits réservés</span>
+      <span class="footer-copy">Cuisine fusion asiatique · Aix-en-Provence · Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener" style="color:#c9a24b">Soul Web Studio</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Fade in
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+    // Burger menu
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+    var overlay = document.getElementById('navOverlay');
+    function toggleMenu() {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    burger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
+
+    // Menu tabs
+    document.querySelectorAll('.menu-tab').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.menu-tab').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.menu-panel').forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
