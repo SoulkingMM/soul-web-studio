@@ -44,6 +44,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.5rem 2rem;
       display: flex; justify-content: center; align-items: center;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      transition: background 0.6s ease, backdrop-filter 0.6s ease, padding 0.4s ease;
     }
     .nav.scrolled {
       background: rgba(11, 11, 11, 0.9);
