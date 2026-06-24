@@ -41,15 +41,34 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #f8f7f5;
-      --bg-secondary: #e8e4de;
-      --bg-card: #faf9f7;
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
       --gold: #c9a84c;
       --gold-light: #d4b96a;
-      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-soft: rgba(201, 168, 76, 0.25);
+      --gold-dim: rgba(201, 168, 76, 0.1);
+      --white: #f2ede6;
+      --text-primary: #f2ede6;
+      --text-secondary: #9a9590;
+      --text-muted: #6a6560;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8f7f5;
+      --bg-secondary: #f0eeea;
+      --bg-card: rgba(0, 0, 0, 0.03);
+      --bg-card-hover: rgba(0, 0, 0, 0.06);
+      --gold: #c9a84c;
+      --gold-light: #b8963f;
+      --gold-soft: rgba(201, 168, 76, 0.2);
+      --gold-dim: rgba(201, 168, 76, 0.08);
+      --white: #1a1614;
       --text-primary: #1a1614;
-      --text-secondary: #888888;
-      --text-muted: #999999;
+      --text-secondary: #5a5550;
+      --text-muted: #8a8580;
       --border: rgba(0, 0, 0, 0.08);
     }
 
@@ -72,9 +91,13 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.25rem 1.5rem;
       display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 11, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    [data-theme="light"] .nav {
       background: rgba(248, 247, 245, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom-color: rgba(201, 168, 76, 0.15);
     }
     .nav-logo {
       font-family: 'Inter', sans-serif;
@@ -128,13 +151,16 @@
       display: grid; grid-template-columns: 1fr;
       gap: 0; margin-bottom: 3rem;
       background: var(--bg-card);
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      border: 0.5px solid var(--border);
       border-radius: 12px; overflow: hidden;
       transition: all 0.4s;
     }
     .project:hover {
       border-color: rgba(201, 168, 76, 0.3);
       transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+    [data-theme="light"] .project:hover {
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
     }
     .project-thumb {
@@ -247,6 +273,41 @@
     }
     .footer-copy a { color: var(--gold); text-decoration: none; }
 
+    /* ── TOGGLES ── */
+    .nav-toggles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+    .toggle-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .toggle-btn .toggle-icon { display: none; }
+    [data-theme="light"] .toggle-btn .moon { display: block; }
+    [data-theme="light"] .toggle-btn .sun { display: none; }
+    .toggle-btn .sun { display: block; }
+    .toggle-btn .moon { display: none; }
+    .lang-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
     /* ── FADE IN ── */
     .fade-in {
       opacity: 0; transform: translateY(20px);
@@ -266,17 +327,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Soul <span>Web</span> Studio</a>
-    <a href="index.html" class="nav-back">&larr; Retour au site</a>
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="toggle-icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="toggle-icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="toggle-btn" id="langToggle" aria-label="Toggle language">
+        <span class="lang-label">EN</span>
+      </button>
+    </div>
+    <a href="index.html" class="nav-back" data-i18n="nav.back">&larr; Retour au site</a>
   </nav>
 
   <!-- ============================================ -->
   <!-- HERO : Titre portfolio                       -->
   <!-- ============================================ -->
   <section class="hero">
-    <div class="hero-label">Portfolio</div>
-    <h1>Mes <span>réalisations</span></h1>
+    <div class="hero-label" data-i18n="hero.label">Portfolio</div>
+    <h1 data-i18n="hero.title">Mes <span>réalisations</span></h1>
     <div class="divider"></div>
-    <p class="hero-intro">Des sites vitrines sur-mesure, codés à la main, pensés pour convertir vos visiteurs en clients.</p>
+    <p class="hero-intro" data-i18n="hero.intro">Des sites vitrines sur-mesure, codés à la main, pensés pour convertir vos visiteurs en clients.</p>
   </section>
 
   <!-- ============================================ -->
@@ -289,15 +359,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="kiwa.html" loading="lazy" title="Hanami"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Restaurant</span>
+        <span class="project-tag" data-i18n="p1.tag">Restaurant</span>
         <h2 class="project-name">Hanami</h2>
-        <p class="project-desc">Restaurant sushi & fusion asiatique. Design premium dark avec carte interactive, galerie photo et commande en ligne.</p>
+        <p class="project-desc" data-i18n="p1.desc">Restaurant sushi &amp; fusion asiatique. Design premium dark avec carte interactive, galerie photo et commande en ligne.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
-          <span class="project-detail">Menu interactif</span>
+          <span class="project-detail" data-i18n="p1.detail3">Menu interactif</span>
         </div>
-        <a href="kiwa.html" class="project-link" target="_blank">
+        <a href="kiwa.html" class="project-link" target="_blank" data-i18n="p1.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -309,15 +379,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="elegance-coiffure.html" loading="lazy" title="Élégance Coiffure"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Coiffure</span>
+        <span class="project-tag" data-i18n="p2.tag">Coiffure</span>
         <h2 class="project-name">Élégance Coiffure</h2>
-        <p class="project-desc">Salon de coiffure parisien haut de gamme. Design élégant avec réservation en ligne, galerie de réalisations et avis clients intégrés.</p>
+        <p class="project-desc" data-i18n="p2.desc">Salon de coiffure parisien haut de gamme. Design élégant avec réservation en ligne, galerie de réalisations et avis clients intégrés.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
-          <span class="project-detail">SEO optimisé</span>
+          <span class="project-detail" data-i18n="p2.detail3">SEO optimisé</span>
         </div>
-        <a href="elegance-coiffure.html" class="project-link" target="_blank">
+        <a href="elegance-coiffure.html" class="project-link" target="_blank" data-i18n="p2.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -329,15 +399,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="asia-food-tea.html" loading="lazy" title="Sakura Kitchen"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Restaurant</span>
+        <span class="project-tag" data-i18n="p3.tag">Restaurant</span>
         <h2 class="project-name">Sakura Kitchen</h2>
-        <p class="project-desc">Restaurant asiatique & bubble tea. Design premium dark, carte interactive et section bubble tea dédiée.</p>
+        <p class="project-desc" data-i18n="p3.desc">Restaurant asiatique &amp; bubble tea. Design premium dark, carte interactive et section bubble tea dédiée.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
           <span class="project-detail">Bubble Tea Menu</span>
         </div>
-        <a href="asia-food-tea.html" class="project-link" target="_blank">
+        <a href="asia-food-tea.html" class="project-link" target="_blank" data-i18n="p3.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -349,15 +419,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="brasserie-du-marche.html" loading="lazy" title="Brasserie du Marché"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Restaurant</span>
+        <span class="project-tag" data-i18n="p4.tag">Restaurant</span>
         <h2 class="project-name">Brasserie du Marché</h2>
-        <p class="project-desc">Restaurant traditionnel français. Présentation de la carte, horaires d'ouverture et ambiance chaleureuse mise en avant.</p>
+        <p class="project-desc" data-i18n="p4.desc">Restaurant traditionnel français. Présentation de la carte, horaires d'ouverture et ambiance chaleureuse mise en avant.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
           <span class="project-detail">Google Maps</span>
         </div>
-        <a href="brasserie-du-marche.html" class="project-link" target="_blank">
+        <a href="brasserie-du-marche.html" class="project-link" target="_blank" data-i18n="p4.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -369,15 +439,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="barberking.html" loading="lazy" title="BarberKing"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Barbier</span>
+        <span class="project-tag" data-i18n="p5.tag">Barbier</span>
         <h2 class="project-name">BarberKing</h2>
-        <p class="project-desc">Salon de barbier moderne au style urbain. Animations dynamiques, prise de rendez-vous en ligne et galerie de coupes.</p>
+        <p class="project-desc" data-i18n="p5.desc">Salon de barbier moderne au style urbain. Animations dynamiques, prise de rendez-vous en ligne et galerie de coupes.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
-          <span class="project-detail">Animations</span>
+          <span class="project-detail" data-i18n="p5.detail3">Animations</span>
         </div>
-        <a href="barberking.html" class="project-link" target="_blank">
+        <a href="barberking.html" class="project-link" target="_blank" data-i18n="p5.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -389,15 +459,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <iframe src="plomberie-martin.html" loading="lazy" title="Martin Plomberie"></iframe>
       </div>
       <div class="project-body">
-        <span class="project-tag">Artisan</span>
+        <span class="project-tag" data-i18n="p6.tag">Artisan</span>
         <h2 class="project-name">Martin Plomberie</h2>
-        <p class="project-desc">Plombier professionnel à Paris. Design moderne avec slider avant/après, zone d'intervention et avis clients.</p>
+        <p class="project-desc" data-i18n="p6.desc">Plombier professionnel à Paris. Design moderne avec slider avant/après, zone d'intervention et avis clients.</p>
         <div class="project-details">
           <span class="project-detail">HTML / CSS / JS</span>
           <span class="project-detail">Responsive</span>
-          <span class="project-detail">Avant/Après</span>
+          <span class="project-detail" data-i18n="p6.detail3">Avant/Après</span>
         </div>
-        <a href="plomberie-martin.html" class="project-link" target="_blank">
+        <a href="plomberie-martin.html" class="project-link" target="_blank" data-i18n="p6.link">
           Voir la démo
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -411,9 +481,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- CTA : Appel à l'action                       -->
   <!-- ============================================ -->
   <section class="cta">
-    <h2>Votre site pourrait être le <span>prochain</span></h2>
-    <p>Demandez votre devis gratuit en 2 minutes.</p>
-    <a href="index.html#devis" class="btn">Devis gratuit</a>
+    <h2 data-i18n="cta.title">Votre site pourrait être le <span>prochain</span></h2>
+    <p data-i18n="cta.text">Demandez votre devis gratuit en 2 minutes.</p>
+    <a href="index.html#devis" class="btn" data-i18n="cta.btn">Devis gratuit</a>
   </section>
 
   <!-- ============================================ -->
@@ -421,7 +491,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-brand">Soul <span>Web</span> Studio</div>
-    <p class="footer-copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a></p>
+    <p class="footer-copy" data-i18n="footer.copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a></p>
   </footer>
 
   <script>
@@ -434,6 +504,102 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <script>
+    // ============================================
+    // THEME TOGGLE
+    // ============================================
+    (function() {
+      var saved = localStorage.getItem('sws-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('sws-theme', next);
+      });
+    })();
+  </script>
+
+  <script>
+    // ============================================
+    // LANGUAGE TOGGLE
+    // ============================================
+    (function() {
+      var translations = {
+        en: {
+          'nav.back': '&larr; Back to site',
+          'hero.label': 'Portfolio',
+          'hero.title': 'My <span>work</span>',
+          'hero.intro': 'Custom-built showcase websites, hand-coded and designed to turn visitors into customers.',
+          'p1.tag': 'Restaurant',
+          'p1.desc': 'Sushi &amp; Asian fusion restaurant. Premium dark design with interactive menu, photo gallery and online ordering.',
+          'p1.detail3': 'Interactive menu',
+          'p1.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'p2.tag': 'Hair salon',
+          'p2.desc': 'Upscale Parisian hair salon. Elegant design with online booking, portfolio gallery and integrated client reviews.',
+          'p2.detail3': 'SEO optimized',
+          'p2.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'p3.tag': 'Restaurant',
+          'p3.desc': 'Asian restaurant &amp; bubble tea. Premium dark design, interactive menu and dedicated bubble tea section.',
+          'p3.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'p4.tag': 'Restaurant',
+          'p4.desc': 'Traditional French restaurant. Menu presentation, opening hours and warm ambiance showcased.',
+          'p4.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'p5.tag': 'Barber',
+          'p5.desc': 'Modern urban-style barbershop. Dynamic animations, online booking and haircut gallery.',
+          'p5.detail3': 'Animations',
+          'p5.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'p6.tag': 'Tradesman',
+          'p6.desc': 'Professional plumber in Paris. Modern design with before/after slider, service area and client reviews.',
+          'p6.detail3': 'Before/After',
+          'p6.link': 'View demo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+          'cta.title': 'Your site could be <span>next</span>',
+          'cta.text': 'Get your free quote in 2 minutes.',
+          'cta.btn': 'Free quote',
+          'footer.copy': '&copy; 2026 Soul Web Studio · <a href="index.html">Back to home</a> · <a href="mentions-legales.html">Legal notice</a> · <a href="cgv.html">T&amp;Cs</a>'
+        }
+      };
+      var frTexts = {};
+      function collectFrench() {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n');
+          if (!frTexts[key]) frTexts[key] = el.innerHTML;
+        });
+      }
+      function applyLang(lang) {
+        if (lang === 'fr') {
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (frTexts[key]) el.innerHTML = frTexts[key];
+          });
+          document.documentElement.lang = 'fr';
+        } else {
+          var t = translations[lang];
+          if (!t) return;
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (t[key]) el.innerHTML = t[key];
+          });
+          document.documentElement.lang = 'en';
+        }
+      }
+      collectFrench();
+      var savedLang = localStorage.getItem('sws-lang') || 'fr';
+      var langLabel = document.querySelector('.lang-label');
+      if (savedLang !== 'fr') {
+        applyLang(savedLang);
+        langLabel.textContent = 'FR';
+      }
+      document.getElementById('langToggle').addEventListener('click', function() {
+        var current = localStorage.getItem('sws-lang') || 'fr';
+        var next = current === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('sws-lang', next);
+        applyLang(next);
+        langLabel.textContent = next === 'fr' ? 'EN' : 'FR';
+      });
+    })();
   </script>
 
 </body>

@@ -257,7 +257,13 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-right: 0.5rem;
+    }
+    .nav-toggles-li { border-bottom: none !important; }
+    .nav-toggles-li .nav-toggles { padding: 0; }
+    .nav-toggles-mobile { display: none; }
+    @media (max-width: 767px) {
+      .nav-toggles-li { display: none !important; }
+      .nav-toggles-mobile { display: flex; margin-right: 0.5rem; }
     }
     .toggle-btn {
       background: var(--bg-card);
@@ -1152,23 +1158,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">Soul <span>Web</span> Studio</a>
-    <div class="nav-toggles">
-      <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="portfolio.html" data-i18n="nav.portfolio">Réalisations</a></li>
+      <li><a href="a-propos.html" data-i18n="nav.about">À propos</a></li>
+      <li class="nav-toggles-li">
+        <div class="nav-toggles">
+          <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
+            <svg class="toggle-icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="toggle-icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button class="toggle-btn" id="langToggle" aria-label="Toggle language">
+            <span class="lang-label">EN</span>
+          </button>
+        </div>
+      </li>
+      <li><a href="#devis" class="nav-cta" data-i18n="nav.cta">Lancer mon projet</a></li>
+    </ul>
+    <div class="nav-toggles nav-toggles-mobile">
+      <button class="toggle-btn" id="themeToggleMobile" aria-label="Toggle theme">
         <svg class="toggle-icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         <svg class="toggle-icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
-      <button class="toggle-btn" id="langToggle" aria-label="Toggle language">
+      <button class="toggle-btn" id="langToggleMobile" aria-label="Toggle language">
         <span class="lang-label">EN</span>
       </button>
     </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="portfolio.html" data-i18n="nav.portfolio">Réalisations</a></li>
-      <li><a href="a-propos.html" data-i18n="nav.about">À propos</a></li>
-      <li><a href="#devis" class="nav-cta" data-i18n="nav.cta">Lancer mon projet</a></li>
-    </ul>
   </nav>
   <div class="nav-overlay" id="navOverlay"></div>
 
@@ -1850,12 +1867,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var saved = localStorage.getItem('sws-theme') || 'dark';
       document.documentElement.setAttribute('data-theme', saved);
 
-      document.getElementById('themeToggle').addEventListener('click', function() {
+      function toggleTheme() {
         var current = document.documentElement.getAttribute('data-theme') || 'dark';
         var next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('sws-theme', next);
-      });
+      }
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+      var tmMobile = document.getElementById('themeToggleMobile');
+      if (tmMobile) tmMobile.addEventListener('click', toggleTheme);
     })();
 
     // ============================================
@@ -2035,21 +2055,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       collectFrench();
 
       var savedLang = localStorage.getItem('sws-lang') || 'fr';
-      var langBtn = document.getElementById('langToggle');
-      var langLabel = langBtn.querySelector('.lang-label');
+      var allLangLabels = document.querySelectorAll('.lang-label');
+
+      function updateLangLabels(lang) {
+        allLangLabels.forEach(function(l) { l.textContent = lang === 'fr' ? 'EN' : 'FR'; });
+      }
 
       if (savedLang !== 'fr') {
         applyLang(savedLang);
-        langLabel.textContent = 'FR';
+        updateLangLabels(savedLang);
       }
 
-      langBtn.addEventListener('click', function() {
+      function toggleLang() {
         var current = localStorage.getItem('sws-lang') || 'fr';
         var next = current === 'fr' ? 'en' : 'fr';
         localStorage.setItem('sws-lang', next);
         applyLang(next);
-        langLabel.textContent = next === 'fr' ? 'EN' : 'FR';
-      });
+        updateLangLabels(next);
+      }
+      document.getElementById('langToggle').addEventListener('click', toggleLang);
+      var lmMobile = document.getElementById('langToggleMobile');
+      if (lmMobile) lmMobile.addEventListener('click', toggleLang);
     })();
   </script>
 

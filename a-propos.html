@@ -41,14 +41,34 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #f8f7f5;
-      --bg-secondary: #e8e4de;
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
       --gold: #c9a84c;
       --gold-light: #d4b96a;
-      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-soft: rgba(201, 168, 76, 0.25);
+      --gold-dim: rgba(201, 168, 76, 0.1);
+      --white: #f2ede6;
+      --text-primary: #f2ede6;
+      --text-secondary: #9a9590;
+      --text-muted: #6a6560;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8f7f5;
+      --bg-secondary: #f0eeea;
+      --bg-card: rgba(0, 0, 0, 0.03);
+      --bg-card-hover: rgba(0, 0, 0, 0.06);
+      --gold: #c9a84c;
+      --gold-light: #b8963f;
+      --gold-soft: rgba(201, 168, 76, 0.2);
+      --gold-dim: rgba(201, 168, 76, 0.08);
+      --white: #1a1614;
       --text-primary: #1a1614;
-      --text-secondary: #888888;
-      --text-muted: #999999;
+      --text-secondary: #5a5550;
+      --text-muted: #8a8580;
       --border: rgba(0, 0, 0, 0.08);
     }
 
@@ -71,9 +91,13 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.25rem 1.5rem;
       display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 11, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    [data-theme="light"] .nav {
       background: rgba(248, 247, 245, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom-color: rgba(201, 168, 76, 0.15);
     }
     .nav-logo {
       font-family: 'Inter', sans-serif;
@@ -157,8 +181,8 @@
       gap: 1.5rem; margin-top: 1.5rem;
     }
     .value-card {
-      background: rgba(255, 255, 255, 0.6);
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
       border-radius: 6px;
       padding: 1.75rem;
       transition: all 0.3s;
@@ -166,6 +190,9 @@
     .value-card:hover {
       border-color: rgba(201, 168, 76, 0.3);
       transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    [data-theme="light"] .value-card:hover {
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
     }
     .value-icon {
@@ -270,6 +297,41 @@
     }
     .footer-copy a { color: var(--gold); text-decoration: none; }
 
+    /* ── TOGGLES ── */
+    .nav-toggles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+    .toggle-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .toggle-btn .toggle-icon { display: none; }
+    [data-theme="light"] .toggle-btn .moon { display: block; }
+    [data-theme="light"] .toggle-btn .sun { display: none; }
+    .toggle-btn .sun { display: block; }
+    .toggle-btn .moon { display: none; }
+    .lang-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
     /* ── FADE IN ── */
     .fade-in {
       opacity: 0; transform: translateY(20px);
@@ -289,38 +351,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Soul <span>Web</span> Studio</a>
-    <a href="index.html" class="nav-back">&larr; Retour au site</a>
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="toggle-icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="toggle-icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="toggle-btn" id="langToggle" aria-label="Toggle language">
+        <span class="lang-label">EN</span>
+      </button>
+    </div>
+    <a href="index.html" class="nav-back" data-i18n="nav.back">&larr; Retour au site</a>
   </nav>
 
   <!-- ============================================ -->
   <!-- HERO : Titre + introduction personnelle      -->
   <!-- ============================================ -->
   <section class="hero">
-    <div class="hero-label">À propos</div>
-    <h1>Derrière Soul <span>Web</span> Studio</h1>
+    <div class="hero-label" data-i18n="hero.label">À propos</div>
+    <h1 data-i18n="hero.title">Derrière Soul <span>Web</span> Studio</h1>
     <div class="divider"></div>
-    <p class="hero-intro">Je m'appelle Maaty Manchour. Je crée des sites web sur-mesure pour les artisans et commerces locaux qui veulent une vraie présence en ligne, sans prise de tête.</p>
+    <p class="hero-intro" data-i18n="hero.intro">Je m'appelle Maaty Manchour. Je crée des sites web sur-mesure pour les artisans et commerces locaux qui veulent une vraie présence en ligne, sans prise de tête.</p>
   </section>
 
   <!-- ============================================ -->
   <!-- MON HISTOIRE : Parcours personnel            -->
   <!-- ============================================ -->
   <section class="section fade-in">
-    <h2 class="section-title">Mon <span>histoire</span></h2>
+    <h2 class="section-title" data-i18n="story.title">Mon <span>histoire</span></h2>
 
     <div class="story-block">
-      <h3>Autodidacte depuis le lycée</h3>
-      <p>J'ai découvert le développement web en cours de NSI au lycée. Ce qui devait être un simple cours m'a accroché. J'ai appris seul, projet après projet, en construisant des sites de plus en plus ambitieux. Aujourd'hui j'en fais mon métier, pour les commerces locaux qui veulent un vrai site sans se ruiner.</p>
+      <h3 data-i18n="story.s1.title">Autodidacte depuis le lycée</h3>
+      <p data-i18n="story.s1.text">J'ai découvert le développement web en cours de NSI au lycée. Ce qui devait être un simple cours m'a accroché. J'ai appris seul, projet après projet, en construisant des sites de plus en plus ambitieux. Aujourd'hui j'en fais mon métier, pour les commerces locaux qui veulent un vrai site sans se ruiner.</p>
     </div>
 
     <div class="story-block">
-      <h3>Pourquoi les commerces locaux ?</h3>
-      <p>Parce que je sais ce que c'est de chercher un artisan ou un commerce sur Google et de tomber sur un site des années 2000. Ou pire, pas de site du tout. Les grandes agences facturent des milliers d'euros pour un WordPress générique. Moi je fais l'inverse : un site codé à la main, à un prix correct, livré en quelques jours.</p>
+      <h3 data-i18n="story.s2.title">Pourquoi les commerces locaux ?</h3>
+      <p data-i18n="story.s2.text">Parce que je sais ce que c'est de chercher un artisan ou un commerce sur Google et de tomber sur un site des années 2000. Ou pire, pas de site du tout. Les grandes agences facturent des milliers d'euros pour un WordPress générique. Moi je fais l'inverse : un site codé à la main, à un prix correct, livré en quelques jours.</p>
     </div>
 
     <div class="story-block">
-      <h3>Ma façon de travailler</h3>
-      <p>Pas d'agence, pas d'intermédiaire. C'est moi qui conçois, code et livre votre site du premier message jusqu'à la mise en ligne. Chaque site est pensé pour votre activité et vos clients. Je travaille vite, 3 à 5 jours ouvrés, parce que quand vous avez besoin d'un site, c'est pas dans 3 mois.</p>
+      <h3 data-i18n="story.s3.title">Ma façon de travailler</h3>
+      <p data-i18n="story.s3.text">Pas d'agence, pas d'intermédiaire. C'est moi qui conçois, code et livre votre site du premier message jusqu'à la mise en ligne. Chaque site est pensé pour votre activité et vos clients. Je travaille vite, 3 à 5 jours ouvrés, parce que quand vous avez besoin d'un site, c'est pas dans 3 mois.</p>
     </div>
   </section>
 
@@ -329,35 +400,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <div class="section-alt">
     <div class="section-inner fade-in">
-      <h2 class="section-title">Ce qui me <span>différencie</span></h2>
+      <h2 class="section-title" data-i18n="values.title">Ce qui me <span>différencie</span></h2>
       <div class="values-grid">
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
-          <h3>Rapidité</h3>
-          <p>Votre site livré en 3 à 5 jours ouvrés. Option express 48h disponible pour les plus pressés.</p>
+          <h3 data-i18n="values.v1.title">Rapidité</h3>
+          <p data-i18n="values.v1.text">Votre site livré en 3 à 5 jours ouvrés. Option express 48h disponible pour les plus pressés.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <h3>Contact direct</h3>
-          <p>Vous parlez directement avec celui qui crée votre site. Pas de commercial, pas de chef de projet entre nous.</p>
+          <h3 data-i18n="values.v2.title">Contact direct</h3>
+          <p data-i18n="values.v2.text">Vous parlez directement avec celui qui crée votre site. Pas de commercial, pas de chef de projet entre nous.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>Code propre</h3>
-          <p>Zéro WordPress, zéro constructeur de pages. Du code HTML/CSS/JS écrit à la main. Votre site charge en moins d'une seconde.</p>
+          <h3 data-i18n="values.v3.title">Code propre</h3>
+          <p data-i18n="values.v3.text">Zéro WordPress, zéro constructeur de pages. Du code HTML/CSS/JS écrit à la main. Votre site charge en moins d'une seconde.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           </div>
-          <h3>Prix juste</h3>
-          <p>À partir de 400€ pour un site professionnel complet. Pas de frais cachés, pas d'abonnement obligatoire.</p>
+          <h3 data-i18n="values.v4.title">Prix juste</h3>
+          <p data-i18n="values.v4.text">À partir de 400€ pour un site professionnel complet. Pas de frais cachés, pas d'abonnement obligatoire.</p>
         </div>
       </div>
     </div>
@@ -367,19 +438,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- CHIFFRES : Stats clés                        -->
   <!-- ============================================ -->
   <section class="section fade-in">
-    <h2 class="section-title">En <span>chiffres</span></h2>
+    <h2 class="section-title" data-i18n="stats.title">En <span>chiffres</span></h2>
     <div class="stats">
       <div>
         <div class="stat-num">400€</div>
-        <div class="stat-label">À partir de</div>
+        <div class="stat-label" data-i18n="stats.s1">À partir de</div>
       </div>
       <div>
         <div class="stat-num">48h</div>
-        <div class="stat-label">Livraison express</div>
+        <div class="stat-label" data-i18n="stats.s2">Livraison express</div>
       </div>
       <div>
         <div class="stat-num">100%</div>
-        <div class="stat-label">Code sur-mesure</div>
+        <div class="stat-label" data-i18n="stats.s3">Code sur-mesure</div>
       </div>
     </div>
   </section>
@@ -389,10 +460,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <div class="section-alt">
     <div class="cta">
-      <h2>Un projet en tête ?</h2>
-      <p>Demandez votre devis gratuit en 2 minutes, ou retrouvez-moi sur Instagram.</p>
+      <h2 data-i18n="cta.title">Un projet en tête ?</h2>
+      <p data-i18n="cta.text">Demandez votre devis gratuit en 2 minutes, ou retrouvez-moi sur Instagram.</p>
       <div class="cta-buttons">
-        <a href="index.html#devis" class="btn btn-gold">Devis gratuit</a>
+        <a href="index.html#devis" class="btn btn-gold" data-i18n="cta.btn">Devis gratuit</a>
         <a href="https://www.instagram.com/soulwebstudio/" class="btn-instagram" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           @soulwebstudio
@@ -406,7 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <footer class="footer">
     <div class="footer-brand">Soul <span>Web</span> Studio</div>
-    <p class="footer-copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a></p>
+    <p class="footer-copy" data-i18n="footer.copy">&copy; 2026 Soul Web Studio · <a href="index.html">Retour à l'accueil</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a></p>
   </footer>
 
   <script>
@@ -419,6 +490,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <script>
+    // ============================================
+    // THEME TOGGLE
+    // ============================================
+    (function() {
+      var saved = localStorage.getItem('sws-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('sws-theme', next);
+      });
+    })();
+  </script>
+
+  <script>
+    // ============================================
+    // LANGUAGE TOGGLE
+    // ============================================
+    (function() {
+      var translations = {
+        en: {
+          'nav.back': '&larr; Back to site',
+          'hero.label': 'About',
+          'hero.title': 'Behind Soul <span>Web</span> Studio',
+          'hero.intro': "My name is Maaty Manchour. I build custom websites for tradespeople and local businesses who want a real online presence, hassle-free.",
+          'story.title': 'My <span>story</span>',
+          'story.s1.title': 'Self-taught since high school',
+          'story.s1.text': "I discovered web development during a computer science class in high school. What was supposed to be just a course got me hooked. I taught myself, project after project, building increasingly ambitious sites. Today it's my job, for local businesses that want a real website without breaking the bank.",
+          'story.s2.title': 'Why local businesses?',
+          'story.s2.text': "Because I know what it's like to search for a tradesperson or shop on Google and land on a website from the 2000s. Or worse, no website at all. Big agencies charge thousands of euros for a generic WordPress. I do the opposite: a hand-coded site, at a fair price, delivered in a few days.",
+          'story.s3.title': 'How I work',
+          'story.s3.text': "No agency, no middleman. I'm the one who designs, codes and delivers your site from the first message to going live. Every site is tailored to your business and your customers. I work fast, 3 to 5 business days, because when you need a site, it's not in 3 months.",
+          'values.title': 'What sets me <span>apart</span>',
+          'values.v1.title': 'Speed',
+          'values.v1.text': 'Your site delivered in 3 to 5 business days. 48h express option available for those in a hurry.',
+          'values.v2.title': 'Direct contact',
+          'values.v2.text': "You talk directly with the person building your site. No salesperson, no project manager between us.",
+          'values.v3.title': 'Clean code',
+          'values.v3.text': 'Zero WordPress, zero page builders. Hand-written HTML/CSS/JS code. Your site loads in under a second.',
+          'values.v4.title': 'Fair pricing',
+          'values.v4.text': "Starting at €400 for a complete professional website. No hidden fees, no mandatory subscription.",
+          'stats.title': 'By the <span>numbers</span>',
+          'stats.s1': 'Starting from',
+          'stats.s2': 'Express delivery',
+          'stats.s3': 'Custom code',
+          'cta.title': 'Got a project in mind?',
+          'cta.text': 'Get your free quote in 2 minutes, or find me on Instagram.',
+          'cta.btn': 'Free quote',
+          'footer.copy': '&copy; 2026 Soul Web Studio · <a href="index.html">Back to home</a> · <a href="mentions-legales.html">Legal notice</a> · <a href="cgv.html">T&amp;Cs</a>'
+        }
+      };
+      var frTexts = {};
+      function collectFrench() {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n');
+          if (!frTexts[key]) frTexts[key] = el.innerHTML;
+        });
+      }
+      function applyLang(lang) {
+        if (lang === 'fr') {
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (frTexts[key]) el.innerHTML = frTexts[key];
+          });
+          document.documentElement.lang = 'fr';
+        } else {
+          var t = translations[lang];
+          if (!t) return;
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (t[key]) el.innerHTML = t[key];
+          });
+          document.documentElement.lang = 'en';
+        }
+      }
+      collectFrench();
+      var savedLang = localStorage.getItem('sws-lang') || 'fr';
+      var langLabel = document.querySelector('.lang-label');
+      if (savedLang !== 'fr') {
+        applyLang(savedLang);
+        langLabel.textContent = 'FR';
+      }
+      document.getElementById('langToggle').addEventListener('click', function() {
+        var current = localStorage.getItem('sws-lang') || 'fr';
+        var next = current === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('sws-lang', next);
+        applyLang(next);
+        langLabel.textContent = next === 'fr' ? 'EN' : 'FR';
+      });
+    })();
   </script>
 
 </body>
