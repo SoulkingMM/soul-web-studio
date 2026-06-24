@@ -49,20 +49,64 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg-primary: #f8f7f5;
-      --bg-secondary: #e8e4de;
-      --bg-card: rgba(255, 255, 255, 0.6);
-      --bg-card-hover: rgba(255, 255, 255, 0.8);
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
       --gold: #c9a84c;
       --gold-light: #d4b96a;
-      --gold-soft: #e8d5a3;
-      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-soft: rgba(201, 168, 76, 0.25);
+      --gold-dim: rgba(201, 168, 76, 0.1);
+      --white: #f2ede6;
+      --text-primary: #f2ede6;
+      --text-secondary: #9a9590;
+      --text-muted: #6a6560;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8f7f5;
+      --bg-secondary: #f0eeea;
+      --bg-card: rgba(0, 0, 0, 0.03);
+      --bg-card-hover: rgba(0, 0, 0, 0.06);
+      --gold: #c9a84c;
+      --gold-light: #b8963f;
+      --gold-soft: rgba(201, 168, 76, 0.2);
+      --gold-dim: rgba(201, 168, 76, 0.08);
       --white: #1a1614;
       --text-primary: #1a1614;
-      --text-secondary: #888888;
-      --text-muted: #999999;
+      --text-secondary: #5a5550;
+      --text-muted: #8a8580;
       --border: rgba(0, 0, 0, 0.08);
     }
+    [data-theme="light"] ::-webkit-scrollbar-track { background: #f8f7f5; }
+    [data-theme="light"] .nav.scrolled { background: rgba(248,247,245,0.8); border-bottom-color: rgba(201,168,76,0.15); }
+    [data-theme="light"] .nav-burger span { background: #1a1614; }
+    [data-theme="light"] .hero::after { background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px); }
+    [data-theme="light"] .hero-glow { background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%); }
+    [data-theme="light"] .hero-badge { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.2); box-shadow: none; }
+    [data-theme="light"] .btn-contact { border-color: rgba(0,0,0,0.15); color: #1a1614; }
+    [data-theme="light"] .btn-contact:hover { background: rgba(0,0,0,0.05); }
+    [data-theme="light"] .service-item { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .service-item:hover { border-color: rgba(201,168,76,0.3); box-shadow: 0 8px 32px rgba(201,168,76,0.08); }
+    [data-theme="light"] .comparatif-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .comparatif-card:hover { border-color: rgba(201,168,76,0.25); }
+    [data-theme="light"] .comparatif-icon--cross { background: rgba(0,0,0,0.04); color: rgba(0,0,0,0.25); }
+    [data-theme="light"] .comparatif-btn-outline { border-color: rgba(0,0,0,0.15); color: #1a1614; }
+    [data-theme="light"] .comparatif-btn-outline:hover { background: rgba(0,0,0,0.04); }
+    [data-theme="light"] .devis-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+    [data-theme="light"] .devis-opt { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .devis-feat { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .devis-card input { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.1); color: #1a1614; }
+    [data-theme="light"] .devis-price-box { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.15); }
+    [data-theme="light"] .devis-btn-ghost { color: #5a5550; }
+    [data-theme="light"] .faq-question { color: #1a1614; }
+    [data-theme="light"] .faq-item { border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .footer { background: #f0eeea; border-top: 1px solid rgba(0,0,0,0.08); }
+    [data-theme="light"] .footer-legal { border-top-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .nav-links { background: rgba(248,247,245,0.95) !important; }
+    [data-theme="light"] .nav-overlay { background: rgba(0,0,0,0.3); }
+    [data-theme="light"] .meteor { opacity: 0.15; }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
@@ -77,7 +121,7 @@
 
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-track { background: #0a0a0b; }
     ::-webkit-scrollbar-thumb {
       background: var(--gold-light);
       border-radius: 10px;
@@ -98,9 +142,10 @@
       transition: background 0.3s, backdrop-filter 0.3s;
     }
     .nav.scrolled {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
     }
     .nav-logo {
       font-family: 'Inter', sans-serif;
@@ -165,8 +210,9 @@
       .nav-links {
         position: fixed; top: 0; right: 0;
         width: 260px; height: 100vh; height: 100dvh;
-        background: rgba(248, 247, 245, 0.97);
-        backdrop-filter: blur(16px);
+        background: rgba(10, 10, 11, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 5rem 2rem 2rem;
         gap: 0;
@@ -195,7 +241,7 @@
       }
       .nav-overlay {
         position: fixed; inset: 0;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.6);
         z-index: 99; opacity: 0;
         pointer-events: none;
         transition: opacity 0.35s;
@@ -204,6 +250,42 @@
         opacity: 1;
         pointer-events: auto;
       }
+    }
+
+    /* ── TOGGLES ── */
+    .nav-toggles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+    .toggle-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .toggle-btn .toggle-icon { display: none; }
+    [data-theme="light"] .toggle-btn .moon { display: block; }
+    [data-theme="light"] .toggle-btn .sun { display: none; }
+    .toggle-btn .sun { display: block; }
+    .toggle-btn .moon { display: none; }
+    .lang-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     /* ── HERO ── */
@@ -227,17 +309,28 @@
       width: 600px;
       height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.03) 40%, transparent 70%);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: 0;
+      -webkit-mask-image: radial-gradient(ellipse 50% 60% at 50% 50%, black 20%, transparent 70%);
+      mask-image: radial-gradient(ellipse 50% 60% at 50% 50%, black 20%, transparent 70%);
+    }
     .hero-content { position: relative; z-index: 1; max-width: 700px; }
     .hero-badge {
       display: inline-block;
       padding: 0.4rem 1.2rem;
-      border: 1px solid rgba(201, 168, 76, 0.3);
+      border: 1px solid rgba(201, 168, 76, 0.25);
       color: var(--gold);
       font-size: 0.65rem;
       font-weight: 600;
@@ -245,6 +338,8 @@
       text-transform: uppercase;
       margin-bottom: 2.5rem;
       border-radius: 100px;
+      background: rgba(201, 168, 76, 0.06);
+      box-shadow: 0 0 20px rgba(201, 168, 76, 0.08);
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
@@ -301,12 +396,13 @@
     }
     .btn-contact {
       background: transparent;
-      color: #1a1614;
-      border: 1px solid #1a1614;
+      color: #f2ede6;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .btn-contact:hover {
-      background: #1a1614;
-      color: #f8f7f5;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f2ede6;
+      border-color: rgba(255, 255, 255, 0.3);
     }
     .hero-buttons {
       display: flex;
@@ -377,16 +473,17 @@
       margin: 0 auto;
     }
     .service-item {
-      background: var(--bg-card);
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 2rem 2rem;
       text-align: left;
-      transition: transform 0.45s cubic-bezier(.22,.78,.22,1), box-shadow 0.45s cubic-bezier(.22,.78,.22,1);
+      transition: transform 0.45s cubic-bezier(.22,.78,.22,1), box-shadow 0.45s cubic-bezier(.22,.78,.22,1), border-color 0.45s;
     }
     .service-item:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 40px -16px rgba(80, 60, 20, 0.12);
+      border-color: rgba(201, 168, 76, 0.2);
+      box-shadow: 0 20px 40px -16px rgba(201, 168, 76, 0.08);
     }
     .service-name {
       font-family: 'Playfair Display', serif;
@@ -410,6 +507,8 @@
       background: var(--bg-secondary);
       text-align: center;
       padding: 5rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     .mobile-first-inner {
       max-width: 520px;
@@ -430,15 +529,19 @@
     }
 
     /* ── DEVIS (formulaire multi-étapes) ── */
-    .devis { background: var(--bg-secondary); }
+    .devis {
+      background: var(--bg-secondary);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
     .devis-card {
       max-width: 680px;
       margin: 0 auto;
-      background: var(--bg-card);
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
       border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 18px 40px -20px rgba(80, 60, 20, 0.12);
+      box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.4);
     }
     .devis-head { padding: 2rem 2.25rem 0; }
     .devis-eyebrow {
@@ -480,11 +583,11 @@
     @media (max-width: 520px) { .devis-grid { grid-template-columns: 1fr; } }
 
     .devis-opt {
-      border: 1px solid var(--border); background: var(--bg-primary);
+      border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);
       border-radius: 4px; padding: 1rem; cursor: pointer;
       transition: border-color 0.15s, background 0.15s; position: relative;
     }
-    .devis-opt:hover { border-color: var(--text-secondary); }
+    .devis-opt:hover { border-color: rgba(255, 255, 255, 0.15); }
     .devis-opt.selected {
       border-color: var(--gold);
       background: var(--gold-dim);
@@ -515,12 +618,12 @@
     }
     @media (max-width: 520px) { .devis-feat-grid { grid-template-columns: 1fr; } }
     .devis-feat {
-      border: 1px solid var(--border); background: var(--bg-primary);
+      border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);
       border-radius: 4px; padding: 0.8rem 0.85rem; cursor: pointer;
       display: flex; justify-content: space-between; align-items: center;
       gap: 0.6rem; transition: border-color 0.15s;
     }
-    .devis-feat:hover { border-color: var(--text-secondary); }
+    .devis-feat:hover { border-color: rgba(255, 255, 255, 0.15); }
     .devis-feat.selected { border-color: var(--gold); background: var(--gold-dim); }
     .devis-feat.locked { cursor: default; opacity: 0.6; }
     .devis-feat-label { font-size: 0.82rem; display: block; }
@@ -538,21 +641,21 @@
     .devis-panel input[type=text],
     .devis-panel input[type=email],
     .devis-panel input[type=tel] {
-      width: 100%; background: var(--bg-primary);
-      border: 1px solid var(--border); color: var(--text-primary);
+      width: 100%; background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-primary);
       padding: 0.75rem 0.85rem; border-radius: 4px;
       font-size: 0.88rem; margin-bottom: 0.85rem; font-family: inherit;
     }
     .devis-panel input::placeholder { color: var(--text-muted); }
-    .devis-panel input:focus { outline: none; border-color: var(--gold); }
+    .devis-panel input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1); }
     .devis-field-label {
       font-size: 0.72rem; color: var(--text-secondary);
       display: block; margin-bottom: 0.35rem; font-weight: 500;
     }
 
     .devis-price-box {
-      margin-top: 0.5rem; border: 1px solid var(--gold);
-      background: var(--gold-dim); border-radius: 4px; padding: 1.25rem;
+      margin-top: 0.5rem; border: 1px solid rgba(201, 168, 76, 0.25);
+      background: rgba(201, 168, 76, 0.06); border-radius: 4px; padding: 1.25rem;
     }
     .devis-price-row {
       display: flex; justify-content: space-between;
@@ -592,9 +695,9 @@
     .devis-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
     .devis-btn-ghost {
       background: transparent; color: var(--text-secondary);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .devis-btn-ghost:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+    .devis-btn-ghost:hover { color: var(--text-primary); border-color: rgba(255, 255, 255, 0.2); }
 
     .devis-success { text-align: center; padding: 1.25rem 0 0.5rem; }
     .devis-success-mark {
@@ -632,19 +735,45 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
     }
     .comparatif-card {
-      background: var(--bg-card);
-      border: 0.5px solid rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px; padding: 2.5rem 2rem;
       position: relative; transition: all 0.3s;
       display: flex; flex-direction: column;
     }
     .comparatif-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(201, 168, 76, 0.2);
+      box-shadow: 0 12px 40px rgba(201, 168, 76, 0.06);
     }
     .comparatif-card--premium {
       border-color: rgba(201, 168, 76, 0.3);
       box-shadow: 0 4px 20px rgba(201, 168, 76, 0.08);
+      overflow: hidden;
+    }
+    .comparatif-card--premium::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      padding: 2px;
+      background: conic-gradient(from var(--beam-angle, 0deg), transparent 70%, rgba(201, 168, 76, 0.5) 85%, rgba(201, 168, 76, 0.8) 90%, rgba(201, 168, 76, 0.5) 95%, transparent 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: border-beam 4s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes border-beam {
+      0% { --beam-angle: 0deg; }
+      100% { --beam-angle: 360deg; }
+    }
+    @property --beam-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
     .comparatif-badge {
       position: absolute; top: -10px; right: 1.5rem;
@@ -692,7 +821,7 @@
       background: rgba(201, 168, 76, 0.12); color: var(--gold);
     }
     .comparatif-icon--cross {
-      background: rgba(0, 0, 0, 0.04); color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
       font-size: 0.55rem;
     }
     .comparatif-btn {
@@ -708,7 +837,7 @@
     .comparatif-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35); }
     .comparatif-btn-outline {
       background: transparent; color: var(--text-primary);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .comparatif-btn-outline:hover {
       border-color: var(--gold); color: var(--gold);
@@ -777,7 +906,10 @@
 
 
     /* ── FAQ ── */
-    .faq { background: var(--bg-secondary); }
+    .faq {
+      background: var(--bg-secondary);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
     .faq-list {
       max-width: 700px;
       margin: 0 auto;
@@ -845,8 +977,8 @@
 
     /* ── FOOTER ── */
     .footer {
-      background: #f8f7f5;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: #0a0a0b;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       padding: 4rem 1.5rem 2.5rem;
       position: relative;
     }
@@ -858,7 +990,7 @@
       transform: translateX(-50%);
       width: 30%;
       height: 1px;
-      background: #b07d3a;
+      background: var(--gold);
       filter: blur(4px);
     }
     .footer-grid {
@@ -881,7 +1013,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #1a1614;
+      color: #f2ede6;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
@@ -889,14 +1021,14 @@
     .footer-brand-name span { color: var(--gold); }
     .footer-copyright {
       font-size: 0.75rem;
-      color: #999;
+      color: #6a6560;
       font-weight: 300;
       line-height: 1.6;
     }
     .footer-heading {
       font-size: 0.7rem;
       font-weight: 600;
-      color: #1a1614;
+      color: #f2ede6;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
@@ -908,27 +1040,27 @@
       margin-bottom: 0.5rem;
     }
     .footer-links a {
-      color: #999;
+      color: #6a6560;
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: 300;
       transition: color 0.3s;
     }
     .footer-links a:hover {
-      color: #b07d3a;
+      color: var(--gold);
     }
     .footer-legal {
       grid-column: 1 / -1;
       text-align: center;
       padding-top: 2rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 0.68rem;
-      color: #999;
+      color: #6a6560;
       font-weight: 300;
       line-height: 1.8;
     }
     .footer-legal a {
-      color: #b07d3a;
+      color: var(--gold);
       text-decoration: none;
     }
     @media (min-width: 640px) {
@@ -1020,13 +1152,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">Soul <span>Web</span> Studio</a>
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg class="toggle-icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="toggle-icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="toggle-btn" id="langToggle" aria-label="Toggle language">
+        <span class="lang-label">EN</span>
+      </button>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="portfolio.html">Réalisations</a></li>
-      <li><a href="a-propos.html">À propos</a></li>
-      <li><a href="#devis" class="nav-cta">Lancer mon projet</a></li>
+      <li><a href="portfolio.html" data-i18n="nav.portfolio">Réalisations</a></li>
+      <li><a href="a-propos.html" data-i18n="nav.about">À propos</a></li>
+      <li><a href="#devis" class="nav-cta" data-i18n="nav.cta">Lancer mon projet</a></li>
     </ul>
   </nav>
   <div class="nav-overlay" id="navOverlay"></div>
@@ -1040,15 +1181,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="meteors-container" id="meteors"></div>
     <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="hero-badge">Freelance Web Designer</div>
+      <div class="hero-badge" data-i18n="hero.badge">Freelance Web Designer</div>
       <h1>Soul <span class="gold">Web</span> Studio</h1>
-      <p class="hero-tagline">
+      <p class="hero-tagline" data-i18n="hero.tagline">
         Je donne une présence en ligne à votre activité.<br>Propre, rapide, fait à la main.<br>
         Livré à partir de <strong>48h</strong>, à partir de <strong>400€</strong>.
       </p>
       <div class="hero-buttons">
-        <a href="portfolio.html" class="btn btn-gold">Découvrir mes créations</a>
-        <a href="#devis" class="btn btn-contact">Lancer mon projet</a>
+        <a href="portfolio.html" class="btn btn-gold" data-i18n="hero.btn1">Découvrir mes créations</a>
+        <a href="#devis" class="btn btn-contact" data-i18n="hero.btn2">Lancer mon projet</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -1065,18 +1206,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section services" id="services">
     <div class="section-inner">
       <div class="section-header fade-in">
-        <span class="section-label">Services</span>
-        <h2 class="section-title">Ce que je fais</h2>
+        <span class="section-label" data-i18n="services.label">Services</span>
+        <h2 class="section-title" data-i18n="services.title">Ce que je fais</h2>
         <div class="divider"></div>
       </div>
       <div class="services-grid fade-in">
         <div class="service-item">
-          <h3 class="service-name">Site vitrine</h3>
-          <p class="service-desc">Un site une page ou multi-sections pour présenter votre activité et attirer de nouveaux clients.</p>
+          <h3 class="service-name" data-i18n="services.item1.title">Site vitrine</h3>
+          <p class="service-desc" data-i18n="services.item1.desc">Un site une page ou multi-sections pour présenter votre activité et attirer de nouveaux clients.</p>
         </div>
         <div class="service-item">
-          <h3 class="service-name">Hébergement & Maintenance</h3>
-          <p class="service-desc">Votre site en ligne, sécurisé et mis à jour. Je gère tout pour vous.</p>
+          <h3 class="service-name" data-i18n="services.item2.title">Hébergement & Maintenance</h3>
+          <p class="service-desc" data-i18n="services.item2.desc">Votre site en ligne, sécurisé et mis à jour. Je gère tout pour vous.</p>
         </div>
       </div>
     </div>
@@ -1088,8 +1229,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============================================ -->
   <section class="section mobile-first">
     <div class="mobile-first-inner fade-in">
-      <h2>Conçu pour mobile.</h2>
-      <p>Plus de 60% de vos clients vous cherchent sur téléphone. Chaque site que je crée est pensé mobile en premier.</p>
+      <h2 data-i18n="mobile.title">Conçu pour mobile.</h2>
+      <p data-i18n="mobile.desc">Plus de 60% de vos clients vous cherchent sur téléphone. Chaque site que je crée est pensé mobile en premier.</p>
     </div>
   </section>
 
@@ -1100,61 +1241,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section comparatif" id="tarifs">
     <div class="section-inner">
       <div class="section-header fade-in">
-        <span class="section-label">Offres</span>
-        <h2 class="section-title">Comparatif détaillé</h2>
+        <span class="section-label" data-i18n="comparatif.label">Offres</span>
+        <h2 class="section-title" data-i18n="comparatif.title">Comparatif détaillé</h2>
         <div class="divider"></div>
-        <p class="section-subtitle">Découvrez ce qui est inclus dans chaque formule.</p>
+        <p class="section-subtitle" data-i18n="comparatif.subtitle">Découvrez ce qui est inclus dans chaque formule.</p>
       </div>
 
       <div class="comparatif-cards fade-in">
 
         <!-- Carte Essentiel -->
         <div class="comparatif-card">
-          <div class="comparatif-card-label">Essentiel</div>
+          <div class="comparatif-card-label" data-i18n="comparatif.essentiel">Essentiel</div>
           <div class="comparatif-card-price">400€</div>
-          <div class="comparatif-card-sub">Site vitrine one-page · 1 modification offerte</div>
+          <div class="comparatif-card-sub" data-i18n="comparatif.essentiel.sub">Site vitrine one-page · 1 modification offerte</div>
           <ul class="comparatif-list">
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Design professionnel responsive</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> SEO de base</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Favicon & Open Graph</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Mise en ligne incluse</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Mentions légales incluses</li>
-            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Site multi-sections sur-mesure</li>
-            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Formulaire de contact personnalisé</li>
-            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Google Maps & Calendly</li>
-            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> Galerie photos</li>
-            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> 2 modifications/mois (1 mois)</li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.design">Design professionnel responsive</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.seo_base">SEO de base</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.favicon">Favicon & Open Graph</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.mise_en_ligne">Mise en ligne incluse</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.mentions">Mentions légales incluses</span></li>
+            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> <span data-i18n="comparatif.feat.multi">Site multi-sections sur-mesure</span></li>
+            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> <span data-i18n="comparatif.feat.formulaire">Formulaire de contact personnalisé</span></li>
+            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> <span data-i18n="comparatif.feat.maps">Google Maps & Calendly</span></li>
+            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> <span data-i18n="comparatif.feat.galerie">Galerie photos</span></li>
+            <li class="disabled"><span class="comparatif-icon comparatif-icon--cross">✗</span> <span data-i18n="comparatif.feat.modifs">2 modifications/mois (1 mois)</span></li>
           </ul>
-          <a href="#devis" class="comparatif-btn comparatif-btn-outline" data-formule="essentiel">Commencer à 400€</a>
+          <a href="#devis" class="comparatif-btn comparatif-btn-outline" data-formule="essentiel" data-i18n="comparatif.btn_essentiel">Commencer à 400€</a>
         </div>
 
         <!-- Carte Premium -->
         <div class="comparatif-card comparatif-card--premium">
-          <div class="comparatif-badge">Recommandé</div>
-          <div class="comparatif-card-label">Premium</div>
+          <div class="comparatif-badge" data-i18n="comparatif.badge">Recommandé</div>
+          <div class="comparatif-card-label" data-i18n="comparatif.premium">Premium</div>
           <div class="comparatif-card-price">600€</div>
-          <div class="comparatif-card-sub">Site complet multi-sections · 2 modifications/mois</div>
+          <div class="comparatif-card-sub" data-i18n="comparatif.premium.sub">Site complet multi-sections · 2 modifications/mois</div>
           <ul class="comparatif-list">
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Design professionnel responsive</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> SEO optimisé avancé</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Favicon & Open Graph</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Mise en ligne incluse</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Mentions légales incluses</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Site multi-sections sur-mesure</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Formulaire de contact personnalisé</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Google Maps & Calendly</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> Galerie photos</li>
-            <li><span class="comparatif-icon comparatif-icon--check">✓</span> 2 modifications/mois (1 mois)</li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.design">Design professionnel responsive</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.seo_advanced">SEO optimisé avancé</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.favicon">Favicon & Open Graph</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.mise_en_ligne">Mise en ligne incluse</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.mentions">Mentions légales incluses</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.multi">Site multi-sections sur-mesure</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.formulaire">Formulaire de contact personnalisé</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.maps">Google Maps & Calendly</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.galerie">Galerie photos</span></li>
+            <li><span class="comparatif-icon comparatif-icon--check">✓</span> <span data-i18n="comparatif.feat.modifs">2 modifications/mois (1 mois)</span></li>
           </ul>
-          <a href="#devis" class="comparatif-btn comparatif-btn-gold" data-formule="premium">Je veux le Premium →</a>
+          <a href="#devis" class="comparatif-btn comparatif-btn-gold" data-formule="premium" data-i18n="comparatif.btn_premium">Je veux le Premium →</a>
         </div>
 
       </div>
 
       <div class="comparatif-custom fade-in" style="text-align:center;margin-top:2.5rem;padding:2rem;border:1px solid var(--border);border-radius:12px;background:var(--bg-card);">
-        <p style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--text-primary);margin-bottom:0.5rem;">Un projet sur-mesure ?</p>
-        <p style="font-size:0.9rem;color:var(--text-secondary);font-weight:300;margin-bottom:1.5rem;">Restaurant, e-commerce, design premium... chaque projet est différent. Discutons de vos besoins.</p>
-        <a href="#devis" class="comparatif-btn comparatif-btn-outline" style="display:inline-block;padding:0.75rem 2rem;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);color:var(--gold);border-radius:4px;transition:all 0.3s;">Me contacter →</a>
+        <p style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--text-primary);margin-bottom:0.5rem;" data-i18n="comparatif.custom.title">Un projet sur-mesure ?</p>
+        <p style="font-size:0.9rem;color:var(--text-secondary);font-weight:300;margin-bottom:1.5rem;" data-i18n="comparatif.custom.desc">Restaurant, e-commerce, design premium... chaque projet est différent. Discutons de vos besoins.</p>
+        <a href="#devis" class="comparatif-btn comparatif-btn-outline" style="display:inline-block;padding:0.75rem 2rem;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);color:var(--gold);border-radius:4px;transition:all 0.3s;" data-i18n="comparatif.custom.btn">Me contacter →</a>
       </div>
 
     </div>
@@ -1167,44 +1308,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section process" id="process">
     <div class="section-inner">
       <div class="section-header fade-in">
-        <span class="section-label">Étapes</span>
-        <h2 class="section-title">Comment ça marche</h2>
+        <span class="section-label" data-i18n="process.label">Étapes</span>
+        <h2 class="section-title" data-i18n="process.title">Comment ça marche</h2>
         <div class="divider"></div>
       </div>
       <div class="process-steps fade-in">
         <div class="process-step">
           <div class="process-num">1</div>
           <div>
-            <div class="process-step-title">On discute</div>
-            <p class="process-step-desc">Envoyez-moi un message avec votre activité et ce que vous souhaitez sur votre site.</p>
+            <div class="process-step-title" data-i18n="process.s1.title">On discute</div>
+            <p class="process-step-desc" data-i18n="process.s1.desc">Envoyez-moi un message avec votre activité et ce que vous souhaitez sur votre site.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-num">2</div>
           <div>
-            <div class="process-step-title">Acompte 50%</div>
-            <p class="process-step-desc">Vous réglez 50% pour démarrer. Je commence dès réception.</p>
+            <div class="process-step-title" data-i18n="process.s2.title">Acompte 50%</div>
+            <p class="process-step-desc" data-i18n="process.s2.desc">Vous réglez 50% pour démarrer. Je commence dès réception.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-num">3</div>
           <div>
-            <div class="process-step-title">Création du site</div>
-            <p class="process-step-desc">Je vous livre une preview en 3 à 5 jours ouvrés pour validation.</p>
+            <div class="process-step-title" data-i18n="process.s3.title">Création du site</div>
+            <p class="process-step-desc" data-i18n="process.s3.desc">Je vous livre une preview en 3 à 5 jours ouvrés pour validation.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-num">4</div>
           <div>
-            <div class="process-step-title">Validation & paiement</div>
-            <p class="process-step-desc">Vous validez, vous réglez le solde, je génère la facture.</p>
+            <div class="process-step-title" data-i18n="process.s4.title">Validation & paiement</div>
+            <p class="process-step-desc" data-i18n="process.s4.desc">Vous validez, vous réglez le solde, je génère la facture.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-num">5</div>
           <div>
-            <div class="process-step-title">Mise en ligne</div>
-            <p class="process-step-desc">On se connecte 30 min ensemble et votre site est en ligne.</p>
+            <div class="process-step-title" data-i18n="process.s5.title">Mise en ligne</div>
+            <p class="process-step-desc" data-i18n="process.s5.desc">On se connecte 30 min ensemble et votre site est en ligne.</p>
           </div>
         </div>
       </div>
@@ -1222,10 +1363,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section devis" id="devis">
     <div class="section-inner">
       <div class="section-header fade-in">
-        <span class="section-label">Devis gratuit</span>
-        <h2 class="section-title">Estimez votre site</h2>
+        <span class="section-label" data-i18n="devis.label">Devis gratuit</span>
+        <h2 class="section-title" data-i18n="devis.title">Estimez votre site</h2>
         <div class="divider"></div>
-        <p class="section-subtitle">4 questions, et vous recevez une estimation immédiate.</p>
+        <p class="section-subtitle" data-i18n="devis.subtitle">4 questions, et vous recevez une estimation immédiate.</p>
       </div>
 
       <div class="devis-card fade-in" id="devis-card">
@@ -1239,19 +1380,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- STEP 1 : formule -->
         <div class="devis-panel devis-step" data-step="1">
-          <p class="devis-panel-title">Quelle formule pour votre site ?</p>
-          <p class="devis-panel-hint">Les deux incluent le design responsive et la mise en ligne.</p>
+          <p class="devis-panel-title" data-i18n="devis.step1.title">Quelle formule pour votre site ?</p>
+          <p class="devis-panel-hint" data-i18n="devis.step1.hint">Les deux incluent le design responsive et la mise en ligne.</p>
           <div class="devis-grid">
             <div class="devis-opt" data-group="formule" data-value="essentiel" data-price="400">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Essentiel</div>
-              <div class="devis-opt-desc">Site une page, design pro, SEO de base, favicon, 1 modif offerte.</div>
+              <div class="devis-opt-title" data-i18n="devis.opt.essentiel">Essentiel</div>
+              <div class="devis-opt-desc" data-i18n="devis.opt.essentiel.desc">Site une page, design pro, SEO de base, favicon, 1 modif offerte.</div>
               <div class="devis-opt-price">400€</div>
             </div>
             <div class="devis-opt" data-group="formule" data-value="premium" data-price="600">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Premium</div>
-              <div class="devis-opt-desc">Multi-sections, SEO optimisé, formulaire, Maps, galerie, 2 modifs/mois pendant 1 mois.</div>
+              <div class="devis-opt-title" data-i18n="devis.opt.premium">Premium</div>
+              <div class="devis-opt-desc" data-i18n="devis.opt.premium.desc">Multi-sections, SEO optimisé, formulaire, Maps, galerie, 2 modifs/mois pendant 1 mois.</div>
               <div class="devis-opt-price">600€</div>
             </div>
           </div>
@@ -1259,50 +1400,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- STEP 2 : métier -->
         <div class="devis-panel devis-step devis-hidden" data-step="2">
-          <p class="devis-panel-title">Quel est votre métier ?</p>
-          <p class="devis-panel-hint">Pour adapter le ton et le design de votre maquette.</p>
+          <p class="devis-panel-title" data-i18n="devis.step2.title">Quel est votre métier ?</p>
+          <p class="devis-panel-hint" data-i18n="devis.step2.hint">Pour adapter le ton et le design de votre maquette.</p>
           <div class="devis-grid">
             <div class="devis-opt" data-group="metier" data-value="batiment">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Bâtiment & artisanat</div>
-              <div class="devis-opt-desc">Maçon, plombier, électricien, menuisier...</div>
+              <div class="devis-opt-title" data-i18n="devis.metier.batiment">Bâtiment & artisanat</div>
+              <div class="devis-opt-desc" data-i18n="devis.metier.batiment.desc">Maçon, plombier, électricien, menuisier...</div>
             </div>
             <div class="devis-opt" data-group="metier" data-value="commerce">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Commerce</div>
-              <div class="devis-opt-desc">Boutique, restaurant, boulangerie...</div>
+              <div class="devis-opt-title" data-i18n="devis.metier.commerce">Commerce</div>
+              <div class="devis-opt-desc" data-i18n="devis.metier.commerce.desc">Boutique, restaurant, boulangerie...</div>
             </div>
             <div class="devis-opt" data-group="metier" data-value="beaute">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Beauté & bien-être</div>
-              <div class="devis-opt-desc">Coiffeur, esthéticienne, barbier...</div>
+              <div class="devis-opt-title" data-i18n="devis.metier.beaute">Beauté & bien-être</div>
+              <div class="devis-opt-desc" data-i18n="devis.metier.beaute.desc">Coiffeur, esthéticienne, barbier...</div>
             </div>
             <div class="devis-opt" data-group="metier" data-value="autre">
               <div class="devis-check"></div>
-              <div class="devis-opt-title">Autre activité</div>
-              <div class="devis-opt-desc">Vous nous en direz plus à l'étape suivante.</div>
+              <div class="devis-opt-title" data-i18n="devis.metier.autre">Autre activité</div>
+              <div class="devis-opt-desc" data-i18n="devis.metier.autre.desc">Vous nous en direz plus à l'étape suivante.</div>
             </div>
           </div>
         </div>
 
         <!-- STEP 3 : options -->
         <div class="devis-panel devis-step devis-hidden" data-step="3">
-          <p class="devis-panel-title">Souhaitez-vous des options ?</p>
-          <p class="devis-panel-hint">Le prix s'ajuste en direct. La maintenance inclut l'hébergement.</p>
+          <p class="devis-panel-title" data-i18n="devis.step3.title">Souhaitez-vous des options ?</p>
+          <p class="devis-panel-hint" data-i18n="devis.step3.hint">Le prix s'ajuste en direct. La maintenance inclut l'hébergement.</p>
           <div class="devis-feat-grid">
             <div class="devis-feat" data-feature="hebergement" data-price="119">
-              <span class="devis-feat-label">Hébergement annuel</span>
-              <span class="devis-feat-desc">Votre site en ligne 24h/24, nom de domaine inclus.</span>
+              <span class="devis-feat-label" data-i18n="devis.feat.hebergement">Hébergement annuel</span>
+              <span class="devis-feat-desc" data-i18n="devis.feat.hebergement.desc">Votre site en ligne 24h/24, nom de domaine inclus.</span>
               <span class="devis-feat-tag">+119€/an</span>
             </div>
             <div class="devis-feat" data-feature="maintenance" data-price="149">
-              <span class="devis-feat-label">Maintenance annuelle</span>
-              <span class="devis-feat-desc">Hébergement + mises à jour + 2 modifications/mois + support.</span>
+              <span class="devis-feat-label" data-i18n="devis.feat.maintenance">Maintenance annuelle</span>
+              <span class="devis-feat-desc" data-i18n="devis.feat.maintenance.desc">Hébergement + mises à jour + 2 modifications/mois + support.</span>
               <span class="devis-feat-tag">+149€/an</span>
             </div>
             <div class="devis-feat" data-feature="express" data-price="60">
-              <span class="devis-feat-label">Livraison express 48h</span>
-              <span class="devis-feat-desc">Votre site prêt en 48h au lieu de 3-5 jours.</span>
+              <span class="devis-feat-label" data-i18n="devis.feat.express">Livraison express 48h</span>
+              <span class="devis-feat-desc" data-i18n="devis.feat.express.desc">Votre site prêt en 48h au lieu de 3-5 jours.</span>
               <span class="devis-feat-tag">+60€</span>
             </div>
           </div>
@@ -1310,39 +1451,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- STEP 4 : coordonnées + récap -->
         <div class="devis-panel devis-step devis-hidden" data-step="4">
-          <p class="devis-panel-title">Vos coordonnées</p>
-          <p class="devis-panel-hint">Pour vous envoyer votre devis détaillé sous 24h.</p>
+          <p class="devis-panel-title" data-i18n="devis.step4.title">Vos coordonnées</p>
+          <p class="devis-panel-hint" data-i18n="devis.step4.hint">Pour vous envoyer votre devis détaillé sous 24h.</p>
 
-          <label class="devis-field-label">Nom complet *</label>
-          <input type="text" id="d-name" placeholder="Votre nom et prénom">
+          <label class="devis-field-label" data-i18n="devis.field.name">Nom complet *</label>
+          <input type="text" id="d-name" placeholder="Votre nom et prénom" data-i18n-placeholder="devis.placeholder.name">
 
-          <label class="devis-field-label">Email *</label>
-          <input type="email" id="d-email" placeholder="vous@exemple.com">
+          <label class="devis-field-label" data-i18n="devis.field.email">Email *</label>
+          <input type="email" id="d-email" placeholder="vous@exemple.com" data-i18n-placeholder="devis.placeholder.email">
 
-          <label class="devis-field-label">Téléphone</label>
-          <input type="tel" id="d-phone" placeholder="06 00 00 00 00">
+          <label class="devis-field-label" data-i18n="devis.field.phone">Téléphone</label>
+          <input type="tel" id="d-phone" placeholder="06 00 00 00 00" data-i18n-placeholder="devis.placeholder.phone">
 
-          <label class="devis-field-label">Nom de l'entreprise</label>
-          <input type="text" id="d-company" placeholder="Si applicable">
+          <label class="devis-field-label" data-i18n="devis.field.company">Nom de l'entreprise</label>
+          <input type="text" id="d-company" placeholder="Si applicable" data-i18n-placeholder="devis.placeholder.company">
 
           <div class="devis-price-box">
-            <div class="devis-price-row"><span>Formule</span><span id="r-formule">—</span></div>
-            <div class="devis-price-row devis-hidden" id="r-row-hebergement"><span>Hébergement annuel</span><span>119€/an</span></div>
-            <div class="devis-price-row devis-hidden" id="r-row-maintenance"><span>Maintenance annuelle</span><span>149€/an</span></div>
-            <div class="devis-price-row devis-hidden" id="r-row-express"><span>Livraison express</span><span>60€</span></div>
+            <div class="devis-price-row"><span data-i18n="devis.recap.formule">Formule</span><span id="r-formule">—</span></div>
+            <div class="devis-price-row devis-hidden" id="r-row-hebergement"><span data-i18n="devis.recap.hebergement">Hébergement annuel</span><span>119€/an</span></div>
+            <div class="devis-price-row devis-hidden" id="r-row-maintenance"><span data-i18n="devis.recap.maintenance">Maintenance annuelle</span><span>149€/an</span></div>
+            <div class="devis-price-row devis-hidden" id="r-row-express"><span data-i18n="devis.recap.express">Livraison express</span><span>60€</span></div>
             <div class="devis-price-total">
-              <span class="label">Estimation</span>
+              <span class="label" data-i18n="devis.recap.estimation">Estimation</span>
               <span class="amount" id="r-total">400€</span>
             </div>
-            <p class="devis-price-note">Estimation indicative. Le devis final tient compte du contenu réel et d'éventuelles options spécifiques.</p>
+            <p class="devis-price-note" data-i18n="devis.recap.note">Estimation indicative. Le devis final tient compte du contenu réel et d'éventuelles options spécifiques.</p>
           </div>
         </div>
 
         <!-- SUCCESS -->
         <div class="devis-panel devis-success devis-hidden" data-step="success">
           <div class="devis-success-mark">✓</div>
-          <h3>Demande envoyée</h3>
-          <p>Merci ! Vous recevrez votre devis détaillé par email dans les 24h.</p>
+          <h3 data-i18n="devis.success.title">Demande envoyée</h3>
+          <p data-i18n="devis.success.desc">Merci ! Vous recevrez votre devis détaillé par email dans les 24h.</p>
           <a href="https://www.instagram.com/soulwebstudio/" class="devis-instagram" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             @soulwebstudio
@@ -1350,8 +1491,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="devis-nav" id="devis-nav">
-          <button class="devis-btn devis-btn-ghost" id="devis-back">Retour</button>
-          <button class="devis-btn devis-btn-primary" id="devis-next" disabled>Suivant →</button>
+          <button class="devis-btn devis-btn-ghost" id="devis-back" data-i18n="devis.btn.back">Retour</button>
+          <button class="devis-btn devis-btn-primary" id="devis-next" disabled data-i18n="devis.btn.next">Suivant →</button>
         </div>
       </div>
     </div>
@@ -1365,38 +1506,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section faq" id="faq">
     <div class="section-inner">
       <div class="section-header fade-in">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title">Questions fréquentes</h2>
+        <span class="section-label" data-i18n="faq.label">FAQ</span>
+        <h2 class="section-title" data-i18n="faq.title">Questions fréquentes</h2>
         <div class="divider"></div>
       </div>
       <div class="faq-list fade-in">
         <div class="faq-item">
-          <button class="faq-question">C'est quoi la différence entre Essentiel et Premium ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>L'Essentiel (400€) c'est un site une page, idéal pour présenter votre activité simplement. Le Premium (600€) c'est un site multi-sections complet avec mise en ligne incluse, formulaire de contact, Google Maps, Calendly, galerie photos, mentions légales et 2 modifications par mois pendant 1 mois.</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q1">C'est quoi la différence entre Essentiel et Premium ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a1">L'Essentiel (400€) c'est un site une page, idéal pour présenter votre activité simplement. Le Premium (600€) c'est un site multi-sections complet avec mise en ligne incluse, formulaire de contact, Google Maps, Calendly, galerie photos, mentions légales et 2 modifications par mois pendant 1 mois.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Je dois fournir quoi de mon côté ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs ou des exemples de sites que vous aimez, partagez-les moi, je m'adapte. Je m'occupe du reste.</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q2">Je dois fournir quoi de mon côté ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a2">Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs ou des exemples de sites que vous aimez, partagez-les moi, je m'adapte. Je m'occupe du reste.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Quel est le délai de livraison ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Comptez 3 à 5 jours ouvrés pour la création de votre site, selon la formule choisie et la complexité du projet. Vous avez besoin de votre site plus rapidement ? Une option de livraison express en 48h est disponible (+60€).</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q3">Quel est le délai de livraison ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a3">Comptez 3 à 5 jours ouvrés pour la création de votre site, selon la formule choisie et la complexité du projet. Vous avez besoin de votre site plus rapidement ? Une option de livraison express en 48h est disponible (+60€).</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Et si je veux modifier mon site après la livraison ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Une modification est offerte avec l'Essentiel. Pour le Premium, 2 modifications par mois sont incluses pendant 1 mois. Ensuite, chaque modification est incluse dans l'abonnement Maintenance à 149€/an (2 modifications/mois).</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q4">Et si je veux modifier mon site après la livraison ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a4">Une modification est offerte avec l'Essentiel. Pour le Premium, 2 modifications par mois sont incluses pendant 1 mois. Ensuite, chaque modification est incluse dans l'abonnement Maintenance à 149€/an (2 modifications/mois).</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Mon site sera visible sur Google ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, chaque site est optimisé SEO de base pour apparaître sur Google. Les résultats prennent généralement quelques semaines selon la concurrence locale.</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q5">Mon site sera visible sur Google ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a5">Oui, chaque site est optimisé SEO de base pour apparaître sur Google. Les résultats prennent généralement quelques semaines selon la concurrence locale.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Je peux garder mon nom de domaine si j'en ai déjà un ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, si vous avez déjà un nom de domaine je peux l'utiliser directement. Sinon je peux vous aider à en choisir un.</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q6">Je peux garder mon nom de domaine si j'en ai déjà un ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a6">Oui, si vous avez déjà un nom de domaine je peux l'utiliser directement. Sinon je peux vous aider à en choisir un.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Comment se passe le paiement ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>50% à la commande pour démarrer, 50% à la livraison une fois que vous validez le site. Paiement par virement bancaire.</p></div></div>
+          <button class="faq-question"><span data-i18n="faq.q7">Comment se passe le paiement ?</span><span class="faq-icon"></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p data-i18n="faq.a7">50% à la commande pour démarrer, 50% à la livraison une fois que vous validez le site. Paiement par virement bancaire.</p></div></div>
         </div>
       </div>
     </div>
@@ -1411,33 +1552,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer-grid">
       <div class="footer-col" style="transition-delay: 0.1s;">
         <div class="footer-brand-name">Soul <span>Web</span> Studio</div>
-        <p class="footer-copyright">&copy; 2026 Soul Web Studio.<br>Tous droits réservés.</p>
+        <p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Soul Web Studio.<br>Tous droits réservés.</p>
       </div>
       <div class="footer-col" style="transition-delay: 0.2s;">
-        <div class="footer-heading">Pages</div>
+        <div class="footer-heading" data-i18n="footer.pages">Pages</div>
         <ul class="footer-links">
-          <li><a href="portfolio.html">Réalisations</a></li>
-          <li><a href="a-propos.html">À propos</a></li>
-          <li><a href="#devis">Lancer mon projet</a></li>
+          <li><a href="portfolio.html" data-i18n="footer.portfolio">Réalisations</a></li>
+          <li><a href="a-propos.html" data-i18n="footer.about">À propos</a></li>
+          <li><a href="#devis" data-i18n="footer.cta">Lancer mon projet</a></li>
         </ul>
       </div>
       <div class="footer-col" style="transition-delay: 0.3s;">
-        <div class="footer-heading">Légal</div>
+        <div class="footer-heading" data-i18n="footer.legal">Légal</div>
         <ul class="footer-links">
-          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="mentions-legales.html" data-i18n="footer.mentions">Mentions légales</a></li>
           <li><a href="cgv.html">CGV</a></li>
         </ul>
       </div>
       <div class="footer-col" style="transition-delay: 0.4s;">
-        <div class="footer-heading">Contact</div>
+        <div class="footer-heading" data-i18n="footer.contact">Contact</div>
         <ul class="footer-links">
           <li><a href="tel:+33767685218">07 67 68 52 18</a></li>
           <li><a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a></li>
           <li><a href="https://www.instagram.com/soulwebstudio/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://g.page/r/CSNLc8Zl0d8KEAE/review" target="_blank" rel="noopener">⭐ Laisser un avis</a></li>
+          <li><a href="https://g.page/r/CSNLc8Zl0d8KEAE/review" target="_blank" rel="noopener" data-i18n="footer.review">⭐ Laisser un avis</a></li>
         </ul>
       </div>
-      <div class="footer-legal">
+      <div class="footer-legal" data-i18n="footer.legal_bar">
         Responsable : Maaty Manchour · Contact : <a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a><br>
         Hébergement : GitHub Pages · Ce site ne collecte pas de données personnelles sauf via le formulaire de contact (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>).
       </div>
@@ -1634,7 +1775,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         state.step = n;
         $('#devis-back').style.visibility = (n === 1) ? 'hidden' : 'visible';
-        $('#devis-next').textContent = (n === totalSteps) ? 'Envoyer ma demande' : 'Suivant →';
+        var isEn = localStorage.getItem('sws-lang') === 'en';
+        $('#devis-next').textContent = (n === totalSteps) ? (isEn ? 'Send my request' : 'Envoyer ma demande') : (isEn ? 'Next →' : 'Suivant →');
         if (n === 4) recap();
         updateBtn();
       }
@@ -1698,6 +1840,215 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var opt = card.querySelector('.devis-opt[data-value="' + val + '"]');
           if (opt) opt.click();
         });
+      });
+    })();
+
+    // ============================================
+    // THEME TOGGLE
+    // ============================================
+    (function() {
+      var saved = localStorage.getItem('sws-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme') || 'dark';
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('sws-theme', next);
+      });
+    })();
+
+    // ============================================
+    // LANGUAGE TOGGLE FR / EN
+    // ============================================
+    (function() {
+      var translations = {
+        en: {
+          'nav.portfolio': 'Portfolio',
+          'nav.about': 'About',
+          'nav.cta': 'Start my project',
+          'hero.badge': 'Freelance Web Designer',
+          'hero.tagline': 'I give your business an online presence.<br>Clean, fast, handcrafted.<br>Delivered from <strong>48h</strong>, starting at <strong>400€</strong>.',
+          'hero.btn1': 'View my work',
+          'hero.btn2': 'Start my project',
+          'services.label': 'Services',
+          'services.title': 'What I do',
+          'services.item1.title': 'Business website',
+          'services.item1.desc': 'A one-page or multi-section site to showcase your business and attract new clients.',
+          'services.item2.title': 'Hosting & Maintenance',
+          'services.item2.desc': 'Your site online, secured, and up to date. I handle everything for you.',
+          'mobile.title': 'Mobile first.',
+          'mobile.desc': 'Over 60% of your clients search on mobile. Every site I build is designed mobile-first.',
+          'comparatif.label': 'Plans',
+          'comparatif.title': 'Detailed comparison',
+          'comparatif.subtitle': 'See what\'s included in each plan.',
+          'comparatif.essentiel': 'Essential',
+          'comparatif.essentiel.sub': 'One-page business site · 1 free revision',
+          'comparatif.feat.design': 'Professional responsive design',
+          'comparatif.feat.seo_base': 'Basic SEO',
+          'comparatif.feat.favicon': 'Favicon & Open Graph',
+          'comparatif.feat.mise_en_ligne': 'Launch included',
+          'comparatif.feat.mentions': 'Legal pages included',
+          'comparatif.feat.multi': 'Custom multi-section site',
+          'comparatif.feat.formulaire': 'Custom contact form',
+          'comparatif.feat.maps': 'Google Maps & Calendly',
+          'comparatif.feat.galerie': 'Photo gallery',
+          'comparatif.feat.modifs': '2 revisions/month (1 month)',
+          'comparatif.btn_essentiel': 'Start at 400€',
+          'comparatif.badge': 'Recommended',
+          'comparatif.premium': 'Premium',
+          'comparatif.premium.sub': 'Full multi-section site · 2 revisions/month',
+          'comparatif.feat.seo_advanced': 'Advanced SEO optimization',
+          'comparatif.btn_premium': 'I want Premium →',
+          'comparatif.custom.title': 'Custom project?',
+          'comparatif.custom.desc': 'Restaurant, e-commerce, premium design... every project is different. Let\'s discuss your needs.',
+          'comparatif.custom.btn': 'Contact me →',
+          'process.label': 'Steps',
+          'process.title': 'How it works',
+          'process.s1.title': 'We talk',
+          'process.s1.desc': 'Send me a message about your business and what you want for your website.',
+          'process.s2.title': '50% deposit',
+          'process.s2.desc': 'You pay 50% to get started. I begin upon receipt.',
+          'process.s3.title': 'Site creation',
+          'process.s3.desc': 'I deliver a preview within 3 to 5 business days for your approval.',
+          'process.s4.title': 'Approval & payment',
+          'process.s4.desc': 'You approve, pay the balance, and I generate the invoice.',
+          'process.s5.title': 'Going live',
+          'process.s5.desc': 'We connect for 30 minutes together and your site goes live.',
+          'devis.label': 'Free quote',
+          'devis.title': 'Estimate your site',
+          'devis.subtitle': '4 questions, and you get an instant estimate.',
+          'devis.step1.title': 'Which plan for your site?',
+          'devis.step1.hint': 'Both include responsive design and launch.',
+          'devis.opt.essentiel': 'Essential',
+          'devis.opt.essentiel.desc': 'One page site, pro design, basic SEO, favicon, 1 free revision.',
+          'devis.opt.premium': 'Premium',
+          'devis.opt.premium.desc': 'Multi-section, optimized SEO, form, Maps, gallery, 2 revisions/month for 1 month.',
+          'devis.step2.title': 'What\'s your business?',
+          'devis.step2.hint': 'To adapt the tone and design of your mockup.',
+          'devis.metier.batiment': 'Construction & trades',
+          'devis.metier.batiment.desc': 'Mason, plumber, electrician, carpenter...',
+          'devis.metier.commerce': 'Retail',
+          'devis.metier.commerce.desc': 'Shop, restaurant, bakery...',
+          'devis.metier.beaute': 'Beauty & wellness',
+          'devis.metier.beaute.desc': 'Hairdresser, beautician, barber...',
+          'devis.metier.autre': 'Other business',
+          'devis.metier.autre.desc': 'You\'ll tell us more in the next step.',
+          'devis.step3.title': 'Would you like add-ons?',
+          'devis.step3.hint': 'Price adjusts in real time. Maintenance includes hosting.',
+          'devis.feat.hebergement': 'Annual hosting',
+          'devis.feat.hebergement.desc': 'Your site online 24/7, domain name included.',
+          'devis.feat.maintenance': 'Annual maintenance',
+          'devis.feat.maintenance.desc': 'Hosting + updates + 2 revisions/month + support.',
+          'devis.feat.express': '48h express delivery',
+          'devis.feat.express.desc': 'Your site ready in 48h instead of 3-5 days.',
+          'devis.step4.title': 'Your details',
+          'devis.step4.hint': 'To send you a detailed quote within 24h.',
+          'devis.field.name': 'Full name *',
+          'devis.field.email': 'Email *',
+          'devis.field.phone': 'Phone',
+          'devis.field.company': 'Company name',
+          'devis.placeholder.name': 'Your full name',
+          'devis.placeholder.email': 'you@example.com',
+          'devis.placeholder.phone': '+33 6 00 00 00 00',
+          'devis.placeholder.company': 'If applicable',
+          'devis.recap.formule': 'Plan',
+          'devis.recap.hebergement': 'Annual hosting',
+          'devis.recap.maintenance': 'Annual maintenance',
+          'devis.recap.express': 'Express delivery',
+          'devis.recap.estimation': 'Estimate',
+          'devis.recap.note': 'Indicative estimate. The final quote takes into account the actual content and any specific options.',
+          'devis.success.title': 'Request sent',
+          'devis.success.desc': 'Thank you! You\'ll receive your detailed quote by email within 24h.',
+          'devis.btn.back': 'Back',
+          'devis.btn.next': 'Next →',
+          'devis.btn.submit': 'Send my request',
+          'faq.label': 'FAQ',
+          'faq.title': 'Frequently asked questions',
+          'faq.q1': 'What\'s the difference between Essential and Premium?',
+          'faq.a1': 'Essential (400€) is a one-page site, ideal for presenting your business simply. Premium (600€) is a full multi-section site with launch included, contact form, Google Maps, Calendly, photo gallery, legal pages and 2 revisions per month for 1 month.',
+          'faq.q2': 'What do I need to provide?',
+          'faq.a2': 'Just your logo if you have one, some info about your business and your contact details. If you have color preferences or examples of sites you like, share them with me. I\'ll handle the rest.',
+          'faq.q3': 'What\'s the delivery time?',
+          'faq.a3': 'Count 3 to 5 business days for your site creation, depending on the plan chosen and project complexity. Need it faster? An express 48h delivery option is available (+60€).',
+          'faq.q4': 'What if I want to modify my site after delivery?',
+          'faq.a4': 'One revision is free with Essential. For Premium, 2 revisions per month are included for 1 month. After that, revisions are included in the Maintenance plan at 149€/year (2 revisions/month).',
+          'faq.q5': 'Will my site be visible on Google?',
+          'faq.a5': 'Yes, every site is optimized with basic SEO to appear on Google. Results typically take a few weeks depending on local competition.',
+          'faq.q6': 'Can I keep my domain name if I already have one?',
+          'faq.a6': 'Yes, if you already have a domain name I can use it directly. Otherwise I can help you choose one.',
+          'faq.q7': 'How does payment work?',
+          'faq.a7': '50% upfront to start, 50% on delivery once you approve the site. Payment by bank transfer.',
+          'footer.pages': 'Pages',
+          'footer.portfolio': 'Portfolio',
+          'footer.about': 'About',
+          'footer.cta': 'Start my project',
+          'footer.legal': 'Legal',
+          'footer.mentions': 'Legal notices',
+          'footer.contact': 'Contact',
+          'footer.review': '⭐ Leave a review',
+          'footer.copyright': '© 2026 Soul Web Studio.<br>All rights reserved.',
+          'footer.legal_bar': 'Owner: Maaty Manchour · Contact: <a href="mailto:contact@soulwebstudio.fr">contact@soulwebstudio.fr</a><br>Hosting: GitHub Pages · This site does not collect personal data except via the contact form (<a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>).'
+        }
+      };
+
+      // Store original French texts
+      var frTexts = {};
+
+      function collectFrench() {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n');
+          if (!frTexts[key]) frTexts[key] = el.innerHTML;
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n-placeholder');
+          if (!frTexts[key]) frTexts[key] = el.getAttribute('placeholder');
+        });
+      }
+
+      function applyLang(lang) {
+        if (lang === 'fr') {
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (frTexts[key]) el.innerHTML = frTexts[key];
+          });
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n-placeholder');
+            if (frTexts[key]) el.setAttribute('placeholder', frTexts[key]);
+          });
+          document.documentElement.lang = 'fr';
+        } else {
+          var t = translations[lang];
+          if (!t) return;
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (t[key]) el.innerHTML = t[key];
+          });
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n-placeholder');
+            if (t[key]) el.setAttribute('placeholder', t[key]);
+          });
+          document.documentElement.lang = 'en';
+        }
+      }
+
+      collectFrench();
+
+      var savedLang = localStorage.getItem('sws-lang') || 'fr';
+      var langBtn = document.getElementById('langToggle');
+      var langLabel = langBtn.querySelector('.lang-label');
+
+      if (savedLang !== 'fr') {
+        applyLang(savedLang);
+        langLabel.textContent = 'FR';
+      }
+
+      langBtn.addEventListener('click', function() {
+        var current = localStorage.getItem('sws-lang') || 'fr';
+        var next = current === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('sws-lang', next);
+        applyLang(next);
+        langLabel.textContent = next === 'fr' ? 'EN' : 'FR';
       });
     })();
   </script>
