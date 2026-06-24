@@ -1095,6 +1095,7 @@
     }
     .fade-in:nth-child(2) { transition-delay: 0.1s; }
     .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .hero-word { display: inline-block; }
 
     /* ── METEORS ── */
     .meteors-container {
@@ -1199,7 +1200,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-glow"></div>
     <div class="hero-content">
       <div class="hero-badge" data-i18n="hero.badge">Freelance Web Designer</div>
-      <h1>Soul <span class="gold">Web</span> Studio</h1>
+      <h1 class="hero-title-gsap">
+        <span class="hero-word">S</span><span class="hero-word">o</span><span class="hero-word">u</span><span class="hero-word">l</span><span class="hero-word">&nbsp;</span><span class="hero-word gold">W</span><span class="hero-word gold">e</span><span class="hero-word gold">b</span><span class="hero-word">&nbsp;</span><span class="hero-word">S</span><span class="hero-word">t</span><span class="hero-word">u</span><span class="hero-word">d</span><span class="hero-word">i</span><span class="hero-word">o</span>
+      </h1>
       <p class="hero-tagline" data-i18n="hero.tagline">
         Je donne une présence en ligne à votre activité.<br>Propre, rapide, fait à la main.<br>
         Livré à partir de <strong>48h</strong>, à partir de <strong>400€</strong>.
@@ -1602,6 +1605,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
   <script>
     // ============================================
     // METEORS : Génère 15 étoiles filantes aléatoires
@@ -1658,18 +1664,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
 
     // ============================================
-    // FADE-IN : IntersectionObserver qui ajoute la classe
-    // 'visible' quand un élément entre dans le viewport
-    // Utilisé sur les .fade-in et les colonnes du footer
+    // FADE-IN + GSAP ANIMATIONS
+    // Replaced IntersectionObserver with GSAP ScrollTrigger
+    // All animations respect prefers-reduced-motion
     // ============================================
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    document.querySelectorAll('.footer-col').forEach(el => observer.observe(el));
 
     // ============================================
     // FAQ ACCORDÉON : Un seul item ouvert à la fois
@@ -2076,6 +2074,177 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('langToggle').addEventListener('click', toggleLang);
       var lmMobile = document.getElementById('langToggleMobile');
       if (lmMobile) lmMobile.addEventListener('click', toggleLang);
+    })();
+  </script>
+
+  <script>
+    // ============================================
+    // GSAP ANIMATIONS
+    // Hero entrance, ScrollTrigger batch reveals,
+    // process steps, pricing cards, card hover tilt
+    // ============================================
+    (function() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      var mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', function() {
+
+        // ── HERO ENTRANCE ──
+        var heroTl = gsap.timeline({ delay: 0.2 });
+
+        heroTl.from('.hero-badge', {
+          y: -30,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+
+        heroTl.from('.hero-word', {
+          y: 40,
+          opacity: 0,
+          stagger: 0.03,
+          duration: 0.6,
+          ease: 'power3.out'
+        });
+
+        heroTl.from('.hero-tagline', {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+
+        heroTl.from('.hero-buttons > *', {
+          y: 20,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.15,
+          ease: 'power2.out'
+        });
+
+        // ── SCROLL TRIGGER BATCH: .fade-in ──
+        ScrollTrigger.batch('.fade-in', {
+          onEnter: function(elements) {
+            gsap.to(elements, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              stagger: 0.15,
+              overwrite: true
+            });
+          },
+          start: 'top 85%',
+          once: true
+        });
+
+        // ── FOOTER COLUMNS ──
+        gsap.set('.footer-col', { opacity: 0, y: 20 });
+
+        ScrollTrigger.batch('.footer-col', {
+          onEnter: function(elements) {
+            gsap.to(elements, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+              stagger: 0.1,
+              overwrite: true
+            });
+          },
+          start: 'top 90%',
+          once: true
+        });
+
+        // ── PROCESS STEPS ──
+        var processSteps = document.querySelectorAll('.process-step');
+        if (processSteps.length) {
+          gsap.set(processSteps, { opacity: 0, x: -30 });
+          gsap.set('.process-step .process-num', { scale: 0 });
+
+          ScrollTrigger.batch(processSteps, {
+            onEnter: function(elements) {
+              gsap.to(elements, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                stagger: 0.2,
+                overwrite: true
+              });
+              gsap.to(Array.from(elements).map(function(el) { return el.querySelector('.process-num'); }), {
+                scale: 1,
+                duration: 0.4,
+                ease: 'back.out(1.7)',
+                stagger: 0.2,
+                delay: 0.1,
+                overwrite: true
+              });
+            },
+            start: 'top 85%',
+            once: true
+          });
+        }
+
+        // ── PRICING CARDS ──
+        var comparatifCards = document.querySelectorAll('.comparatif-card');
+        if (comparatifCards.length) {
+          gsap.set(comparatifCards, { opacity: 0, y: 60, scale: 0.95 });
+          var badge = document.querySelector('.comparatif-badge');
+          if (badge) gsap.set(badge, { opacity: 0, scale: 0, rotation: -10 });
+
+          ScrollTrigger.batch(comparatifCards, {
+            onEnter: function(elements) {
+              gsap.to(elements, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                stagger: 0.2,
+                overwrite: true
+              });
+              if (badge) {
+                gsap.to(badge, {
+                  opacity: 1,
+                  scale: 1,
+                  rotation: 0,
+                  duration: 0.5,
+                  ease: 'back.out(2)',
+                  delay: 0.6
+                });
+              }
+            },
+            start: 'top 80%',
+            once: true
+          });
+        }
+
+        // ── CARD HOVER TILT ──
+        document.querySelectorAll('.service-item, .comparatif-card').forEach(function(card) {
+          card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = (e.clientX - rect.left) / rect.width - 0.5;
+            var y = (e.clientY - rect.top) / rect.height - 0.5;
+            gsap.to(card, {
+              rotationY: x * 5,
+              rotationX: y * -5,
+              transformPerspective: 800,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          });
+          card.addEventListener('mouseleave', function() {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.5,
+              ease: 'power2.out'
+            });
+          });
+        });
+
+      }); // end matchMedia
     })();
   </script>
 
