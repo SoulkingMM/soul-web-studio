@@ -130,15 +130,17 @@
     .nav-cta {
       background: var(--gold);
       color: var(--bg-primary) !important;
-      padding: 0.5rem 1.25rem;
-      border-radius: 4px;
+      padding: 0.55rem 1.5rem;
+      border-radius: 999px;
       font-weight: 600 !important;
-      transition: transform 0.2s, background 0.2s !important;
+      transition: all 0.25s cubic-bezier(.22,.78,.22,1) !important;
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.2);
     }
     .nav-cta:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       color: var(--bg-primary) !important;
       background: var(--gold-light);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35);
     }
 
     /* ── HAMBURGER ── */
@@ -274,8 +276,8 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.3s;
+      border-radius: 999px;
+      transition: all 0.3s cubic-bezier(.22,.78,.22,1);
       cursor: pointer;
     }
     .btn-gold {
@@ -377,9 +379,14 @@
     .service-item {
       background: var(--bg-card);
       border: 0.5px solid rgba(255, 255, 255, 0.9);
-      border-radius: 6px;
+      border-radius: 10px;
       padding: 2rem 2rem;
       text-align: left;
+      transition: transform 0.45s cubic-bezier(.22,.78,.22,1), box-shadow 0.45s cubic-bezier(.22,.78,.22,1);
+    }
+    .service-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -16px rgba(80, 60, 20, 0.12);
     }
     .service-name {
       font-family: 'Playfair Display', serif;
@@ -573,18 +580,21 @@
     }
     .devis-btn {
       font-family: inherit; cursor: pointer; border: none;
-      border-radius: 4px; padding: 0.8rem 1.75rem;
+      border-radius: 999px; padding: 0.8rem 1.75rem;
       font-size: 0.85rem; font-weight: 600;
+      transition: all 0.25s cubic-bezier(.22,.78,.22,1);
     }
     .devis-btn-primary {
       background: var(--gold); color: var(--bg-primary);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.2);
     }
+    .devis-btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35); }
     .devis-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
     .devis-btn-ghost {
       background: transparent; color: var(--text-secondary);
       border: 1px solid var(--border);
     }
-    .devis-btn-ghost:hover { color: var(--text-primary); }
+    .devis-btn-ghost:hover { color: var(--text-primary); border-color: var(--text-secondary); }
 
     .devis-success { text-align: center; padding: 1.25rem 0 0.5rem; }
     .devis-success-mark {
@@ -607,9 +617,9 @@
       color: #fff; text-decoration: none;
       font-size: 0.75rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
-      border-radius: 4px; transition: all 0.3s;
+      border-radius: 999px; transition: all 0.3s;
     }
-    .devis-success .devis-instagram:hover { transform: translateY(-2px); }
+    .devis-success .devis-instagram:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(131, 58, 180, 0.3); }
     .devis-success .devis-instagram svg {
       width: 16px; height: 16px; fill: currentColor;
     }
@@ -689,12 +699,13 @@
       display: block; width: 100%; padding: 0.85rem;
       font-family: inherit; font-size: 0.78rem; font-weight: 600;
       letter-spacing: 0.06em; text-decoration: none; text-align: center;
-      border-radius: 6px; transition: all 0.3s; cursor: pointer; border: none;
+      border-radius: 999px; transition: all 0.3s cubic-bezier(.22,.78,.22,1); cursor: pointer; border: none;
     }
     .comparatif-btn-gold {
       background: var(--gold); color: var(--bg-primary);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.2);
     }
-    .comparatif-btn-gold:hover { transform: translateY(-2px); }
+    .comparatif-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35); }
     .comparatif-btn-outline {
       background: transparent; color: var(--text-primary);
       border: 1px solid var(--border);
@@ -1139,6 +1150,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
       </div>
+
+      <div class="comparatif-custom fade-in" style="text-align:center;margin-top:2.5rem;padding:2rem;border:1px solid var(--border);border-radius:12px;background:var(--bg-card);">
+        <p style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--text-primary);margin-bottom:0.5rem;">Un projet sur-mesure ?</p>
+        <p style="font-size:0.9rem;color:var(--text-secondary);font-weight:300;margin-bottom:1.5rem;">Restaurant, e-commerce, design premium... chaque projet est différent. Discutons de vos besoins.</p>
+        <a href="#devis" class="comparatif-btn comparatif-btn-outline" style="display:inline-block;padding:0.75rem 2rem;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);color:var(--gold);border-radius:4px;transition:all 0.3s;">Me contacter →</a>
+      </div>
+
     </div>
   </section>
 
@@ -1358,7 +1376,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="faq-item">
           <button class="faq-question">Je dois fournir quoi de mon côté ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs, de style ou des exemples de sites que vous aimez, n'hésitez pas à me les partager — je m'adapte à votre univers. Je m'occupe du reste.</p></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Juste votre logo si vous en avez un, quelques infos sur votre activité et vos coordonnées. Si vous avez des préférences de couleurs ou des exemples de sites que vous aimez, partagez-les moi, je m'adapte. Je m'occupe du reste.</p></div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Quel est le délai de livraison ?<span class="faq-icon"></span></button>

@@ -16,107 +16,138 @@
     gtag('js', new Date());
     gtag('config', 'G-K5ZGMSM10H');
   </script>
-  <!-- ============================================ -->
-  <!-- HEAD : Métadonnées, SEO, polices             -->
-  <!-- noindex/nofollow : page démo, pas indexée    -->
-  <!-- Polices : Cormorant Garamond (titres élégants) -->
-  <!--         + DM Sans (corps de texte)            -->
-  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Élégance Coiffure — Salon de coiffure parisien</title>
+  <title>Elegance Coiffure — Salon de coiffure parisien</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Élégance Coiffure, salon de coiffure parisien. Coupes femme et homme, coloration, soins capillaires. Prenez rendez-vous.">
+  <meta name="description" content="Elegance Coiffure, salon de coiffure parisien. Coupes femme et homme, coloration, soins capillaires. Prenez rendez-vous.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://soulwebstudio.fr/elegance-coiffure.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #faf8f5;
-      --white: #ffffff;
-      --rose: #c4927a;
-      --rose-light: #d4a68e;
-      --rose-dim: rgba(196, 146, 122, 0.12);
-      --rose-border: #e8d5c8;
-      --text: #2a2a2a;
-      --text-light: #888888;
-      --text-muted: #aaaaaa;
-      --border: rgba(0, 0, 0, 0.06);
-    }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--rose-light); }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      font-family: 'Jost', sans-serif;
+      background: #1a1518;
+      color: #f2ede6;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+    ::selection { background: #c4927a; color: #fff; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
 
-    ::selection { background: var(--rose); color: var(--white); }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a1518; }
+    ::-webkit-scrollbar-thumb { background: #c4927a; border-radius: 10px; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     /* ── NAV ── */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.5rem 2rem 1rem;
-      display: flex; flex-direction: column; align-items: center;
-      background: transparent;
-      transition: all 0.4s ease;
-    }
-    .nav.scrolled {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-      background: #faf8f5;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 16px 44px;
+      background: rgba(26,21,24,.85);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(196,146,122,.14);
+      transition: background .4s, padding .4s;
     }
     .nav-logo {
+      display: flex; align-items: center; gap: 13px;
+      color: #f2ede6; text-decoration: none;
+    }
+    .nav-logo-icon {
+      display: grid; place-items: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid #c4927a; color: #c4927a;
+      font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600;
+      flex-shrink: 0;
+    }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1; }
+    .nav-brand-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 400;
-      color: #ffffff; text-decoration: none;
-      letter-spacing: 0.35em; text-transform: uppercase;
-      transition: color 0.4s ease;
+      font-size: 22px; font-weight: 600; letter-spacing: 5px; color: #f2ede6;
+      text-transform: uppercase;
     }
-    .nav.scrolled .nav-logo { color: var(--text); }
-    .nav-bar {
-      width: 40px; height: 1px;
-      background: rgba(255, 255, 255, 0.4);
-      margin: 0.6rem 0;
-      transition: all 0.4s ease;
+    .nav-brand-sub {
+      font-size: 8.5px; letter-spacing: 3.5px; color: #9a908a;
+      text-transform: uppercase; margin-top: 3px;
     }
-    .nav.scrolled .nav-bar { display: none; }
     .nav-links {
-      display: flex; list-style: none; gap: 2.5rem; align-items: center;
+      display: none; align-items: center; gap: 28px; list-style: none;
     }
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.7); text-decoration: none;
-      font-size: 11px; font-weight: 400;
-      letter-spacing: 3px; text-transform: uppercase;
-      transition: color 0.3s;
+    .nav-link {
+      position: relative; color: #cfc7bd;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      transition: color .25s;
     }
-    .nav-links a:hover { color: #ffffff; }
-    .nav.scrolled .nav-links a { color: var(--text-light); }
-    .nav.scrolled .nav-links a:hover { color: var(--rose); }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; bottom: -5px;
+      width: 0; height: 1px; background: #c4927a; transition: width .3s ease;
+    }
+    .nav-link:hover { color: #f2ede6; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-cta {
+      background: #c4927a; color: #1a1518;
+      padding: 10px 22px; border-radius: 999px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+      box-shadow: 0 6px 22px rgba(196,146,122,.32);
+      transition: all .25s;
+    }
+    .nav-cta:hover { box-shadow: 0 10px 30px rgba(196,146,122,.45); transform: translateY(-1px); }
 
-    /* ── HERO CENTRÉ ── */
+    /* Burger */
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: #f2ede6; transition: all 0.3s;
+    }
+    .nav-burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .nav-burger.active span:nth-child(2) { opacity: 0; }
+    .nav-burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .nav-overlay {
+      display: none; position: fixed; inset: 0; z-index: 98;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+    }
+    .nav-overlay.open { display: block; }
+
+    @media (min-width: 960px) {
+      .nav-links { display: flex; }
+      .nav-burger { display: none; }
+    }
+    @media (max-width: 959px) {
+      .nav { padding: 14px 20px; }
+      .nav-links {
+        display: flex; flex-direction: column;
+        position: fixed; top: 0; right: -300px; z-index: 99;
+        width: 300px; height: 100vh;
+        background: #1e181b; padding: 5rem 2rem 2rem;
+        gap: 1.5rem; align-items: flex-start;
+        transition: right 0.35s ease;
+        border-left: 1px solid rgba(196,146,122,.14);
+      }
+      .nav-links.open { right: 0; }
+    }
+
+    /* ── HERO ── */
     .hero {
-      position: relative;
-      min-height: 100vh; min-height: 100svh;
+      position: relative; min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 2rem 4rem;
-      overflow: hidden;
+      text-align: center; overflow: hidden;
+      border-bottom: 1px solid rgba(196,146,122,.12);
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -124,407 +155,379 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: linear-gradient(180deg, rgba(26,21,24,.82) 0%, rgba(26,21,24,.68) 50%, rgba(26,21,24,.92) 100%);
     }
-    .hero-content { max-width: 600px; position: relative; z-index: 1; }
-    .hero-label {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--rose-light);
-      margin-bottom: 2rem;
+    .hero-glow1 {
+      position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(196,146,122,.18) 0%, transparent 60%);
+      pointer-events: none; animation: shimmer 6s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -25%; left: -15%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(196,146,122,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-circle1 {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 520px; height: 520px; max-width: 90vw; max-height: 90vw;
+      border: 1px solid rgba(196,146,122,.12); border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-circle2 {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 640px; height: 640px; max-width: 110vw; max-height: 110vw;
+      border: 1px dashed rgba(196,146,122,.07); border-radius: 50%;
+      pointer-events: none; animation: spinSlow 80s linear infinite;
+    }
+    .hero-content {
+      max-width: 720px; position: relative; z-index: 2;
+      padding: 120px 24px 80px;
+      animation: fadeUp .9s cubic-bezier(.22,.78,.22,1) both;
+    }
+    .hero-kicker {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      margin-bottom: 32px;
+    }
+    .hero-kicker-line { height: 1px; width: 44px; background: #c4927a; }
+    .hero-kicker-text {
+      color: #c4927a; letter-spacing: 4px; font-size: 12px; text-transform: uppercase;
     }
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 7vw, 4.5rem);
-      font-weight: 300; line-height: 1.15;
-      color: #ffffff;
-      margin-bottom: 1.5rem;
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      font-size: clamp(48px, 7.5vw, 100px); line-height: .95;
+      color: #f6f1ea; letter-spacing: -1px; margin-bottom: 12px;
     }
     .hero h1 em {
-      font-style: italic; font-weight: 400;
-      color: var(--rose-light);
+      font-style: italic; font-weight: 500; color: #c4927a;
     }
     .hero-sub {
-      font-size: 0.95rem; color: rgba(255, 255, 255, 0.8);
-      font-weight: 300; line-height: 1.7;
-      margin-bottom: 2.5rem;
+      font-size: 16px; color: #bcb3a8; font-weight: 300;
+      line-height: 1.8; max-width: 480px; margin: 0 auto 38px;
     }
-    .btn {
-      display: inline-block; padding: 0.85rem 2.5rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      text-decoration: none; border-radius: 2px;
-      transition: all 0.3s;
+    .hero-buttons {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 48px;
     }
-    .btn-rose-outline {
-      background: transparent;
-      color: var(--rose); border: 1px solid var(--rose);
+    .btn-rose {
+      background: #c4927a; color: #1a1518;
+      padding: 15px 36px; border-radius: 999px;
+      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600;
+      transition: all .25s;
     }
-    .btn-rose-outline:hover {
-      background: var(--rose); color: #ffffff;
+    .btn-rose:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,146,122,.35); }
+    .btn-ghost {
+      border: 1px solid rgba(242,237,230,.25); color: #f2ede6;
+      padding: 15px 36px; border-radius: 999px;
+      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: all .25s;
     }
-    .hero .btn-rose-outline {
-      color: #ffffff; border-color: rgba(255, 255, 255, 0.5);
+    .btn-ghost:hover { border-color: #c4927a; color: #c4927a; }
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 30px; flex-wrap: wrap;
     }
-    .hero .btn-rose-outline:hover {
-      background: var(--rose); border-color: var(--rose); color: #ffffff;
+    .hero-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 600; line-height: 1;
     }
+    .hero-stat-val.rose { color: #c4927a; }
+    .hero-stat-label {
+      font-size: 10px; letter-spacing: 2px; color: #9a908a;
+      text-transform: uppercase; margin-top: 3px;
+    }
+    .hero-stat-sep { width: 1px; height: 36px; background: rgba(196,146,122,.25); }
     .hero-scroll {
-      margin-top: 3rem;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.65rem; letter-spacing: 0.15em;
-      text-transform: uppercase;
+      margin-top: 48px; color: rgba(242,237,230,.4);
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
     }
-    .hero-scroll span {
-      display: block; margin-top: 0.5rem;
-      width: 1px; height: 40px;
-      background: rgba(255, 255, 255, 0.3);
-      margin-left: auto; margin-right: auto;
+    .hero-scroll-line {
+      display: block; width: 1px; height: 44px;
+      background: rgba(196,146,122,.3); margin: 10px auto 0;
     }
 
-    /* ── SÉPARATEUR ── */
-    .sep {
-      width: 60px; height: 1px;
-      background: var(--rose-border);
-      margin: 0 auto;
+    /* ── STRIP ── */
+    .strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 44px; flex-wrap: wrap; padding: 20px 24px;
+      background: #16121a; border-bottom: 1px solid rgba(196,146,122,.08);
     }
+    .strip-item {
+      color: #c4927a; font-size: 12px; letter-spacing: 3px;
+      font-family: 'Cormorant Garamond', serif; font-weight: 500;
+    }
+    .strip-dot { color: #3d3538; font-size: 8px; }
 
-    /* ── PRESTATIONS ALTERNÉES ── */
-    .prestations {
-      padding: 5rem 2rem;
-      max-width: 900px; margin: 0 auto;
-    }
-    .prestations-header {
-      text-align: center; margin-bottom: 4rem;
-    }
-    .section-label {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--rose); margin-bottom: 0.75rem;
+    /* ── SECTIONS ── */
+    .section { max-width: 1280px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .section { padding: 112px 56px; } }
+    .section-kicker {
+      color: #c4927a; letter-spacing: 4px; font-size: 12px;
+      text-transform: uppercase; display: block; margin-bottom: 10px;
     }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 400; color: var(--text);
+      font-family: 'Cormorant Garamond', serif; font-weight: 500;
+      font-size: clamp(38px, 5vw, 62px); color: #f6f1ea;
     }
-    .presta-row {
-      display: grid; grid-template-columns: 1fr;
-      gap: 1rem; align-items: center;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
+
+    /* ── PRESTATIONS ── */
+    .prestations {
+      background: #1e181b;
+      border-top: 1px solid rgba(196,146,122,.08);
+      border-bottom: 1px solid rgba(196,146,122,.08);
+      padding: 112px 24px;
     }
-    .presta-row:last-child { border-bottom: none; }
-    .presta-text {}
+    @media (min-width: 768px) { .prestations { padding: 112px 56px; } }
+    .prestations-inner { max-width: 1100px; margin: 0 auto; }
+    .prestations-grid {
+      display: grid; grid-template-columns: 1fr; gap: 26px;
+      margin-top: 60px;
+    }
+    @media (min-width: 640px) { .prestations-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .prestations-grid { grid-template-columns: repeat(4, 1fr); } }
+    .presta-card {
+      border-radius: 10px; overflow: hidden;
+      background: #241e22; border: 1px solid rgba(196,146,122,.1);
+      transition: transform .45s cubic-bezier(.22,.78,.22,1), box-shadow .45s cubic-bezier(.22,.78,.22,1);
+      position: relative;
+    }
+    .presta-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .presta-card:hover .presta-img img { transform: scale(1.08); }
+    .presta-img {
+      overflow: hidden; aspect-ratio: 4/3; background: #16121a;
+    }
+    .presta-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .7s cubic-bezier(.22,.78,.22,1);
+    }
+    .presta-num {
+      position: absolute; top: 16px; left: 18px;
+      font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300;
+      color: rgba(255,255,255,.15); line-height: 1; pointer-events: none;
+    }
+    .presta-body { padding: 24px 24px 28px; }
     .presta-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 500;
-      color: var(--text); margin-bottom: 0.4rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 24px;
+      font-weight: 600; color: #f6f1ea; margin-bottom: 8px;
     }
     .presta-desc {
-      font-size: 0.85rem; color: var(--text-light);
-      font-weight: 300; line-height: 1.7;
-    }
-    .presta-accent {
-      display: none;
-      height: 220px;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-    .presta-accent img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .presta-accent-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-    }
-    .presta-accent-inner {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center; z-index: 1;
-    }
-    .presta-accent .presta-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 300;
-      color: #ffffff;
-      line-height: 1;
-    }
-    @media (min-width: 768px) {
-      .presta-row { grid-template-columns: 1fr 1fr; gap: 3rem; }
-      .presta-accent { display: block; }
-      .presta-row.reverse { direction: rtl; }
-      .presta-row.reverse > * { direction: ltr; }
+      color: #9a908a; font-size: 14px; font-weight: 300; line-height: 1.7;
     }
 
     /* ── CITATION ── */
     .quote-section {
-      padding: 5rem 2rem;
-      text-align: center;
+      padding: 112px 24px; text-align: center;
+      position: relative;
+    }
+    .quote-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(196,146,122,.08) 0%, transparent 60%);
+      pointer-events: none;
     }
     .quote-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-size: clamp(28px, 4vw, 48px);
       font-weight: 300; font-style: italic;
-      color: var(--text);
-      line-height: 1.5;
-      max-width: 650px;
-      margin: 0 auto 1rem;
+      color: #f6f1ea; line-height: 1.4;
+      max-width: 700px; margin: 0 auto 20px;
+      position: relative;
     }
     .quote-author {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 400;
+      font-size: 11px; color: #c4927a;
+      letter-spacing: 3px; text-transform: uppercase; font-weight: 400;
+      position: relative;
     }
 
     /* ── TARIFS ── */
-    .tarifs {
-      padding: 5rem 2rem;
-      max-width: 900px; margin: 0 auto;
-    }
-    .tarifs-header {
-      text-align: center; margin-bottom: 3.5rem;
-    }
+    .tarifs { max-width: 1100px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .tarifs { padding: 112px 56px; } }
     .tarifs-grid {
-      display: grid; grid-template-columns: 1fr;
-      gap: 1.25rem;
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+      margin-top: 52px;
     }
+    @media (min-width: 640px) { .tarifs-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .tarifs-grid { grid-template-columns: repeat(3, 1fr); } }
     .tarif-card {
-      background: var(--white);
-      border: 0.5px solid var(--rose-border);
-      border-radius: 4px;
-      padding: 1.75rem 2rem;
-      display: flex; justify-content: space-between;
-      align-items: center;
-      transition: box-shadow 0.3s;
+      background: #241e22; border: 1px solid rgba(196,146,122,.1);
+      border-radius: 10px; padding: 28px 26px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: transform .45s cubic-bezier(.22,.78,.22,1), box-shadow .45s cubic-bezier(.22,.78,.22,1);
     }
     .tarif-card:hover {
-      box-shadow: 0 8px 30px rgba(196, 146, 122, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);
     }
     .tarif-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem; font-weight: 500;
-      color: var(--text); margin-bottom: 0.2rem;
+      font-size: 22px; font-weight: 600; color: #f6f1ea;
+      margin-bottom: 4px;
     }
     .tarif-desc {
-      font-size: 0.78rem; color: var(--text-light);
-      font-weight: 300;
+      font-size: 13px; color: #7a706e; font-weight: 300;
     }
     .tarif-price {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-weight: 600;
-      color: var(--rose);
+      font-size: 28px; font-weight: 600; color: #c4927a;
       white-space: nowrap;
-    }
-    @media (min-width: 640px) {
-      .tarifs-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: #f3efe9;
-      border-top: 1px solid var(--border);
-      padding: 3rem 2rem;
-    }
-    .footer-inner {
-      max-width: 900px; margin: 0 auto;
-      display: flex; flex-wrap: wrap;
-      justify-content: space-between; align-items: center;
-      gap: 1rem;
-    }
-    .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem; font-weight: 400;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text);
-    }
-    .footer-links {
-      display: flex; gap: 2rem; list-style: none;
-    }
-    .footer-links a {
-      color: var(--text-muted); text-decoration: none;
-      font-size: 0.72rem; font-weight: 400;
-      letter-spacing: 0.06em;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--rose); }
-    .footer-copy {
-      width: 100%; text-align: center;
-      margin-top: 1.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.68rem; color: var(--text-muted);
-      font-weight: 300;
-    }
-    .footer-copy a {
-      color: var(--rose); text-decoration: none;
     }
 
     /* ── LOCALISATION ── */
-    .localisation {
-      padding: 5rem 2rem;
-      max-width: 900px; margin: 0 auto;
-    }
-    .localisation-header {
-      text-align: center; margin-bottom: 3rem;
-    }
+    .localisation { max-width: 1100px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .localisation { padding: 112px 56px; } }
     .localisation-grid {
-      display: grid; grid-template-columns: 1fr; gap: 2rem;
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: stretch;
+      margin-top: 52px;
     }
+    @media (min-width: 960px) { .localisation-grid { grid-template-columns: 1fr 1.15fr; gap: 56px; } }
+    .localisation-info {
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-icon { color: #c4927a; font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .contact-label {
+      font-size: 10px; letter-spacing: 2.5px; color: #7a706e;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .contact-value { color: #e0d8cf; font-size: 15.5px; line-height: 1.5; }
+    .contact-value a { color: #c4927a; transition: color .2s; }
+    .contact-value a:hover { color: #d4a68e; }
     .localisation-map {
-      border: 0.5px solid var(--rose-border);
-      border-radius: 4px;
-      overflow: hidden;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(196,146,122,.14); min-height: 350px;
     }
     .localisation-map iframe {
-      width: 100%; height: 300px; border: none;
-    }
-    .localisation-info {
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .localisation-address {
-      font-size: 0.9rem; color: var(--text-light); font-weight: 300; line-height: 1.9;
-    }
-    .localisation-address strong {
-      color: var(--text); font-weight: 500;
-    }
-    @media (min-width: 768px) {
-      .localisation-grid { grid-template-columns: 1.2fr 0.8fr; }
-      .localisation-map iframe { height: 100%; min-height: 280px; }
+      width: 100%; height: 100%; min-height: 350px; border: 0;
+      filter: grayscale(.3) contrast(1.05) brightness(.85);
     }
 
     /* ── AVIS ── */
     .avis {
-      background: var(--white);
-      padding: 5rem 2rem;
+      background: #1e181b;
+      border-top: 1px solid rgba(196,146,122,.08);
+      border-bottom: 1px solid rgba(196,146,122,.08);
+      padding: 112px 24px;
     }
-    .avis-inner { max-width: 900px; margin: 0 auto; }
-    .avis-header {
-      text-align: center; margin-bottom: 3rem;
+    @media (min-width: 768px) { .avis { padding: 112px 56px; } }
+    .avis-inner { max-width: 1200px; margin: 0 auto; }
+    .avis-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 30px; flex-wrap: wrap; margin-bottom: 54px;
     }
-    .avis-score {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem; font-weight: 600; color: var(--text);
-      line-height: 1;
+    .avis-score-wrap { display: flex; align-items: center; gap: 18px; }
+    .avis-score-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 72px;
+      color: #c4927a; font-weight: 700; line-height: 1;
     }
-    .avis-score span { font-size: 1.2rem; color: var(--text-muted); font-weight: 400; }
-    .avis-stars { color: var(--rose); font-size: 1.2rem; margin: 0.5rem 0 0.25rem; }
-    .avis-count { font-size: 0.75rem; color: var(--text-muted); }
+    .avis-score-stars { color: #c4927a; font-size: 20px; letter-spacing: 3px; }
+    .avis-score-count {
+      font-size: 11px; letter-spacing: 1.5px; color: #9a908a;
+      text-transform: uppercase; margin-top: 5px;
+    }
     .avis-grid {
-      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
+      display: grid; grid-template-columns: 1fr; gap: 22px;
     }
+    @media (min-width: 640px) { .avis-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .avis-grid { grid-template-columns: repeat(3, 1fr); } }
     .avis-card {
-      background: var(--bg);
-      border: 0.5px solid var(--rose-border);
-      border-radius: 4px;
-      padding: 1.5rem;
+      background: #241e22; border: 1px solid rgba(196,146,122,.1);
+      border-radius: 10px; padding: 30px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform .45s cubic-bezier(.22,.78,.22,1);
     }
-    .avis-card-top {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 0.75rem;
+    .avis-card:hover { transform: translateY(-6px); }
+    .avis-author { display: flex; align-items: center; gap: 14px; }
+    .avis-avatar {
+      display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #c4927a; color: #1a1518;
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700;
+      flex-shrink: 0;
     }
-    .avis-card-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-weight: 500; color: var(--text);
-    }
-    .avis-card-stars { color: var(--rose); font-size: 0.85rem; }
-    .avis-card-text {
-      font-size: 0.82rem; color: var(--text-light); font-weight: 300; line-height: 1.7;
-    }
+    .avis-name { color: #f2ede6; font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+    .avis-meta { color: #7a706e; font-size: 11.5px; letter-spacing: .5px; }
+    .avis-rating { display: flex; align-items: center; gap: 10px; }
+    .avis-stars { color: #c4927a; font-size: 13px; letter-spacing: 2px; }
+    .avis-when { color: #7a706e; font-size: 12px; }
+    .avis-text { color: #bcb3a8; font-size: 14.5px; line-height: 1.78; font-weight: 300; }
     .avis-disclaimer {
-      text-align: center; margin-top: 2rem;
-      font-size: 0.65rem; color: var(--text-muted); font-style: italic;
-    }
-    @media (min-width: 768px) {
-      .avis-grid { grid-template-columns: repeat(3, 1fr); }
+      text-align: center; margin-top: 32px;
+      font-size: 11px; color: #5a5249; font-style: italic; letter-spacing: .5px;
     }
 
     /* ── FAQ ── */
-    .faq {
-      background: var(--bg);
-      padding: 5rem 2rem;
-    }
-    .faq-inner { max-width: 700px; margin: 0 auto; }
-    .faq-header {
-      text-align: center; margin-bottom: 3rem;
-    }
-    .faq-list { }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq { max-width: 800px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .faq { padding: 112px 56px; } }
+    .faq-list { margin-top: 52px; }
+    .faq-item { border-bottom: 1px solid rgba(196,146,122,.1); }
     .faq-question {
-      width: 100%;
-      background: none; border: none; outline: none;
-      padding: 1.25rem 0;
-      display: flex; justify-content: space-between; align-items: center;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; font-weight: 500;
-      color: var(--text);
-      text-align: left;
-      transition: color 0.3s;
+      width: 100%; background: none; border: none; outline: none;
+      padding: 24px 0; display: flex; justify-content: space-between;
+      align-items: center; cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 400;
+      color: #e0d8cf; text-align: left; transition: color 0.3s;
     }
-    .faq-question:hover { color: var(--rose); }
+    .faq-question:hover { color: #c4927a; }
     .faq-icon {
-      flex-shrink: 0;
-      width: 20px; height: 20px;
-      position: relative;
-      margin-left: 1rem;
+      flex-shrink: 0; width: 22px; height: 22px;
+      position: relative; margin-left: 1rem;
     }
     .faq-icon::before,
     .faq-icon::after {
-      content: '';
-      position: absolute;
-      background: var(--rose);
-      transition: transform 0.3s ease;
+      content: ''; position: absolute; background: #c4927a;
+      transition: transform 0.4s cubic-bezier(.22,.78,.22,1);
     }
     .faq-icon::before {
-      width: 12px; height: 1px;
-      top: 50%; left: 50%;
+      width: 14px; height: 1px; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
     }
     .faq-icon::after {
-      width: 1px; height: 12px;
-      top: 50%; left: 50%;
+      width: 1px; height: 14px; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
     }
     .faq-item.active .faq-icon::after {
       transform: translate(-50%, -50%) rotate(90deg);
     }
     .faq-answer {
-      display: grid;
-      grid-template-rows: 0fr;
-      overflow: hidden;
-      transition: grid-template-rows 0.5s ease;
+      display: grid; grid-template-rows: 0fr; overflow: hidden;
+      transition: grid-template-rows 0.5s cubic-bezier(.22,.78,.22,1);
     }
-    .faq-item.active .faq-answer {
-      grid-template-rows: 1fr;
-    }
-    .faq-answer-inner {
-      overflow: hidden;
-    }
+    .faq-item.active .faq-answer { grid-template-rows: 1fr; }
+    .faq-answer-inner { overflow: hidden; }
     .faq-answer p {
-      padding: 0 0 1.25rem;
-      font-size: 0.84rem;
-      color: var(--text-light);
-      font-weight: 300;
-      line-height: 1.7;
+      padding: 0 0 24px;
+      font-size: 14.5px; color: #9a908a; font-weight: 300; line-height: 1.8;
     }
 
-    /* ── FADE IN ── */
+    /* ── FOOTER ── */
+    .footer {
+      background: #120f12;
+      border-top: 1px solid rgba(196,146,122,.1);
+      padding: 56px 24px 36px;
+    }
+    @media (min-width: 768px) { .footer { padding: 56px 56px 36px; } }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .footer-cols { display: flex; gap: 52px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: #9a908a; font-size: 13px; transition: color .2s; }
+    .footer-col a:hover { color: #c4927a; }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,.05);
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { color: #5a5249; font-size: 11.5px; }
+    .footer-copy a { color: #c4927a; }
+
+    /* ── FADE ── */
     .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(.22,.78,.22,1), transform 0.8s cubic-bezier(.22,.78,.22,1);
     }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -533,106 +536,140 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ============================================ -->
-  <!-- NAV : Logo centré + barre décorative + liens  -->
-  <!-- Passe de transparente à fond crème au scroll   -->
-  <!-- Le logo passe de blanc à noir au scroll        -->
-  <!-- ============================================ -->
-  <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">Élégance</a>
-    <div class="nav-bar"></div>
-    <ul class="nav-links">
-      <li><a href="#prestations">Prestations</a></li>
-      <li><a href="#tarifs">Tarifs</a></li>
-    </ul>
-  </nav>
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-icon">E</span>
+      <span class="nav-brand">
+        <span class="nav-brand-name">Elegance</span>
+        <span class="nav-brand-sub">Salon de coiffure · Paris</span>
+      </span>
+    </a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a class="nav-link" href="#prestations">Prestations</a>
+      <a class="nav-link" href="#tarifs">Tarifs</a>
+      <a class="nav-link" href="#localisation">Localisation</a>
+      <a class="nav-link" href="#avis">Avis</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#localisation" class="nav-cta">Rendez-vous</a>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </header>
 
-  <!-- ============================================ -->
-  <!-- HERO : Plein écran, image salon Unsplash      -->
-  <!-- Overlay sombre + titre en Cormorant Garamond  -->
-  <!-- Bouton CTA outline + indicateur "Défiler"     -->
-  <!-- ============================================ -->
+  <span id="top"></span>
+
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-content fade-in">
-      <div class="hero-label">Salon de coiffure — Paris</div>
-      <h1>L'art de la coiffure,<br>au féminin comme au <em>masculin</em></h1>
-      <p class="hero-sub">Un salon parisien dédié à sublimer votre style. Chaque coupe est un geste de soin, chaque visite une parenthèse.</p>
-      <a href="#prestations" class="btn btn-rose-outline">Découvrir</a>
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-circle1"></div>
+    <div class="hero-circle2"></div>
+    <div class="hero-content">
+      <div class="hero-kicker">
+        <span class="hero-kicker-line"></span>
+        <span class="hero-kicker-text">Salon de coiffure — Paris</span>
+        <span class="hero-kicker-line"></span>
+      </div>
+      <h1>L'art de la coiffure,<br>au feminin comme au <em>masculin</em></h1>
+      <p class="hero-sub">Un salon parisien ou on prend le temps de vous ecouter. Parce qu'une bonne coupe, ca commence par un bon echange.</p>
+      <div class="hero-buttons">
+        <a href="#prestations" class="btn-rose">Decouvrir</a>
+        <a href="#tarifs" class="btn-ghost">Nos tarifs</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val rose">4,8 ★</div>
+          <div class="hero-stat-label">63 avis</div>
+        </div>
+        <span class="hero-stat-sep"></span>
+        <div>
+          <div class="hero-stat-val">25–70€</div>
+          <div class="hero-stat-label">nos tarifs</div>
+        </div>
+        <span class="hero-stat-sep"></span>
+        <div>
+          <div class="hero-stat-val">Paris 9e</div>
+          <div class="hero-stat-label">Rue des Martyrs</div>
+        </div>
+      </div>
       <div class="hero-scroll">
-        Défiler
-        <span></span>
+        Defiler
+        <span class="hero-scroll-line"></span>
       </div>
     </div>
   </section>
 
-  <div class="sep"></div>
+  <!-- STRIP -->
+  <div class="strip">
+    <span class="strip-item">Sur rendez-vous</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Femme & Homme</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Coloration & Soins</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">01 48 00 00 00</span>
+  </div>
 
-  <!-- ============================================ -->
-  <!-- PRESTATIONS : 4 lignes alternées texte/image  -->
-  <!-- Images Unsplash visibles uniquement en desktop -->
-  <!-- Classe .reverse pour alterner gauche/droite    -->
-  <!-- ============================================ -->
+  <!-- PRESTATIONS -->
   <section class="prestations" id="prestations">
-    <div class="prestations-header fade-in">
-      <div class="section-label">Savoir-faire</div>
-      <h2 class="section-title">Nos prestations</h2>
-    </div>
-
-    <div class="presta-row fade-in">
-      <div class="presta-text">
-        <h3 class="presta-name">Coupe femme</h3>
-        <p class="presta-desc">Coupe, brushing et conseil personnalisé. Un moment rien que pour vous, du shampooing au coiffage final.</p>
+    <div class="prestations-inner">
+      <div style="text-align:center;margin-bottom:0;" class="fade-in">
+        <span class="section-kicker">Savoir-faire</span>
+        <h2 class="section-title">Nos prestations</h2>
       </div>
-      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Salon de coiffure" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">01</span></div></div>
-    </div>
-
-    <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800" alt="Coupe homme" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">02</span></div></div>
-      <div class="presta-text">
-        <h3 class="presta-name">Coupe homme</h3>
-        <p class="presta-desc">Coupe précise, dégradé, finitions soignées. Un style net qui vous ressemble.</p>
-      </div>
-    </div>
-
-    <div class="presta-row fade-in">
-      <div class="presta-text">
-        <h3 class="presta-name">Coloration & Mèches</h3>
-        <p class="presta-desc">Balayage, couleur complète ou mèches subtiles. Des produits de qualité pour un résultat naturel et durable.</p>
-      </div>
-      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800" alt="Coloration" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">03</span></div></div>
-    </div>
-
-    <div class="presta-row reverse fade-in">
-      <div class="presta-accent"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800" alt="Soins capillaires" loading="lazy"><div class="presta-accent-overlay"></div><div class="presta-accent-inner"><span class="presta-num">04</span></div></div>
-      <div class="presta-text">
-        <h3 class="presta-name">Soins & Coiffage</h3>
-        <p class="presta-desc">Soins profonds, kératine, lissage. Vos cheveux retrouvent éclat et vitalité.</p>
+      <div class="prestations-grid">
+        <div class="presta-card fade-in">
+          <div class="presta-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Coupe femme" loading="lazy"></div>
+          <span class="presta-num">01</span>
+          <div class="presta-body">
+            <h3 class="presta-name">Coupe femme</h3>
+            <p class="presta-desc">Coupe et brushing adaptes a vos envies. On commence par un shampoing, on finit par le coiffage.</p>
+          </div>
+        </div>
+        <div class="presta-card fade-in">
+          <div class="presta-img"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800" alt="Coupe homme" loading="lazy"></div>
+          <span class="presta-num">02</span>
+          <div class="presta-body">
+            <h3 class="presta-name">Coupe homme</h3>
+            <p class="presta-desc">Coupe precise, degrade, finitions soignees. Un style net qui vous ressemble.</p>
+          </div>
+        </div>
+        <div class="presta-card fade-in">
+          <div class="presta-img"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800" alt="Coloration" loading="lazy"></div>
+          <span class="presta-num">03</span>
+          <div class="presta-body">
+            <h3 class="presta-name">Coloration & Meches</h3>
+            <p class="presta-desc">Balayage, couleur complete ou meches subtiles. Des produits de qualite pour un resultat naturel et durable.</p>
+          </div>
+        </div>
+        <div class="presta-card fade-in">
+          <div class="presta-img"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800" alt="Soins capillaires" loading="lazy"></div>
+          <span class="presta-num">04</span>
+          <div class="presta-body">
+            <h3 class="presta-name">Soins & Coiffage</h3>
+            <p class="presta-desc">Soins profonds, keratine, lissage. Pour des cheveux qui tiennent vraiment la route.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="sep"></div>
-
-  <!-- ============================================ -->
-  <!-- CITATION : Citation de Coco Chanel            -->
-  <!-- En italique Cormorant Garamond                -->
-  <!-- ============================================ -->
+  <!-- CITATION -->
   <section class="quote-section fade-in">
-    <p class="quote-text">« La beauté commence au moment où vous décidez d'être vous-même. »</p>
+    <div class="quote-glow"></div>
+    <p class="quote-text">« La beaute commence au moment ou vous decidez d'etre vous-meme. »</p>
     <div class="quote-author">Coco Chanel</div>
   </section>
 
-  <div class="sep"></div>
-
-  <!-- ============================================ -->
-  <!-- TARIFS : 6 cartes prix (coupe, colo, soin...) -->
-  <!-- Grille 1 col mobile → 2 col desktop           -->
-  <!-- ============================================ -->
+  <!-- TARIFS -->
   <section class="tarifs" id="tarifs">
-    <div class="tarifs-header fade-in">
-      <div class="section-label">Nos prix</div>
+    <div style="text-align:center;" class="fade-in">
+      <span class="section-kicker">Nos prix</span>
       <h2 class="section-title">Tarifs</h2>
     </div>
     <div class="tarifs-grid">
@@ -645,11 +682,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="tarif-price">25€</div>
       </div>
       <div class="tarif-card fade-in">
-        <div><div class="tarif-name">Coloration</div><div class="tarif-desc">Couleur complète</div></div>
+        <div><div class="tarif-name">Coloration</div><div class="tarif-desc">Couleur complete</div></div>
         <div class="tarif-price">60€</div>
       </div>
       <div class="tarif-card fade-in">
-        <div><div class="tarif-name">Mèches / Balayage</div><div class="tarif-desc">Naturel ou contrasté</div></div>
+        <div><div class="tarif-name">Meches / Balayage</div><div class="tarif-desc">Naturel ou contraste</div></div>
         <div class="tarif-price">70€</div>
       </div>
       <div class="tarif-card fade-in">
@@ -657,171 +694,174 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="tarif-price">20€</div>
       </div>
       <div class="tarif-card fade-in">
-        <div><div class="tarif-name">Soin kératine</div><div class="tarif-desc">Réparation & brillance</div></div>
+        <div><div class="tarif-name">Soin keratine</div><div class="tarif-desc">Reparation & brillance</div></div>
         <div class="tarif-price">40€</div>
       </div>
     </div>
   </section>
 
-  <div class="sep"></div>
-
-  <!-- ============================================ -->
-  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
-  <!-- Rue des Martyrs, Paris 9e                     -->
-  <!-- ============================================ -->
+  <!-- LOCALISATION -->
   <section class="localisation" id="localisation">
-    <div class="localisation-header fade-in">
-      <div class="section-label">Nous trouver</div>
+    <div style="text-align:center;" class="fade-in">
+      <span class="section-kicker">Nous trouver</span>
       <h2 class="section-title">Localisation</h2>
     </div>
-    <div class="localisation-grid fade-in">
-      <div class="localisation-map">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.3360%2C48.8760%2C2.3430%2C48.8800&amp;layer=mapnik&amp;marker=48.8780%2C2.3395" loading="lazy" title="Carte Élégance Coiffure"></iframe>
+    <div class="localisation-grid">
+      <div class="localisation-info fade-in">
+        <div class="contact-item">
+          <span class="contact-icon">◉</span>
+          <div><div class="contact-label">Adresse</div><div class="contact-value">12 Rue des Martyrs<br>75009 Paris</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">✆</span>
+          <div><div class="contact-label">Telephone</div><div class="contact-value"><a href="tel:0148000000">01 48 00 00 00</a></div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">◷</span>
+          <div><div class="contact-label">Metro</div><div class="contact-value">Notre-Dame-de-Lorette (ligne 12)</div></div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=12+Rue+des+Martyrs+75009+Paris" target="_blank" rel="noopener" class="btn-rose" style="align-self:flex-start;margin-top:12px;">Itineraire</a>
       </div>
-      <div class="localisation-info">
-        <p class="localisation-address">
-          <strong>Élégance Coiffure</strong><br>
-          12 Rue des Martyrs<br>
-          75009 Paris<br><br>
-          <strong>Téléphone</strong><br>
-          01 48 00 00 00<br><br>
-          <strong>Métro</strong><br>
-          Notre-Dame-de-Lorette (ligne 12)
-        </p>
+      <div class="localisation-map fade-in">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.3360%2C48.8760%2C2.3430%2C48.8800&amp;layer=mapnik&amp;marker=48.8780%2C2.3395" loading="lazy" title="Carte Elegance Coiffure"></iframe>
       </div>
     </div>
   </section>
 
-  <div class="sep"></div>
-
-  <!-- ============================================ -->
-  <!-- AVIS CLIENTS : Note 4.8/5 + 3 cartes avis    -->
-  <!-- Avis illustratifs (personnalisables)           -->
-  <!-- ============================================ -->
+  <!-- AVIS -->
   <section class="avis" id="avis">
     <div class="avis-inner">
-      <div class="avis-header fade-in">
-        <div class="section-label">Témoignages</div>
-        <h2 class="section-title">Avis clients</h2>
-        <div class="avis-stars">★★★★★</div>
-        <div class="avis-score">4.8<span>/5</span></div>
-        <div class="avis-count">Basé sur 63 avis</div>
+      <div class="avis-top fade-in">
+        <div>
+          <span class="section-kicker">Temoignages</span>
+          <h2 class="section-title">Avis clients</h2>
+        </div>
+        <div class="avis-score-wrap">
+          <span class="avis-score-num">4,8</span>
+          <div>
+            <div class="avis-score-stars">★★★★★</div>
+            <div class="avis-score-count">63 avis · Google</div>
+          </div>
+        </div>
       </div>
       <div class="avis-grid">
         <div class="avis-card fade-in">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Charlotte</span>
-            <span class="avis-card-stars">★★★★★</span>
-          </div>
-          <p class="avis-card-text">Un vrai moment de détente. Ma coloriste a parfaitement compris ce que je voulais, le résultat est naturel et lumineux. Le salon est magnifique en plus.</p>
+          <div class="avis-author"><span class="avis-avatar">C</span><div><div class="avis-name">Charlotte</div><div class="avis-meta">Local Guide · 12 avis</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★★</span><span class="avis-when">il y a 2 semaines</span></div>
+          <p class="avis-text">Un vrai moment de detente. Ma coloriste a parfaitement compris ce que je voulais, le resultat est naturel et lumineux. Le salon est magnifique en plus.</p>
         </div>
         <div class="avis-card fade-in">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Sophie</span>
-            <span class="avis-card-stars">★★★★★</span>
-          </div>
-          <p class="avis-card-text">Meilleure coupe que j'ai eue depuis longtemps. L'équipe prend le temps d'écouter et de conseiller. Je ne change plus de salon !</p>
+          <div class="avis-author"><span class="avis-avatar">S</span><div><div class="avis-name">Sophie</div><div class="avis-meta">8 avis · 3 photos</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★★</span><span class="avis-when">il y a 1 mois</span></div>
+          <p class="avis-text">Meilleure coupe que j'ai eue depuis longtemps. L'equipe prend le temps d'ecouter et de conseiller. Je ne change plus de salon !</p>
         </div>
         <div class="avis-card fade-in">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Julien</span>
-            <span class="avis-card-stars">★★★★☆</span>
-          </div>
-          <p class="avis-card-text">Très bon service, ambiance calme et soignée. La coupe homme est précise et le brushing impeccable. Seul bémol : pas toujours facile d'avoir un créneau.</p>
+          <div class="avis-author"><span class="avis-avatar">J</span><div><div class="avis-name">Julien</div><div class="avis-meta">3 avis</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★☆</span><span class="avis-when">il y a 2 mois</span></div>
+          <p class="avis-text">Tres bon service, ambiance calme et soignee. La coupe homme est precise et le brushing impeccable. Seul bemol : pas toujours facile d'avoir un creneau.</p>
         </div>
       </div>
-      <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
+      <p class="avis-disclaimer">Avis a titre illustratif — section personnalisable</p>
     </div>
   </section>
 
-  <div class="sep"></div>
-
-  <!-- ============================================ -->
-  <!-- FAQ : 6 questions fréquentes avec accordéon   -->
-  <!-- Animation via grid-template-rows en CSS       -->
-  <!-- Un seul item ouvert à la fois                 -->
-  <!-- ============================================ -->
+  <!-- FAQ -->
   <section class="faq" id="faq">
-    <div class="faq-inner">
-      <div class="faq-header fade-in">
-        <div class="section-label">FAQ</div>
-        <h2 class="section-title">Questions fréquentes</h2>
+    <div style="text-align:center;" class="fade-in">
+      <span class="section-kicker">FAQ</span>
+      <h2 class="section-title">Questions frequentes</h2>
+    </div>
+    <div class="faq-list fade-in">
+      <div class="faq-item">
+        <button class="faq-question">Puis-je reserver en ligne ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, utilisez le bouton "Reserver" en haut de page pour choisir votre creneau directement en ligne.</p></div></div>
       </div>
-      <div class="faq-list fade-in">
-        <div class="faq-item">
-          <button class="faq-question">Puis-je réserver en ligne ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, utilisez le bouton "Réserver" en haut de page pour choisir votre créneau directement en ligne.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Combien de temps dure une prestation ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Une coupe femme dure environ 45 minutes à 1h. Une coloration complète peut prendre 2h selon la technique choisie.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Faut-il venir avec les cheveux lavés ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Non, nous nous occupons de tout — shampoing et soin inclus dans chaque prestation.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Quels produits utilisez-vous ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Nous travaillons exclusivement avec des produits professionnels haut de gamme, respectueux de la fibre capillaire.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Proposez-vous des forfaits ou abonnements ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, nous proposons des forfaits fidélité. Renseignez-vous directement au salon ou via le formulaire de contact.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Quelle est votre politique d'annulation ?<span class="faq-icon"></span></button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Nous vous demandons de prévenir au moins 24h à l'avance en cas d'annulation, afin de proposer le créneau à d'autres clients.</p></div></div>
-        </div>
+      <div class="faq-item">
+        <button class="faq-question">Combien de temps dure une prestation ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Une coupe femme dure environ 45 minutes a 1h. Une coloration complete peut prendre 2h selon la technique choisie.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Faut-il venir avec les cheveux laves ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Non, le shampoing et le soin sont inclus dans chaque prestation.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Quels produits utilisez-vous ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Nous travaillons exclusivement avec des produits professionnels haut de gamme, respectueux de la fibre capillaire.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Proposez-vous des forfaits ou abonnements ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Oui, nous proposons des forfaits fidelite. Renseignez-vous directement au salon ou via le formulaire de contact.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Quelle est votre politique d'annulation ?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Nous vous demandons de prevenir au moins 24h a l'avance en cas d'annulation, afin de proposer le creneau a d'autres clients.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- FOOTER : Logo, liens, crédit Soul Web Studio  -->
-  <!-- ============================================ -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand">Élégance Coiffure</div>
-      <ul class="footer-links">
-        <li><a href="#prestations">Prestations</a></li>
-        <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="mentions-legales.html">Mentions légales</a></li>
-      </ul>
-      <div class="footer-copy">&copy; 2026 Élégance Coiffure · Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Soul Web Studio</a></div>
+      <a href="#top" class="nav-logo">
+        <span class="nav-logo-icon">E</span>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:5px;color:#f2ede6;text-transform:uppercase">Elegance</div>
+          <div style="font-size:9px;letter-spacing:3px;color:#9a908a;text-transform:uppercase;margin-top:3px">Coiffure · Paris</div>
+        </div>
+      </a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <a href="#prestations">Prestations</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#avis">Avis</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <span style="color:#9a908a;font-size:13px">12 Rue des Martyrs</span>
+          <span style="color:#9a908a;font-size:13px">75009 Paris</span>
+          <a href="tel:0148000000" style="color:#c4927a;font-size:13px">01 48 00 00 00</a>
+          <a href="mentions-legales.html" style="color:#9a908a;font-size:13px">Mentions legales</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Elegance Coiffure · Tous droits reserves</span>
+      <span class="footer-copy">Salon de coiffure · Paris · Site cree par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Soul Web Studio</a></span>
     </div>
   </footer>
 
   <script>
-    // ============================================
-    // NAV SCROLL : Ajoute la classe 'scrolled'
-    // quand on dépasse 50px (change le fond + couleurs)
-    // ============================================
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // ============================================
-    // FADE-IN : IntersectionObserver pour les
-    // animations d'apparition au scroll
-    // ============================================
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    // Fade in
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // Burger menu
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+    var overlay = document.getElementById('navOverlay');
+    function toggleMenu() {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    burger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
 
-    // ============================================
-    // FAQ ACCORDÉON : Un seul item ouvert à la fois
-    // Toggle la classe 'active' sur le .faq-item
-    // ============================================
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const wasActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.parentElement;
+        var wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(function(i) { i.classList.remove('active'); });
         if (!wasActive) item.classList.add('active');
       });
     });

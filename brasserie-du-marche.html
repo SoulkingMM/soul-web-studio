@@ -16,18 +16,11 @@
     gtag('js', new Date());
     gtag('config', 'G-K5ZGMSM10H');
   </script>
-  <!-- ============================================ -->
-  <!-- HEAD : Métadonnées, SEO, polices             -->
-  <!-- noindex/nofollow : page démo, pas indexée    -->
-  <!-- Polices : Playfair Display (titres vintage)   -->
-  <!--         + Caveat (cursive manuscrite)          -->
-  <!--         + Lora (corps de texte serif)          -->
-  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brasserie du Marché — Restaurant traditionnel français</title>
+  <title>Brasserie du March&eacute; &mdash; Restaurant traditionnel fran&ccedil;ais</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <meta name="description" content="Brasserie du Marché, restaurant traditionnel français à Versailles. Cuisine maison, produits frais du marché. Réservez votre table.">
+  <meta name="description" content="Brasserie du March&eacute;, restaurant traditionnel fran&ccedil;ais &agrave; Versailles. Cuisine maison, produits frais du march&eacute;. R&eacute;servez votre table.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://soulwebstudio.fr/brasserie-du-marche.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,336 +28,440 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --paper: #f4ede4;
-      --paper-dark: #e8ddd0;
-      --paper-stain: #ddd0be;
-      --ink: #2c2416;
-      --ink-light: #5a4d3c;
-      --red: #8b2500;
-      --red-dark: #6b1c00;
-      --blue: #1e3a5f;
-      --cream: #faf6f0;
-      --gold: #b8860b;
-      --white: #fffdf8;
-    }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--paper); }
-    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--red-dark); }
-
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Lora', Georgia, serif; color: var(--ink);
-      background: var(--paper);
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,165,140,0.08) 28px, rgba(180,165,140,0.08) 29px),
-        radial-gradient(ellipse at 20% 50%, rgba(200,185,155,0.15) 0%, transparent 70%),
-        radial-gradient(ellipse at 80% 30%, rgba(180,160,130,0.1) 0%, transparent 60%);
-      line-height: 1.7; -webkit-font-smoothing: antialiased;
+      font-family: 'Lora', Georgia, serif;
+      color: #f2ede6;
+      background: #0e0b08;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+    ::selection { background: #7a1b2e; color: #fff; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
 
-    /* DECORATIVE BORDER */
-    .page-border {
-      position: fixed; inset: 8px; border: 1px solid var(--paper-stain);
-      pointer-events: none; z-index: 0; opacity: 0.4;
-    }
-    .page-border::before, .page-border::after {
-      content: ''; position: absolute; width: 12px; height: 12px;
-      border: 2px solid var(--red);
-    }
-    .page-border::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-    .page-border::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0e0b08; }
+    ::-webkit-scrollbar-thumb { background: #7a1b2e; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9b2840; }
+
+    /* KEYFRAMES */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+    @keyframes stampIn { from { opacity: 0; transform: rotate(-6deg) scale(0.7); } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
 
     /* NAV */
     .nav {
-      position: relative; z-index: 10;
-      text-align: center; padding: 2rem 1.5rem 0;
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 4px;
+      padding: 18px 44px 14px;
+      background: rgba(14,11,8,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(122,27,46,.2);
     }
     .nav-top-line {
-      font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--ink-light); margin-bottom: 0.5rem; font-family: 'Lora', serif;
+      font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase;
+      color: #7a7068; font-family: 'Lora', serif;
     }
     .nav-logo {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 4vw, 1.8rem);
-      font-weight: 900; color: var(--red); text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 4vw, 1.7rem);
+      font-weight: 900; color: #f2ede6;
       letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color .25s;
     }
+    .nav-logo:hover { color: #d4a574; }
     .nav-separator {
-      display: flex; align-items: center; justify-content: center; gap: 1rem;
-      margin-top: 0.75rem;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
     }
     .nav-separator::before, .nav-separator::after {
-      content: ''; flex: 1; max-width: 120px; height: 1px; background: var(--paper-stain);
+      content: ''; width: 44px; height: 1px; background: rgba(122,27,46,.4);
     }
     .nav-separator span {
-      font-family: 'Caveat', cursive; font-size: 0.9rem; color: var(--ink-light);
-      font-style: italic;
+      font-family: 'Caveat', cursive; font-size: 14px; color: #d4a574;
+      letter-spacing: 2px;
     }
 
-    /* HERO — vintage poster */
+    /* HERO */
     .hero {
-      text-align: center; padding: 4rem 2rem 3rem; position: relative;
+      position: relative; text-align: center;
+      padding: 100px 2rem 80px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(122,27,46,.15);
+    }
+    .hero-glow1 {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 70vw; height: 70vw; max-width: 800px; max-height: 800px;
+      background: radial-gradient(circle, rgba(122,27,46,.18) 0%, transparent 55%);
+      pointer-events: none; animation: shimmer 7s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -30%; right: -10%;
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(212,165,116,.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 700px; margin: 0 auto;
+      animation: fadeUp .9s ease both;
     }
     .hero-stamp {
-      display: inline-block; padding: 0.5rem 1.5rem;
-      border: 3px double var(--red); color: var(--red);
-      font-family: 'Playfair Display', serif; font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      transform: rotate(-2deg); margin-bottom: 2rem;
+      display: inline-block; padding: 8px 24px;
+      border: 2px solid #7a1b2e; color: #d4a574;
+      font-family: 'Playfair Display', serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      transform: rotate(-2deg); margin-bottom: 32px;
+      animation: stampIn .6s .3s ease both;
+      box-shadow: 0 0 20px rgba(122,27,46,.2);
     }
     .hero h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem);
-      font-weight: 900; color: var(--ink); line-height: 0.9;
-      text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 11vw, 120px);
+      font-weight: 900; color: #f6f1ea; line-height: .88;
+      text-transform: uppercase; letter-spacing: -1px;
+      margin-bottom: 8px;
     }
     .hero h1 .script {
-      display: block; font-family: 'Caveat', cursive; font-size: 0.4em;
-      color: var(--red); text-transform: none; font-weight: 400;
-      letter-spacing: 0; transform: rotate(-1deg); margin-top: 0.3em;
+      display: block; font-family: 'Caveat', cursive;
+      font-size: .38em; color: #d4a574;
+      text-transform: none; font-weight: 400;
+      letter-spacing: 0; transform: rotate(-1deg);
+      margin-top: 10px;
     }
     .hero-tagline {
-      font-family: 'Caveat', cursive; font-size: clamp(1.2rem, 3vw, 1.6rem);
-      color: var(--ink-light); margin: 1.5rem auto 2rem; max-width: 450px;
+      font-family: 'Caveat', cursive;
+      font-size: clamp(18px, 3vw, 24px);
+      color: #9a9088; margin: 28px auto 36px;
+      max-width: 460px; line-height: 1.5;
     }
     .hero-ornament {
-      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
-      color: var(--paper-stain); font-size: 1.2rem; margin-bottom: 2.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 18px;
+      color: rgba(122,27,46,.5); font-size: 18px; margin-bottom: 40px;
     }
     .hero-ornament::before, .hero-ornament::after {
-      content: ''; width: 60px; height: 1px; background: var(--paper-stain);
+      content: ''; width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(122,27,46,.4), transparent);
     }
-    .btn-vintage {
-      display: inline-block; padding: 0.8rem 2.5rem;
-      background: var(--red); color: var(--cream);
-      text-decoration: none; font-family: 'Playfair Display', serif;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; border-radius: 0;
-      border: none; transition: all 0.3s;
-      box-shadow: 3px 3px 0 var(--red-dark);
+    .btn-primary {
+      display: inline-block; padding: 16px 40px;
+      background: #7a1b2e; color: #f2ede6;
+      font-family: 'Lora', serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; border-radius: 999px;
+      border: none; transition: all .3s cubic-bezier(.22,.78,.22,1);
+      box-shadow: 0 8px 28px rgba(122,27,46,.35);
     }
-    .btn-vintage:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red-dark); }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(122,27,46,.45);
+      background: #8f2236;
+    }
+    .btn-ghost {
+      display: inline-block; padding: 16px 40px;
+      border: 1px solid rgba(242,237,230,.2); color: #f2ede6;
+      font-family: 'Lora', serif;
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      border-radius: 999px; transition: all .25s;
+    }
+    .btn-ghost:hover { border-color: #d4a574; color: #d4a574; }
 
-    /* SECTION COMMON */
-    .section { padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto; }
-    .section-ornament {
-      text-align: center; margin-bottom: 2.5rem;
+    /* SECTIONS */
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 112px 24px;
     }
-    .section-ornament .label {
-      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 0.5rem; display: block;
+    @media (min-width: 768px) { .section { padding: 112px 56px; } }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-kicker {
+      font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
+      color: #d4a574; margin-bottom: 10px; display: block;
     }
-    .section-ornament h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.25rem);
-      font-weight: 900; color: var(--ink); text-transform: uppercase;
-      letter-spacing: 0.05em; margin-bottom: 0.25rem;
+    .section-title {
+      font-family: 'Playfair Display', serif; font-weight: 900;
+      font-size: clamp(36px, 5vw, 58px); color: #f6f1ea;
+      text-transform: uppercase; letter-spacing: 0.02em;
+      margin-bottom: 6px;
     }
-    .section-ornament .subtitle {
-      font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--ink-light);
+    .section-subtitle {
+      font-family: 'Caveat', cursive; font-size: 18px; color: #7a7068;
     }
-    .section-ornament .line {
-      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-      margin-top: 0.75rem;
+    .section-line {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-top: 14px;
     }
-    .section-ornament .line::before, .section-ornament .line::after {
-      content: ''; width: 40px; height: 1px; background: var(--red);
+    .section-line::before, .section-line::after {
+      content: ''; width: 40px; height: 1px; background: rgba(122,27,46,.4);
     }
-    .section-ornament .line span { color: var(--red); font-size: 0.8rem; }
+    .section-line span { color: #7a1b2e; font-size: 12px; }
 
-    /* CARTE — vintage menu */
-    .carte-category { margin-bottom: 2.5rem; }
+    /* CARTE */
+    .carte {
+      background: #121009;
+      border-top: 1px solid rgba(122,27,46,.12);
+      border-bottom: 1px solid rgba(122,27,46,.12);
+      padding: 112px 24px;
+    }
+    @media (min-width: 768px) { .carte { padding: 112px 56px; } }
+    .carte-inner { max-width: 820px; margin: 0 auto; }
+    .carte-category { margin-bottom: 48px; }
     .carte-cat-title {
-      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
-      color: var(--red); text-transform: uppercase; letter-spacing: 0.1em;
-      text-align: center; margin-bottom: 1rem; position: relative;
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      color: #d4a574; text-transform: uppercase; letter-spacing: 3px;
+      text-align: center; margin-bottom: 20px; position: relative;
+      padding-bottom: 14px;
     }
     .carte-cat-title::after {
-      content: ''; display: block; width: 30px; height: 2px;
-      background: var(--red); margin: 0.5rem auto 0;
+      content: ''; display: block; position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 1px; background: rgba(122,27,46,.5);
     }
     .carte-item {
-      display: flex; align-items: baseline; gap: 0.5rem;
-      padding: 0.5rem 0; font-size: 0.95rem;
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 10px 0; font-size: 15px;
     }
-    .carte-dish { font-weight: 600; color: var(--ink); }
+    .carte-dish { font-weight: 600; color: #e0d8cf; }
     .carte-dots {
-      flex: 1; border-bottom: 1px dotted var(--paper-stain);
-      min-width: 20px; margin-bottom: 0.3em;
+      flex: 1; border-bottom: 1px dotted rgba(212,165,116,.22);
+      min-width: 20px; transform: translateY(-3px);
     }
     .carte-price {
       font-family: 'Playfair Display', serif; font-weight: 700;
-      color: var(--red); white-space: nowrap;
+      color: #d4a574; white-space: nowrap; font-size: 17px;
     }
     .carte-desc {
-      font-family: 'Caveat', cursive; font-size: 0.9rem;
-      color: var(--ink-light); padding-left: 1rem; margin-top: -0.2rem; margin-bottom: 0.3rem;
+      font-family: 'Caveat', cursive; font-size: 15px;
+      color: #7a7068; padding-left: 1rem; margin-top: -4px; margin-bottom: 4px;
     }
 
-    /* AMBIANCE — postcard block */
+    /* AMBIANCE */
     .ambiance {
-      background: var(--white); border: 1px solid var(--paper-stain);
-      padding: 3rem 2rem; margin: 2rem 1.5rem; max-width: 800px;
-      margin-left: auto; margin-right: auto; text-align: center;
+      max-width: 820px; margin: 0 auto;
+      padding: 112px 24px;
+    }
+    @media (min-width: 768px) { .ambiance { padding: 112px 56px; } }
+    .ambiance-card {
+      background: #161210;
+      border: 1px solid rgba(122,27,46,.18);
+      border-radius: 12px;
+      padding: 56px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ambiance-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122,27,46,.08), transparent 60%);
+      pointer-events: none;
+    }
+    .ambiance-card h3 {
+      font-family: 'Caveat', cursive; font-size: clamp(28px, 4vw, 36px);
+      color: #d4a574; margin-bottom: 16px;
       position: relative;
     }
-    .ambiance::before {
-      content: ''; position: absolute; inset: 6px;
-      border: 1px solid var(--paper-stain);
-    }
-    .ambiance h3 {
-      font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--red);
-      margin-bottom: 1rem;
-    }
-    .ambiance p {
-      font-size: 0.95rem; color: var(--ink-light); line-height: 1.9;
-      max-width: 500px; margin: 0 auto 1.5rem; font-style: italic;
+    .ambiance-card p {
+      font-size: 16px; color: #9a9088; line-height: 1.9;
+      max-width: 500px; margin: 0 auto 28px;
+      font-style: italic; font-weight: 300;
+      position: relative;
     }
     .ambiance-tags {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      position: relative;
     }
     .ambiance-tag {
-      padding: 0.3rem 1rem; border: 1px solid var(--red);
-      color: var(--red); font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      font-family: 'Playfair Display', serif;
+      padding: 8px 20px; border: 1px solid rgba(122,27,46,.4);
+      color: #d4a574; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      font-family: 'Lora', serif;
+      border-radius: 999px;
+      transition: all .25s;
+    }
+    .ambiance-tag:hover {
+      border-color: #7a1b2e; background: rgba(122,27,46,.12);
     }
 
     /* HOURS */
-    .hours-grid { max-width: 450px; margin: 0 auto; }
+    .hours-grid { max-width: 500px; margin: 0 auto; }
     .hour-row {
       display: flex; justify-content: space-between; align-items: baseline;
-      padding: 0.6rem 0; border-bottom: 1px dotted var(--paper-stain);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(212,165,116,.1);
     }
     .hour-row:last-child { border-bottom: none; }
-    .hour-day { font-weight: 600; color: var(--ink); font-size: 0.95rem; }
-    .hour-time { color: var(--ink-light); font-size: 0.9rem; }
-    .hour-closed { font-family: 'Caveat', cursive; color: var(--paper-stain); font-size: 1rem; }
+    .hour-day { font-weight: 600; color: #e0d8cf; font-size: 15px; }
+    .hour-time { color: #9a9088; font-size: 14px; letter-spacing: .5px; }
+    .hour-closed {
+      font-family: 'Caveat', cursive; color: #5a4d3c; font-size: 17px;
+    }
 
     /* CTA */
     .cta-section {
-      text-align: center; padding: 4rem 2rem;
-      background: var(--red); margin: 3rem 1.5rem;
-      max-width: 800px; margin-left: auto; margin-right: auto;
-      position: relative;
+      position: relative; text-align: center;
+      padding: 100px 24px;
+      background: linear-gradient(160deg, #1a0c10 0%, #0e0b08 100%);
+      border-top: 1px solid rgba(122,27,46,.12);
+      border-bottom: 1px solid rgba(122,27,46,.12);
     }
-    .cta-section::before {
-      content: ''; position: absolute; inset: 6px; border: 1px solid rgba(250,246,240,0.2);
+    @media (min-width: 768px) { .cta-section { padding: 100px 56px; } }
+    .cta-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122,27,46,.25), transparent 55%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      position: relative; max-width: 600px; margin: 0 auto;
     }
     .cta-section h2 {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2rem);
-      color: var(--cream); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      color: #f6f1ea; text-transform: uppercase;
+      letter-spacing: 0.02em; margin-bottom: 10px;
     }
     .cta-section p {
-      font-family: 'Caveat', cursive; font-size: 1.2rem; color: rgba(250,246,240,0.7);
-      margin-bottom: 2rem;
+      font-family: 'Caveat', cursive; font-size: 20px;
+      color: #9a9088; margin-bottom: 36px;
     }
-    .btn-vintage-light {
-      display: inline-block; padding: 0.8rem 2.5rem;
-      background: var(--cream); color: var(--red);
-      text-decoration: none; font-family: 'Playfair Display', serif;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
-      text-transform: uppercase; transition: all 0.3s;
-      box-shadow: 3px 3px 0 var(--red-dark);
-    }
-    .btn-vintage-light:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red-dark); }
 
     /* LOCALISATION */
-    .localisation {
-      padding: 4rem 1.5rem; max-width: 800px; margin: 0 auto;
-    }
+    .localisation { max-width: 1280px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .localisation { padding: 112px 56px; } }
     .localisation-grid {
-      display: grid; grid-template-columns: 1fr; gap: 2rem;
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: stretch;
+    }
+    @media (min-width: 960px) {
+      .localisation-grid { grid-template-columns: 1.15fr .85fr; gap: 56px; }
     }
     .localisation-map {
-      border: 1px solid var(--paper-stain);
-      overflow: hidden;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(122,27,46,.18);
+      min-height: 320px;
     }
     .localisation-map iframe {
-      width: 100%; height: 300px; border: none;
+      width: 100%; height: 100%; min-height: 320px; border: none;
+      filter: grayscale(.3) contrast(1.05) brightness(.85);
     }
     .localisation-info {
-      display: flex; flex-direction: column; justify-content: center;
+      display: flex; flex-direction: column; justify-content: center; gap: 24px;
     }
-    .localisation-address {
-      font-size: 0.95rem; color: var(--ink-light); line-height: 1.9;
+    .localisation-item { display: flex; gap: 16px; align-items: flex-start; }
+    .localisation-icon { color: #d4a574; font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .localisation-label {
+      font-size: 10px; letter-spacing: 2.5px; color: #7a7068;
+      text-transform: uppercase; margin-bottom: 4px;
     }
-    .localisation-address strong {
-      color: var(--ink); font-weight: 600;
-    }
-    @media (min-width: 768px) {
-      .localisation-grid { grid-template-columns: 1.2fr 0.8fr; }
-      .localisation-map iframe { height: 100%; min-height: 280px; }
-    }
+    .localisation-value { color: #e0d8cf; font-size: 15px; line-height: 1.6; }
+    .localisation-value a { color: #d4a574; transition: color .2s; }
+    .localisation-value a:hover { color: #e8bf8a; }
 
     /* AVIS */
     .avis {
-      background: var(--white); border: 1px solid var(--paper-stain);
-      padding: 3rem 2rem; margin: 2rem 1.5rem;
-      max-width: 800px; margin-left: auto; margin-right: auto;
-      position: relative;
+      background: #121009;
+      border-top: 1px solid rgba(122,27,46,.12);
+      border-bottom: 1px solid rgba(122,27,46,.12);
+      padding: 112px 24px;
     }
-    .avis::before {
-      content: ''; position: absolute; inset: 6px;
-      border: 1px solid var(--paper-stain);
+    @media (min-width: 768px) { .avis { padding: 112px 56px; } }
+    .avis-inner { max-width: 1240px; margin: 0 auto; }
+    .avis-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 30px; flex-wrap: wrap; margin-bottom: 54px;
     }
-    .avis-header {
-      text-align: center; margin-bottom: 2.5rem; position: relative;
+    .avis-score-block { display: flex; align-items: center; gap: 18px; }
+    .avis-score-num {
+      font-family: 'Playfair Display', serif; font-size: 64px;
+      color: #d4a574; font-weight: 900; line-height: 1;
     }
-    .avis-score {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 900; color: var(--ink);
-      line-height: 1;
-    }
-    .avis-score span { font-size: 1.1rem; color: var(--ink-light); font-weight: 400; }
-    .avis-stars { color: var(--gold); font-size: 1.2rem; margin: 0.5rem 0 0.25rem; }
-    .avis-count {
-      font-family: 'Caveat', cursive;
-      font-size: 0.95rem; color: var(--ink-light);
+    .avis-score-stars { color: #d4a574; font-size: 18px; letter-spacing: 3px; }
+    .avis-score-count {
+      font-size: 11px; letter-spacing: 1.5px; color: #7a7068;
+      text-transform: uppercase; margin-top: 4px;
     }
     .avis-grid {
-      display: grid; grid-template-columns: 1fr; gap: 1.25rem;
-      position: relative;
+      display: grid; grid-template-columns: 1fr; gap: 22px;
     }
+    @media (min-width: 768px) { .avis-grid { grid-template-columns: repeat(3, 1fr); } }
     .avis-card {
-      border-bottom: 1px dotted var(--paper-stain);
-      padding-bottom: 1.25rem;
+      background: #1c1714; border: 1px solid rgba(122,27,46,.14);
+      border-radius: 10px; padding: 30px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform .4s cubic-bezier(.22,.78,.22,1);
     }
-    .avis-card:last-child { border-bottom: none; padding-bottom: 0; }
-    .avis-card-top {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 0.5rem;
+    .avis-card:hover { transform: translateY(-6px); }
+    .avis-author { display: flex; align-items: center; gap: 14px; }
+    .avis-avatar {
+      display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #7a1b2e; color: #fff;
+      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900;
+      flex-shrink: 0;
     }
-    .avis-card-name {
-      font-weight: 600; color: var(--ink); font-size: 0.95rem;
-    }
-    .avis-card-stars { color: var(--gold); font-size: 0.85rem; }
-    .avis-card-text {
-      font-size: 0.9rem; color: var(--ink-light); line-height: 1.7;
-      font-style: italic;
+    .avis-name { color: #f2ede6; font-size: 15px; font-weight: 600; }
+    .avis-meta { color: #7a7068; font-size: 11.5px; letter-spacing: .5px; }
+    .avis-rating { display: flex; align-items: center; gap: 10px; }
+    .avis-stars { color: #d4a574; font-size: 13px; letter-spacing: 2px; }
+    .avis-text {
+      color: #bcb3a8; font-size: 14.5px; line-height: 1.78;
+      font-weight: 400; font-style: italic;
     }
     .avis-disclaimer {
-      text-align: center; margin-top: 1.5rem;
-      font-size: 0.65rem; color: var(--paper-stain);
-      font-family: 'Lora', serif; position: relative;
+      text-align: center; margin-top: 28px;
+      font-size: 11px; color: #3d362f; letter-spacing: 1px;
     }
 
     /* FOOTER */
     .footer {
-      text-align: center; padding: 3rem 1.5rem 2rem;
-      border-top: 2px double var(--paper-stain);
-      max-width: 800px; margin: 0 auto;
+      background: #080706;
+      border-top: 1px solid rgba(122,27,46,.15);
+      padding: 56px 24px 36px;
     }
+    @media (min-width: 768px) { .footer { padding: 56px 56px 36px; } }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 6px; }
     .footer-logo {
-      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900;
-      color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900;
+      color: #f2ede6; text-transform: uppercase; letter-spacing: 3px;
     }
     .footer-addr {
-      font-family: 'Caveat', cursive; font-size: 1rem; color: var(--ink-light);
+      font-family: 'Caveat', cursive; font-size: 15px; color: #7a7068;
       line-height: 1.6;
     }
-    .footer-copy {
-      font-size: 0.7rem; color: var(--paper-stain); margin-top: 2rem;
-      font-family: 'Lora', serif;
+    .footer-cols { display: flex; gap: 52px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col span { color: #7a7068; font-size: 13px; }
+    .footer-col a { color: #d4a574; font-size: 13px; transition: color .2s; }
+    .footer-col a:hover { color: #e8bf8a; }
+    .footer-bottom {
+      max-width: 1240px; margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.05);
+      display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { color: #3d362f; font-size: 11.5px; }
+    .footer-copy a { color: #7a1b2e; transition: color .2s; }
+    .footer-copy a:hover { color: #d4a574; }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .8s cubic-bezier(.22,.78,.22,1), transform .8s cubic-bezier(.22,.78,.22,1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 767px) {
+      .nav { padding: 14px 20px 10px; }
+      .hero { padding: 80px 1.5rem 60px; }
+      .ambiance-card { padding: 40px 24px; }
+      .avis-top { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -374,250 +471,259 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ============================================ -->
-  <!-- BORDURE DÉCORATIVE : Cadre fixe avec coins    -->
-  <!-- rouges style affiche vintage                   -->
-  <!-- ============================================ -->
-  <div class="page-border"></div>
-
-  <!-- ============================================ -->
-  <!-- NAV : Sous-titre + logo rouge + séparateur    -->
-  <!-- Style menu de restaurant traditionnel          -->
-  <!-- ============================================ -->
+  <!-- NAV -->
   <nav class="nav">
-    <div class="nav-top-line">Restaurant — Cuisine traditionnelle française</div>
-    <a href="#" class="nav-logo">Brasserie du Marché</a>
+    <div class="nav-top-line">Restaurant &mdash; Cuisine traditionnelle fran&ccedil;aise</div>
+    <a href="#" class="nav-logo">Brasserie du March&eacute;</a>
     <div class="nav-separator"><span>depuis 1952</span></div>
   </nav>
 
-  <!-- ============================================ -->
-  <!-- HERO : Titre vintage + tampon "Fait Maison"   -->
-  <!-- Ornement décoratif + bouton "Voir la carte"   -->
-  <!-- ============================================ -->
-  <section class="hero fade-in">
-    <div class="hero-stamp">Fait Maison</div>
-    <h1>
-      Brasserie
-      <span class="script">du Marché</span>
-    </h1>
-    <p class="hero-tagline">Cuisine traditionnelle française, produits frais du marché, recettes de grand-mère</p>
-    <div class="hero-ornament">❧</div>
-    <a href="#carte" class="btn-vintage">Voir la carte</a>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- CARTE : Menu du restaurant style vintage      -->
-  <!-- 3 catégories : Entrées, Plats, Desserts       -->
-  <!-- Lignes pointillées entre plat et prix          -->
-  <!-- ============================================ -->
-  <section class="section" id="carte">
-    <div class="section-ornament fade-in">
-      <span class="label">Notre carte</span>
-      <h2>À la carte</h2>
-      <div class="subtitle">les classiques de la maison</div>
-      <div class="line"><span>✦</span></div>
-    </div>
-
-    <div class="carte-category">
-      <h3 class="carte-cat-title">Entrées</h3>
-      <div class="carte-item">
-        <span class="carte-dish">Soupe à l'oignon gratinée</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">9 €</span>
-      </div>
-      <div class="carte-desc">Oignons caramélisés, croûtons, gruyère fondu</div>
-      <div class="carte-item">
-        <span class="carte-dish">Salade de chèvre chaud</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">11 €</span>
-      </div>
-      <div class="carte-desc">Mesclun, miel, noix de Grenoble</div>
-      <div class="carte-item">
-        <span class="carte-dish">Terrine du chef</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">10 €</span>
-      </div>
-      <div class="carte-desc">Terrine maison, cornichons, pain de campagne</div>
-    </div>
-
-    <div class="carte-category">
-      <h3 class="carte-cat-title">Plats</h3>
-      <div class="carte-item">
-        <span class="carte-dish">Entrecôte grillée</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">22 €</span>
-      </div>
-      <div class="carte-desc">Frites maison, sauce au poivre vert</div>
-      <div class="carte-item">
-        <span class="carte-dish">Confit de canard</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">19 €</span>
-      </div>
-      <div class="carte-desc">Pommes sarladaises, mesclun</div>
-      <div class="carte-item">
-        <span class="carte-dish">Filet de bar</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">21 €</span>
-      </div>
-      <div class="carte-desc">Légumes de saison, beurre blanc</div>
-    </div>
-
-    <div class="carte-category">
-      <h3 class="carte-cat-title">Desserts</h3>
-      <div class="carte-item">
-        <span class="carte-dish">Crème brûlée</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">8 €</span>
-      </div>
-      <div class="carte-desc">Vanille de Madagascar</div>
-      <div class="carte-item">
-        <span class="carte-dish">Tarte Tatin</span>
-        <span class="carte-dots"></span>
-        <span class="carte-price">9 €</span>
-      </div>
-      <div class="carte-desc">Pommes caramélisées, crème fraîche d'Isigny</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <div class="hero-stamp">Fait Maison</div>
+      <h1>
+        Brasserie
+        <span class="script">du March&eacute;</span>
+      </h1>
+      <p class="hero-tagline">Cuisine traditionnelle fran&ccedil;aise, produits frais du march&eacute;, recettes de grand-m&egrave;re</p>
+      <div class="hero-ornament">&#10087;</div>
+      <a href="#carte" class="btn-primary">Voir la carte</a>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- AMBIANCE : Bloc "carte postale" avec double   -->
-  <!-- bordure, description + tags (Terrasse, etc.)  -->
-  <!-- ============================================ -->
-  <div class="ambiance fade-in">
-    <h3>L'esprit brasserie</h3>
-    <p>Un lieu chaleureux où se mêlent tradition et convivialité. Terrasse ombragée en été, cheminée crépitante en hiver.</p>
-    <div class="ambiance-tags">
-      <span class="ambiance-tag">Terrasse</span>
-      <span class="ambiance-tag">Fait maison</span>
-      <span class="ambiance-tag">Produits frais</span>
-      <span class="ambiance-tag">Vins naturels</span>
-      <span class="ambiance-tag">Groupes</span>
+  <!-- CARTE -->
+  <section class="carte" id="carte">
+    <div class="carte-inner">
+      <div class="section-header fade-in">
+        <span class="section-kicker">Notre carte</span>
+        <h2 class="section-title">&Agrave; la carte</h2>
+        <div class="section-subtitle">les classiques de la maison</div>
+        <div class="section-line"><span>&#10022;</span></div>
+      </div>
+
+      <div class="carte-category fade-in">
+        <h3 class="carte-cat-title">Entr&eacute;es</h3>
+        <div class="carte-item">
+          <span class="carte-dish">Soupe &agrave; l'oignon gratin&eacute;e</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">9 &euro;</span>
+        </div>
+        <div class="carte-desc">Oignons caram&eacute;lis&eacute;s, cro&ucirc;tons, gruy&egrave;re fondu</div>
+        <div class="carte-item">
+          <span class="carte-dish">Salade de ch&egrave;vre chaud</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">11 &euro;</span>
+        </div>
+        <div class="carte-desc">Mesclun, miel, noix de Grenoble</div>
+        <div class="carte-item">
+          <span class="carte-dish">Terrine du chef</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">10 &euro;</span>
+        </div>
+        <div class="carte-desc">Terrine maison, cornichons, pain de campagne</div>
+      </div>
+
+      <div class="carte-category fade-in">
+        <h3 class="carte-cat-title">Plats</h3>
+        <div class="carte-item">
+          <span class="carte-dish">Entrec&ocirc;te grill&eacute;e</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">22 &euro;</span>
+        </div>
+        <div class="carte-desc">Frites maison, sauce au poivre vert</div>
+        <div class="carte-item">
+          <span class="carte-dish">Confit de canard</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">19 &euro;</span>
+        </div>
+        <div class="carte-desc">Pommes sarladaises, mesclun</div>
+        <div class="carte-item">
+          <span class="carte-dish">Filet de bar</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">21 &euro;</span>
+        </div>
+        <div class="carte-desc">L&eacute;gumes de saison, beurre blanc</div>
+      </div>
+
+      <div class="carte-category fade-in">
+        <h3 class="carte-cat-title">Desserts</h3>
+        <div class="carte-item">
+          <span class="carte-dish">Cr&egrave;me br&ucirc;l&eacute;e</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">8 &euro;</span>
+        </div>
+        <div class="carte-desc">Vanille de Madagascar</div>
+        <div class="carte-item">
+          <span class="carte-dish">Tarte Tatin</span>
+          <span class="carte-dots"></span>
+          <span class="carte-price">9 &euro;</span>
+        </div>
+        <div class="carte-desc">Pommes caram&eacute;lis&eacute;es, cr&egrave;me fra&icirc;che d'Isigny</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBIANCE -->
+  <div class="ambiance">
+    <div class="ambiance-card fade-in">
+      <h3>L'esprit brasserie</h3>
+      <p>On mange bien, on prend son temps. Terrasse l'&eacute;t&eacute;, chemin&eacute;e l'hiver.</p>
+      <div class="ambiance-tags">
+        <span class="ambiance-tag">Terrasse</span>
+        <span class="ambiance-tag">Fait maison</span>
+        <span class="ambiance-tag">Produits frais</span>
+        <span class="ambiance-tag">Vins naturels</span>
+        <span class="ambiance-tag">Groupes</span>
+      </div>
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- HORAIRES : Jours et heures d'ouverture        -->
-  <!-- Lundi fermé, service midi et soir              -->
-  <!-- ============================================ -->
+  <!-- HORAIRES -->
   <section class="section" id="horaires">
-    <div class="section-ornament fade-in">
-      <span class="label">Horaires</span>
-      <h2>Nous retrouver</h2>
-      <div class="subtitle">à table !</div>
-      <div class="line"><span>✦</span></div>
+    <div class="section-header fade-in">
+      <span class="section-kicker">Horaires</span>
+      <h2 class="section-title">Nous retrouver</h2>
+      <div class="section-subtitle">&agrave; table !</div>
+      <div class="section-line"><span>&#10022;</span></div>
     </div>
-    <div class="hours-grid">
-      <div class="hour-row"><span class="hour-day">Lundi</span><span class="hour-closed">Fermé</span></div>
-      <div class="hour-row"><span class="hour-day">Mardi – Vendredi</span><span class="hour-time">12h – 14h30 / 19h – 22h30</span></div>
-      <div class="hour-row"><span class="hour-day">Samedi</span><span class="hour-time">12h – 15h / 19h – 23h</span></div>
-      <div class="hour-row"><span class="hour-day">Dimanche</span><span class="hour-time">12h – 15h</span></div>
+    <div class="hours-grid fade-in">
+      <div class="hour-row"><span class="hour-day">Lundi</span><span class="hour-closed">Ferm&eacute;</span></div>
+      <div class="hour-row"><span class="hour-day">Mardi &ndash; Vendredi</span><span class="hour-time">12h &ndash; 14h30 / 19h &ndash; 22h30</span></div>
+      <div class="hour-row"><span class="hour-day">Samedi</span><span class="hour-time">12h &ndash; 15h / 19h &ndash; 23h</span></div>
+      <div class="hour-row"><span class="hour-day">Dimanche</span><span class="hour-time">12h &ndash; 15h</span></div>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- CTA RÉSERVATION : Bloc rouge avec bouton      -->
-  <!-- "Réserver" style vintage inversé               -->
-  <!-- ============================================ -->
-  <div class="cta-section fade-in">
-    <h2>Réservez votre table</h2>
-    <p>On vous garde la meilleure place !</p>
-    <a href="#" class="btn-vintage-light">Réserver</a>
-  </div>
+  <!-- CTA RESERVATION -->
+  <section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="cta-inner fade-in">
+      <span class="section-kicker">R&eacute;servation</span>
+      <h2>R&eacute;servez votre table</h2>
+      <p>On vous garde la meilleure place !</p>
+      <a href="#" class="btn-primary">R&eacute;server</a>
+    </div>
+  </section>
 
-  <!-- ============================================ -->
-  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
-  <!-- Place du Marché, Versailles                    -->
-  <!-- ============================================ -->
+  <!-- LOCALISATION -->
   <section class="localisation" id="localisation">
-    <div class="section-ornament fade-in">
-      <span class="label">Venir nous voir</span>
-      <h2>Localisation</h2>
-      <div class="subtitle">on vous attend !</div>
-      <div class="line"><span>✦</span></div>
+    <div class="section-header fade-in">
+      <span class="section-kicker">Venir nous voir</span>
+      <h2 class="section-title">Localisation</h2>
+      <div class="section-subtitle">on vous attend !</div>
+      <div class="section-line"><span>&#10022;</span></div>
     </div>
     <div class="localisation-grid fade-in">
       <div class="localisation-map">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.1260%2C48.8030%2C2.1340%2C48.8070&amp;layer=mapnik&amp;marker=48.8050%2C2.1300" loading="lazy" title="Carte Brasserie du Marché"></iframe>
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=2.1260%2C48.8030%2C2.1340%2C48.8070&amp;layer=mapnik&amp;marker=48.8050%2C2.1300" loading="lazy" title="Carte Brasserie du March&eacute;"></iframe>
       </div>
       <div class="localisation-info">
-        <p class="localisation-address">
-          <strong>Brasserie du Marché</strong><br>
-          3 Place du Marché<br>
-          78000 Versailles<br><br>
-          <strong>Téléphone</strong><br>
-          01 39 00 00 00<br><br>
-          <strong>Accès</strong><br>
-          RER C — Versailles Rive Gauche<br>
-          Parking Place du Marché
-        </p>
+        <div class="localisation-item">
+          <span class="localisation-icon">&#9673;</span>
+          <div>
+            <div class="localisation-label">Adresse</div>
+            <div class="localisation-value"><strong>Brasserie du March&eacute;</strong><br>3 Place du March&eacute;<br>78000 Versailles</div>
+          </div>
+        </div>
+        <div class="localisation-item">
+          <span class="localisation-icon">&#9742;</span>
+          <div>
+            <div class="localisation-label">T&eacute;l&eacute;phone</div>
+            <div class="localisation-value"><a href="tel:0139000000">01 39 00 00 00</a></div>
+          </div>
+        </div>
+        <div class="localisation-item">
+          <span class="localisation-icon">&#9719;</span>
+          <div>
+            <div class="localisation-label">Acc&egrave;s</div>
+            <div class="localisation-value">RER C &mdash; Versailles Rive Gauche<br>Parking Place du March&eacute;</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- AVIS CLIENTS : Note 4.7/5 + 3 avis           -->
-  <!-- Style carte postale avec double bordure       -->
-  <!-- Avis illustratifs (personnalisables)           -->
-  <!-- ============================================ -->
-  <div class="avis">
-    <div class="avis-header fade-in">
-      <h3 style="font-family:'Caveat',cursive; font-size:1.8rem; color:var(--red); margin-bottom:0.75rem;">Ce qu'on dit de nous</h3>
-      <div class="avis-stars">★★★★★</div>
-      <div class="avis-score">4.7<span>/5</span></div>
-      <div class="avis-count">Basé sur 89 avis</div>
+  <!-- AVIS -->
+  <section class="avis">
+    <div class="avis-inner">
+      <div class="avis-top fade-in">
+        <div>
+          <span class="section-kicker">T&eacute;moignages</span>
+          <h2 class="section-title">Ce qu'on dit de nous</h2>
+        </div>
+        <div class="avis-score-block">
+          <span class="avis-score-num">4.7</span>
+          <div>
+            <div class="avis-score-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="avis-score-count">89 avis &middot; Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="avis-grid">
+        <div class="avis-card fade-in">
+          <div class="avis-author">
+            <span class="avis-avatar">M</span>
+            <div><div class="avis-name">Marie-Claire</div><div class="avis-meta">Local Guide &middot; 42 avis</div></div>
+          </div>
+          <div class="avis-rating"><span class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <p class="avis-text">Un vrai go&ucirc;t de tradition. Le confit de canard est une merveille et la tarte Tatin nous a rappel&eacute; celle de notre grand-m&egrave;re. Service chaleureux.</p>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-author">
+            <span class="avis-avatar">P</span>
+            <div><div class="avis-name">Philippe</div><div class="avis-meta">8 avis &middot; 3 photos</div></div>
+          </div>
+          <div class="avis-rating"><span class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <p class="avis-text">Notre cantine du samedi midi. Les produits sont frais, la carte change avec les saisons et la terrasse en &eacute;t&eacute; est un bonheur. On recommande les yeux ferm&eacute;s.</p>
+        </div>
+        <div class="avis-card fade-in">
+          <div class="avis-author">
+            <span class="avis-avatar">C</span>
+            <div><div class="avis-name">Camille</div><div class="avis-meta">5 avis</div></div>
+          </div>
+          <div class="avis-rating"><span class="avis-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+          <p class="avis-text">Tr&egrave;s bonne cuisine, cadre authentique et personnel souriant. Un peu bruyant le week-end mais l'ambiance fait partie du charme. L'entrec&ocirc;te est parfaite.</p>
+        </div>
+      </div>
+      <p class="avis-disclaimer">Avis &agrave; titre illustratif &mdash; section personnalisable</p>
     </div>
-    <div class="avis-grid">
-      <div class="avis-card">
-        <div class="avis-card-top">
-          <span class="avis-card-name">Marie-Claire</span>
-          <span class="avis-card-stars">★★★★★</span>
-        </div>
-        <p class="avis-card-text">Un vrai goût de tradition. Le confit de canard est une merveille et la tarte Tatin nous a rappelé celle de notre grand-mère. Service chaleureux.</p>
-      </div>
-      <div class="avis-card">
-        <div class="avis-card-top">
-          <span class="avis-card-name">Philippe</span>
-          <span class="avis-card-stars">★★★★★</span>
-        </div>
-        <p class="avis-card-text">Notre cantine du samedi midi. Les produits sont frais, la carte change avec les saisons et la terrasse en été est un bonheur. On recommande les yeux fermés.</p>
-      </div>
-      <div class="avis-card">
-        <div class="avis-card-top">
-          <span class="avis-card-name">Camille</span>
-          <span class="avis-card-stars">★★★★☆</span>
-        </div>
-        <p class="avis-card-text">Très bonne cuisine, cadre authentique et personnel souriant. Un peu bruyant le week-end mais l'ambiance fait partie du charme. L'entrecôte est parfaite.</p>
-      </div>
-    </div>
-    <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
-  </div>
+  </section>
 
-  <!-- ============================================ -->
-  <!-- FOOTER : Logo, adresse, crédit Soul Web Studio -->
-  <!-- Séparateur double ligne style vintage          -->
-  <!-- ============================================ -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-logo">Brasserie du Marché</div>
-    <div class="footer-addr">
-      3 Place du Marché, 78000 Versailles<br>
-      Téléphone : 01 39 00 00 00
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Brasserie du March&eacute;</div>
+        <div class="footer-addr">
+          3 Place du March&eacute;, 78000 Versailles<br>
+          T&eacute;l&eacute;phone : 01 39 00 00 00
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span style="color:#7a7068;font-size:13px">3 Place du March&eacute;</span>
+          <span style="color:#7a7068;font-size:13px">78000 Versailles</span>
+          <a href="tel:0139000000">01 39 00 00 00</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">&copy; 2026 Brasserie du Marché — <a href="mentions-legales.html" style="color:var(--ink-light);text-decoration:none;">Mentions légales</a> — Site créé par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">Soul Web Studio</a></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Brasserie du March&eacute; &mdash; <a href="mentions-legales.html">Mentions l&eacute;gales</a></span>
+      <span class="footer-copy">Cuisine traditionnelle fran&ccedil;aise &middot; Versailles &middot; Site cr&eacute;&eacute; par <a href="https://soulwebstudio.fr" target="_blank" rel="noopener">Soul Web Studio</a></span>
+    </div>
   </footer>
 
   <script>
-    // ============================================
-    // FADE-IN : IntersectionObserver pour les
-    // animations d'apparition au scroll
-    // Ajoute 'visible' quand l'élément entre
-    // dans le viewport (seuil 10%)
-    // ============================================
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    // Fade in on scroll
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
   </script>
 
 </body>

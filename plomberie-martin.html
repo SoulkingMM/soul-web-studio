@@ -23,71 +23,75 @@
   <meta name="description" content="Martin Plomberie — Plombier professionnel à Paris et Île-de-France. Dépannage, rénovation, installation. Devis gratuit en 24h.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #f5f5f0;
-      --bg-dark: #0f1923;
-      --bg-card: #ffffff;
-      --blue: #1b4965;
-      --blue-light: #2a6f97;
-      --blue-dim: rgba(27, 73, 101, 0.06);
-      --accent: #62b6cb;
-      --accent-dim: rgba(98, 182, 203, 0.12);
-      --orange: #e07a2f;
-      --text: #1a1a1a;
-      --text-light: #555555;
-      --text-muted: #999999;
-      --border: rgba(0, 0, 0, 0.08);
-      --white: #ffffff;
-    }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--blue-light); }
-
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--text); background: var(--bg);
+      background: #0c1520; color: #e0ddd8;
       line-height: 1.6; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+    ::selection { background: #3bb5a0; color: #fff; }
+    a { text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0c1520; }
+    ::-webkit-scrollbar-thumb { background: #3bb5a0; border-radius: 10px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     /* ── NAV ── */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 2rem;
+      padding: 14px 44px;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(12,21,32,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(59,181,160,.13);
+      transition: background .3s;
     }
+    @media (max-width: 767px) { .nav { padding: 14px 20px; } }
     .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem; color: var(--blue);
-      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; letter-spacing: 3px;
+      color: #f0ece6;
     }
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span { color: #3bb5a0; }
     .nav-links {
       display: none; list-style: none;
-      gap: 1.5rem; align-items: center;
+      gap: 28px; align-items: center;
     }
     .nav-links a {
-      color: var(--text-light); text-decoration: none;
-      font-size: 0.8rem; font-weight: 500;
-      transition: color 0.2s;
+      position: relative; color: #a0998f;
+      font-size: 11.5px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; transition: color .25s;
     }
-    .nav-links a:hover { color: var(--blue); }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -5px;
+      width: 0; height: 1px; background: #3bb5a0; transition: width .3s ease;
+    }
+    .nav-links a:hover { color: #f0ece6; }
+    .nav-links a:hover::after { width: 100%; }
     .nav-cta {
-      background: var(--blue); color: var(--white) !important;
-      padding: 0.5rem 1.25rem; border-radius: 6px;
+      background: #3bb5a0 !important; color: #0c1520 !important;
+      padding: 10px 24px !important; border-radius: 999px !important;
+      font-size: 11px !important; letter-spacing: 2px !important;
       font-weight: 600 !important;
-      transition: background 0.2s !important;
+      box-shadow: 0 6px 22px rgba(59,181,160,.3);
+      transition: all .25s !important;
     }
-    .nav-cta:hover { background: var(--blue-light); color: var(--white) !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      box-shadow: 0 10px 30px rgba(59,181,160,.45) !important;
+      transform: translateY(-2px);
+      color: #0c1520 !important;
+    }
     @media (min-width: 768px) { .nav-links { display: flex; } }
 
     /* ── HERO SPLIT ── */
@@ -95,94 +99,114 @@
       min-height: 100vh; min-height: 100svh;
       display: grid; grid-template-columns: 1fr;
       align-items: center;
-      padding: 6rem 1.5rem 3rem;
-      background: var(--bg-dark);
-      color: var(--white);
+      padding: 100px 24px 60px;
       position: relative; overflow: hidden;
     }
     @media (min-width: 768px) {
       .hero {
-        grid-template-columns: 1fr 1fr;
-        padding: 0 4rem;
-        gap: 3rem;
+        grid-template-columns: 1.1fr .9fr;
+        padding: 0 56px;
+        gap: 48px;
       }
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    .hero-glow1 {
+      position: absolute; top: -15%; right: -8%; width: 56vw; height: 56vw;
+      background: radial-gradient(circle, rgba(59,181,160,.18) 0%, transparent 60%);
+      pointer-events: none; animation: shimmer 6s ease-in-out infinite;
     }
-    .hero-text { position: relative; z-index: 1; }
+    .hero-glow2 {
+      position: absolute; bottom: -25%; left: -12%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(45,140,240,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-text {
+      position: relative; z-index: 2;
+      animation: fadeUp .9s ease both;
+    }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      background: rgba(98, 182, 203, 0.15);
-      color: var(--accent); font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      border-radius: 4px; margin-bottom: 1.5rem;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 18px;
+      background: rgba(59,181,160,.12);
+      border: 1px solid rgba(59,181,160,.2);
+      color: #3bb5a0; font-size: 10.5px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      border-radius: 999px; margin-bottom: 28px;
     }
     .hero-badge::before {
-      content: ''; width: 6px; height: 6px;
-      background: var(--accent); border-radius: 50%;
+      content: ''; width: 7px; height: 7px;
+      background: #3bb5a0; border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
     .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 400; line-height: 1.15;
-      margin-bottom: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 96px); font-weight: 600;
+      line-height: .92; color: #f0ece6;
+      letter-spacing: -1px; margin-bottom: 8px;
     }
-    .hero h1 span { color: var(--accent); }
+    .hero h1 span { color: #3bb5a0; }
     .hero-sub {
-      font-size: 1rem; color: rgba(255, 255, 255, 0.6);
-      font-weight: 300; margin-bottom: 2rem; line-height: 1.7;
-      max-width: 420px;
+      font-size: 16px; color: #8a8580;
+      font-weight: 300; margin-bottom: 38px; line-height: 1.8;
+      max-width: 430px;
     }
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
     .btn {
-      display: inline-block; padding: 0.85rem 2rem;
-      font-family: inherit; font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.06em; text-decoration: none;
-      border-radius: 6px; transition: all 0.3s; cursor: pointer; border: none;
+      display: inline-block; padding: 15px 36px;
+      font-family: inherit; font-size: 12px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px; transition: all .25s cubic-bezier(.22,.78,.22,1);
+      cursor: pointer; border: none;
     }
-    .btn-primary { background: var(--accent); color: var(--bg-dark); }
-    .btn-primary:hover { background: #7ec8d8; transform: translateY(-2px); }
+    .btn-primary {
+      background: #3bb5a0; color: #0c1520;
+      box-shadow: 0 8px 28px rgba(59,181,160,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(59,181,160,.4); }
     .btn-outline {
-      background: transparent; color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: transparent; color: #f0ece6;
+      border: 1px solid rgba(240,236,230,.22);
     }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-outline:hover { border-color: #3bb5a0; color: #3bb5a0; }
 
     .hero-visual {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+      display: grid; place-items: center;
       padding: 2rem 0;
+      animation: fadeUp .9s .15s ease both;
+    }
+    .hero-circle1 {
+      position: absolute; width: 380px; height: 380px; max-width: 75vw; max-height: 75vw;
+      border: 1px solid rgba(59,181,160,.25); border-radius: 50%;
+    }
+    .hero-circle2 {
+      position: absolute; width: 470px; height: 470px; max-width: 90vw; max-height: 90vw;
+      border: 1px dashed rgba(45,140,240,.12); border-radius: 50%;
+      animation: spinSlow 70s linear infinite;
     }
     .hero-illustration {
-      width: 100%; max-width: 380px;
-      aspect-ratio: 1;
-      background: linear-gradient(145deg, rgba(98, 182, 203, 0.1), rgba(27, 73, 101, 0.2));
-      border-radius: 20px; border: 1px solid rgba(98, 182, 203, 0.15);
+      position: relative;
+      width: 320px; max-width: 70vw; aspect-ratio: 1;
+      background: radial-gradient(circle at 40% 40%, rgba(59,181,160,.12), rgba(45,140,240,.08) 60%, transparent 80%);
+      border-radius: 50%; border: 1px solid rgba(59,181,160,.18);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 1rem; padding: 2rem;
+      gap: 14px; padding: 2rem;
+      box-shadow: 0 32px 80px rgba(0,0,0,.4);
     }
     .hero-illustration svg {
-      width: 80px; height: 80px;
-      stroke: var(--accent); fill: none;
-      stroke-width: 1; opacity: 0.6;
+      width: 64px; height: 64px;
+      stroke: #3bb5a0; fill: none;
+      stroke-width: 1; opacity: 0.5;
     }
     .hero-illustration .hi-label {
-      font-size: 0.7rem; font-weight: 600;
-      color: rgba(255, 255, 255, 0.4);
-      letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 10px; font-weight: 600;
+      color: rgba(240,236,230,.35);
+      letter-spacing: 3px; text-transform: uppercase;
     }
     .hero-illustration .hi-phone {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; color: var(--accent);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; color: #3bb5a0; font-weight: 600;
     }
     @media (max-width: 767px) {
       .hero-visual { display: none; }
@@ -193,91 +217,109 @@
 
     /* ── STATS BAND ── */
     .stats {
-      background: var(--blue);
+      background: #111a28;
+      border-top: 1px solid rgba(59,181,160,.1);
+      border-bottom: 1px solid rgba(59,181,160,.1);
       padding: 0;
     }
     .stats-inner {
-      max-width: 1000px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(2, 1fr);
       text-align: center;
     }
     @media (min-width: 640px) { .stats-inner { grid-template-columns: repeat(4, 1fr); } }
     .stat {
-      padding: 1.75rem 1rem;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 32px 16px;
+      border-right: 1px solid rgba(59,181,160,.12);
     }
     .stat:last-child { border-right: none; }
     .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.8rem; color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px; font-weight: 600; color: #3bb5a0;
       line-height: 1;
     }
     .stat-label {
-      font-size: 0.68rem; color: rgba(255, 255, 255, 0.5);
-      font-weight: 400; margin-top: 0.35rem;
-      letter-spacing: 0.04em;
+      font-size: 10px; color: #706b64;
+      font-weight: 400; margin-top: 6px;
+      letter-spacing: 2px; text-transform: uppercase;
     }
 
     /* ── SECTIONS ── */
-    .section { padding: 5rem 1.5rem; }
-    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section { max-width: 1280px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .section { padding: 112px 56px; } }
 
-    /* ── SERVICES LIST ── */
-    .services { background: var(--white); }
-    .services-header {
-      margin-bottom: 3rem;
-    }
     .section-label {
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.5rem;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: #3bb5a0; margin-bottom: 10px;
+      display: block;
     }
     .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 400; color: var(--text); margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 58px); font-weight: 600;
+      color: #f0ece6; margin-bottom: 6px;
     }
-    .divider { width: 40px; height: 2px; background: var(--accent); margin: 1rem 0 0; }
+    .divider {
+      width: 50px; height: 2px;
+      background: linear-gradient(90deg, #3bb5a0, #2d8cf0);
+      margin: 16px 0 0; border-radius: 2px;
+    }
 
+    /* ── SERVICES LIST ── */
+    .services { background: transparent; }
+    .services-header { margin-bottom: 52px; }
     .service-list { list-style: none; }
     .service-item {
-      display: grid; grid-template-columns: 50px 1fr;
-      gap: 1.25rem; align-items: start;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 60px 1fr;
+      gap: 24px; align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(59,181,160,.1);
+      transition: transform .4s cubic-bezier(.22,.78,.22,1);
     }
+    .service-item:hover { transform: translateX(8px); }
     .service-item:last-child { border-bottom: none; }
     .service-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; color: rgba(98, 182, 203, 0.3);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 600;
+      color: rgba(59,181,160,.22);
       line-height: 1;
     }
     .service-name {
-      font-size: 1rem; font-weight: 600; color: var(--text);
-      margin-bottom: 0.3rem;
+      font-size: 17px; font-weight: 600; color: #f0ece6;
+      margin-bottom: 6px; letter-spacing: .5px;
     }
     .service-desc {
-      font-size: 0.85rem; color: var(--text-light);
-      font-weight: 300; line-height: 1.7;
+      font-size: 14.5px; color: #8a8580;
+      font-weight: 300; line-height: 1.8;
     }
 
-    /* ── AVANT/APRÈS ── */
-    .before-after { background: var(--bg); }
-    .ba-header { text-align: center; margin-bottom: 3rem; }
-    .ba-header .divider { margin: 1rem auto 0; }
+    /* ── AVANT/APRES ── */
+    .before-after {
+      background: #111a28;
+      border-top: 1px solid rgba(59,181,160,.08);
+      border-bottom: 1px solid rgba(59,181,160,.08);
+      padding: 112px 24px;
+    }
+    @media (min-width: 768px) { .before-after { padding: 112px 56px; } }
+    .before-after .section-inner { max-width: 1280px; margin: 0 auto; }
+    .ba-header { text-align: center; margin-bottom: 52px; }
+    .ba-header .divider { margin: 16px auto 0; }
     .ba-header p {
-      font-size: 0.88rem; color: var(--text-muted);
-      font-weight: 300; margin-top: 1rem;
+      font-size: 14px; color: #706b64;
+      font-weight: 300; margin-top: 16px; letter-spacing: .5px;
     }
     .ba-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 28px;
     }
     @media (min-width: 768px) { .ba-grid { grid-template-columns: 1fr 1fr; } }
     .ba-item {
-      border-radius: 10px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(59,181,160,.12);
+      background: #1a2332;
+      transition: transform .45s cubic-bezier(.22,.78,.22,1);
     }
+    .ba-item:hover { transform: translateY(-6px); }
     .ba-slider {
       position: relative; width: 100%;
       aspect-ratio: 4/3; overflow: hidden;
@@ -287,161 +329,196 @@
     .ba-layer {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
     }
     .ba-before {
-      background: linear-gradient(135deg, #d4c5a9 0%, #b8a88a 30%, #9c8f72 100%);
-      color: rgba(255, 255, 255, 0.7);
+      background: linear-gradient(135deg, #2a1f1a 0%, #3d2e22 30%, #4a3828 100%);
+      color: rgba(255, 255, 255, 0.5);
       clip-path: inset(0 50% 0 0);
     }
     .ba-after {
-      background: linear-gradient(135deg, #e8f4f8 0%, #c5e3ec 30%, #a8d4e2 100%);
-      color: var(--blue);
+      background: linear-gradient(135deg, #162430 0%, #1a3040 30%, #1e3a4a 100%);
+      color: #3bb5a0;
     }
     .ba-before-inner, .ba-after-inner {
       display: flex; flex-direction: column;
-      align-items: center; gap: 0.5rem;
+      align-items: center; gap: 8px;
     }
     .ba-before-inner svg, .ba-after-inner svg {
-      width: 36px; height: 36px; opacity: 0.5;
+      width: 36px; height: 36px; opacity: 0.4;
       stroke: currentColor; fill: none; stroke-width: 1.2;
     }
     .ba-handle {
       position: absolute; top: 0; bottom: 0;
-      left: 50%; width: 3px;
-      background: var(--white);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      left: 50%; width: 2px;
+      background: rgba(59,181,160,.7);
+      box-shadow: 0 0 12px rgba(59,181,160,.4);
       z-index: 2; transform: translateX(-50%);
     }
     .ba-handle::after {
       content: ''; position: absolute;
       top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 40px; height: 40px; border-radius: 50%;
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231b4965' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M18 8l4 4-4 4M6 8l-4 4 4 4'/%3E%3C/svg%3E");
+      background: #1a2332;
+      border: 2px solid #3bb5a0;
+      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%233bb5a0' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M18 8l4 4-4 4M6 8l-4 4 4 4'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center;
     }
     .ba-label {
-      padding: 1rem 1.25rem; background: var(--white);
-      font-size: 0.85rem; font-weight: 500; color: var(--text);
-      border-top: 1px solid var(--border);
+      padding: 18px 22px; background: #1a2332;
+      font-size: 14px; font-weight: 500; color: #f0ece6;
+      border-top: 1px solid rgba(59,181,160,.1);
     }
     .ba-label span {
-      display: block; font-size: 0.72rem;
-      color: var(--text-muted); font-weight: 300; margin-top: 0.15rem;
+      display: block; font-size: 12px;
+      color: #706b64; font-weight: 300; margin-top: 4px;
     }
 
     /* ── ZONE ── */
-    .zone { background: var(--white); }
-    .zone-header { margin-bottom: 2.5rem; }
+    .zone { background: transparent; }
+    .zone-header { margin-bottom: 44px; }
     .zone-content {
       display: grid; grid-template-columns: 1fr;
-      gap: 2rem; align-items: center;
+      gap: 36px; align-items: center;
     }
     @media (min-width: 768px) { .zone-content { grid-template-columns: 1fr 1fr; } }
     .zone-map {
-      background: var(--bg);
-      border-radius: 10px; overflow: hidden;
+      border-radius: 12px; overflow: hidden;
       aspect-ratio: 4/3;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(59,181,160,.15);
     }
-    .zone-map iframe { width: 100%; height: 100%; border: none; }
+    .zone-map iframe {
+      width: 100%; height: 100%; border: none;
+      filter: grayscale(.3) contrast(1.05) brightness(.8);
+    }
     .zone-list { list-style: none; }
     .zone-list li {
-      padding: 0.65rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.88rem; color: var(--text-light);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(59,181,160,.1);
+      font-size: 15px; color: #a0998f;
       font-weight: 400;
-      display: flex; align-items: center; gap: 0.75rem;
+      display: flex; align-items: center; gap: 14px;
+      transition: color .25s, transform .25s;
     }
+    .zone-list li:hover { color: #f0ece6; transform: translateX(4px); }
     .zone-list li::before {
       content: ''; width: 8px; height: 8px;
-      background: var(--accent); border-radius: 2px;
+      background: #3bb5a0; border-radius: 2px;
       flex-shrink: 0;
     }
     .zone-list li:last-child { border-bottom: none; }
 
     /* ── AVIS ── */
-    .avis { background: var(--bg); }
-    .avis-header { text-align: center; margin-bottom: 3rem; }
-    .avis-header .divider { margin: 1rem auto 0; }
+    .avis {
+      background: #111a28;
+      border-top: 1px solid rgba(59,181,160,.08);
+      border-bottom: 1px solid rgba(59,181,160,.08);
+      padding: 112px 24px;
+    }
+    @media (min-width: 768px) { .avis { padding: 112px 56px; } }
+    .avis .section-inner { max-width: 1280px; margin: 0 auto; }
+    .avis-header { text-align: center; margin-bottom: 52px; }
+    .avis-header .divider { margin: 16px auto 0; }
     .avis-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 22px;
     }
     @media (min-width: 640px) { .avis-grid { grid-template-columns: repeat(2, 1fr); } }
     .avis-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.75rem;
+      background: #1a2332;
+      border: 1px solid rgba(59,181,160,.12);
+      border-radius: 12px; padding: 30px 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: transform .4s cubic-bezier(.22,.78,.22,1);
     }
+    .avis-card:hover { transform: translateY(-6px); }
+    .avis-top { display: flex; align-items: center; gap: 14px; }
+    .avis-avatar {
+      display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, #3bb5a0, #2d8cf0);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .avis-author-name { font-size: 15px; font-weight: 500; color: #f0ece6; }
+    .avis-loc { font-size: 11.5px; color: #706b64; letter-spacing: .5px; margin-top: 1px; }
     .avis-stars {
-      color: var(--orange); font-size: 0.85rem;
-      margin-bottom: 0.75rem; letter-spacing: 2px;
+      color: #e8a83e; font-size: 13px;
+      letter-spacing: 2px;
     }
     .avis-text {
-      font-size: 0.88rem; color: var(--text-light);
-      font-weight: 300; line-height: 1.7;
-      margin-bottom: 1rem; font-style: italic;
+      font-size: 14.5px; color: #a0998f;
+      font-weight: 300; line-height: 1.78;
+      font-style: italic;
     }
-    .avis-author { font-size: 0.78rem; font-weight: 600; color: var(--text); }
-    .avis-loc { font-size: 0.7rem; color: var(--text-muted); font-weight: 300; }
 
     /* ── CTA ── */
     .cta-section {
-      background: var(--bg-dark);
-      color: var(--white);
-      padding: 5rem 1.5rem;
+      position: relative;
+      padding: 112px 24px;
+      text-align: center;
+      background: linear-gradient(160deg, #0e1f2e 0%, #0c1520 100%);
+      border-top: 1px solid rgba(59,181,160,.08);
+      overflow: hidden;
+    }
+    @media (min-width: 768px) { .cta-section { padding: 112px 56px; } }
+    .cta-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,181,160,.22), transparent 58%);
+      pointer-events: none;
     }
     .cta-inner {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr;
-      gap: 2.5rem; align-items: center;
+      position: relative; z-index: 2;
+      max-width: 720px; margin: 0 auto;
     }
-    @media (min-width: 768px) { .cta-inner { grid-template-columns: 1fr auto; } }
-    .cta-text .section-title { color: var(--white); }
+    .cta-text { margin-bottom: 44px; }
+    .cta-text .section-title { margin-bottom: 16px; }
     .cta-text p {
-      color: rgba(255, 255, 255, 0.5); font-weight: 300;
-      font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.7;
+      color: #8a8580; font-weight: 300;
+      font-size: 16px; line-height: 1.8;
     }
-    .cta-right {
-      display: flex; flex-direction: column;
-      gap: 1rem; align-items: flex-start;
+    .cta-details {
+      display: flex; align-items: center; justify-content: center;
+      gap: 36px; flex-wrap: wrap; margin-bottom: 40px;
     }
     .cta-info {
-      display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.88rem; color: rgba(255, 255, 255, 0.75);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: rgba(240,236,230,.65);
     }
     .cta-info svg {
       width: 20px; height: 20px;
-      stroke: var(--accent); fill: none; stroke-width: 1.5;
+      stroke: #3bb5a0; fill: none; stroke-width: 1.5;
       flex-shrink: 0;
-    }
-    @media (max-width: 767px) {
-      .cta-inner { text-align: center; }
-      .cta-right { align-items: center; }
     }
 
     /* ── FOOTER ── */
     .footer {
-      background: #0a1118; color: rgba(255, 255, 255, 0.4);
-      padding: 2rem 1.5rem; text-align: center;
+      background: #080e16;
+      border-top: 1px solid rgba(59,181,160,.1);
+      padding: 44px 24px 32px; text-align: center;
     }
+    @media (min-width: 768px) { .footer { padding: 44px 56px 32px; } }
     .footer-brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem; color: var(--white);
-      margin-bottom: 0.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; letter-spacing: 3px;
+      color: #f0ece6; margin-bottom: 12px;
     }
-    .footer-brand span { color: var(--accent); }
-    .footer-copy { font-size: 0.72rem; font-weight: 300; }
-    .footer-copy a { color: var(--accent); text-decoration: none; }
+    .footer-brand span { color: #3bb5a0; }
+    .footer-copy {
+      font-size: 11.5px; font-weight: 300;
+      color: #4a4540;
+    }
+    .footer-copy a { color: #3bb5a0; text-decoration: none; transition: color .2s; }
+    .footer-copy a:hover { color: #5dcfba; }
 
     /* ── ANIMATIONS ── */
     .fade-in {
-      opacity: 0; transform: translateY(20px);
+      opacity: 0; transform: translateY(24px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -466,16 +543,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- HERO SPLIT -->
   <section class="hero">
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
     <div class="hero-text">
       <div class="hero-badge">Disponible 7j/7</div>
       <h1>Votre plombier de <span>confiance</span> à Paris</h1>
-      <p class="hero-sub">Dépannage en 1h, rénovation de salle de bain, installation sanitaire. Devis gratuit, sans surprise.</p>
+      <p class="hero-sub">Fuite, rénovation, installation. On intervient vite et le devis est gratuit.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary">Demander un devis</a>
         <a href="#realisations" class="btn btn-outline">Voir nos chantiers</a>
       </div>
     </div>
     <div class="hero-visual">
+      <div class="hero-circle1"></div>
+      <div class="hero-circle2"></div>
       <div class="hero-illustration">
         <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
@@ -510,7 +591,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- SERVICES LIST -->
   <section class="section services" id="services">
-    <div class="section-inner">
+    <div class="section-inner" style="max-width:960px">
       <div class="services-header fade-in">
         <span class="section-label">Services</span>
         <h2 class="section-title">Ce que nous faisons</h2>
@@ -521,7 +602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="service-num">01</span>
           <div>
             <h3 class="service-name">Dépannage urgent</h3>
-            <p class="service-desc">Fuite, canalisation bouchée, panne de chauffe-eau. Intervention rapide en 1h sur Paris et proche banlieue.</p>
+            <p class="service-desc">Fuite, canalisation bouchée, chauffe-eau en panne. On est là en moins d'une heure sur Paris et proche banlieue.</p>
           </div>
         </li>
         <li class="service-item fade-in">
@@ -535,7 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="service-num">03</span>
           <div>
             <h3 class="service-name">Installation sanitaire</h3>
-            <p class="service-desc">Pose de WC, lavabo, robinetterie, cumulus. Travail propre et garanti. Devis détaillé avant intervention.</p>
+            <p class="service-desc">Pose de WC, lavabo, robinetterie, cumulus. Travail propre, devis détaillé avant de commencer.</p>
           </div>
         </li>
         <li class="service-item fade-in">
@@ -556,16 +637,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="service-num">06</span>
           <div>
             <h3 class="service-name">Rénovation complète</h3>
-            <p class="service-desc">Cuisine, salle de bain, appartement. On gère la plomberie et on coordonne les autres corps de métier.</p>
+            <p class="service-desc">Cuisine, salle de bain, appartement. On gère la plomberie et on coordonne avec les autres artisans si besoin.</p>
           </div>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- AVANT / APRÈS -->
-  <section class="section before-after" id="realisations">
-    <div class="section-inner">
+  <!-- AVANT / APRES -->
+  <section class="before-after" id="realisations">
+    <div class="section-inner" style="max-width:1280px;margin:0 auto">
       <div class="ba-header fade-in">
         <span class="section-label">Avant / Après</span>
         <h2 class="section-title">Nos réalisations</h2>
@@ -589,17 +670,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="ba-handle"></div>
           </div>
-          <div class="ba-label">Salle de bain · Paris 11e <span>Rénovation complète — douche italienne + double vasque</span></div>
+          <div class="ba-label">Salle de bain · Paris 11e <span>Rénovation complète, douche italienne + double vasque</span></div>
         </div>
         <div class="ba-item fade-in">
           <div class="ba-slider" data-ba>
-            <div class="ba-layer ba-after" style="background:linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 100%);">
+            <div class="ba-layer ba-after" style="background:linear-gradient(135deg, #162430 0%, #1a3848 30%, #1e4258 100%);">
               <div class="ba-after-inner">
                 <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 APRÈS
               </div>
             </div>
-            <div class="ba-layer ba-before" style="background:linear-gradient(135deg, #c9b99a 0%, #a89070 30%, #8c7a5e 100%);">
+            <div class="ba-layer ba-before" style="background:linear-gradient(135deg, #2a2018 0%, #3d2e1e 30%, #4a3522 100%);">
               <div class="ba-before-inner">
                 <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
                 AVANT
@@ -615,7 +696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ZONE -->
   <section class="section zone" id="zone">
-    <div class="section-inner">
+    <div class="section-inner" style="max-width:1080px">
       <div class="zone-header fade-in">
         <span class="section-label">Zone d'intervention</span>
         <h2 class="section-title">Où nous intervenons</h2>
@@ -627,7 +708,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div>
           <ul class="zone-list">
-            <li>Paris — tous arrondissements</li>
+            <li>Paris, tous arrondissements</li>
             <li>Hauts-de-Seine (92)</li>
             <li>Seine-Saint-Denis (93)</li>
             <li>Val-de-Marne (94)</li>
@@ -642,8 +723,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- AVIS -->
-  <section class="section avis" id="avis">
-    <div class="section-inner">
+  <section class="avis" id="avis">
+    <div class="section-inner" style="max-width:1280px;margin:0 auto">
       <div class="avis-header fade-in">
         <span class="section-label">Témoignages</span>
         <h2 class="section-title">Ce que disent nos clients</h2>
@@ -651,28 +732,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="avis-grid">
         <div class="avis-card fade-in">
+          <div class="avis-top">
+            <span class="avis-avatar">S</span>
+            <div>
+              <div class="avis-author-name">Sophie D.</div>
+              <div class="avis-loc">Paris 11e</div>
+            </div>
+          </div>
           <div class="avis-stars">★★★★★</div>
           <p class="avis-text">"Intervention rapide pour une fuite sous l'évier. En moins d'une heure c'était réglé. Prix très correct et travail propre."</p>
-          <div class="avis-author">Sophie D.</div>
-          <div class="avis-loc">Paris 11e</div>
         </div>
         <div class="avis-card fade-in">
+          <div class="avis-top">
+            <span class="avis-avatar">M</span>
+            <div>
+              <div class="avis-author-name">Marc & Julie L.</div>
+              <div class="avis-loc">Boulogne-Billancourt</div>
+            </div>
+          </div>
           <div class="avis-stars">★★★★★</div>
           <p class="avis-text">"Rénovation complète de notre salle de bain. Le résultat est magnifique, les délais ont été respectés. Je recommande à 100%."</p>
-          <div class="avis-author">Marc & Julie L.</div>
-          <div class="avis-loc">Boulogne-Billancourt</div>
         </div>
         <div class="avis-card fade-in">
+          <div class="avis-top">
+            <span class="avis-avatar">K</span>
+            <div>
+              <div class="avis-author-name">Karim B.</div>
+              <div class="avis-loc">Montreuil</div>
+            </div>
+          </div>
           <div class="avis-stars">★★★★★</div>
           <p class="avis-text">"Très professionnel. A pris le temps de m'expliquer le problème et les options. Devis clair, pas de mauvaise surprise à la fin."</p>
-          <div class="avis-author">Karim B.</div>
-          <div class="avis-loc">Montreuil</div>
         </div>
         <div class="avis-card fade-in">
+          <div class="avis-top">
+            <span class="avis-avatar">C</span>
+            <div>
+              <div class="avis-author-name">Claire M.</div>
+              <div class="avis-loc">Saint-Mandé</div>
+            </div>
+          </div>
           <div class="avis-stars">★★★★★</div>
           <p class="avis-text">"Remplacement de toute la tuyauterie d'un vieil appartement. Propre, rapide, et le prix annoncé au devis a été respecté."</p>
-          <div class="avis-author">Claire M.</div>
-          <div class="avis-loc">Saint-Mandé</div>
         </div>
       </div>
     </div>
@@ -680,13 +781,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- CTA SPLIT -->
   <section class="cta-section" id="contact">
+    <div class="cta-glow"></div>
     <div class="cta-inner">
       <div class="cta-text">
         <span class="section-label">Contact</span>
         <h2 class="section-title">Un projet ? Une urgence ?</h2>
         <p>Appelez-nous directement ou demandez votre devis gratuit. Réponse en moins de 24h.</p>
       </div>
-      <div class="cta-right">
+      <div class="cta-details">
         <div class="cta-info">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           01 46 00 00 00
@@ -699,8 +801,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Paris & Île-de-France
         </div>
-        <a href="tel:+33146000000" class="btn btn-primary" style="margin-top:0.5rem;">Appeler maintenant</a>
       </div>
+      <a href="tel:+33146000000" class="btn btn-primary">Appeler maintenant</a>
     </div>
   </section>
 

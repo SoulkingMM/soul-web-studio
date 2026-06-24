@@ -228,14 +228,14 @@
       display: inline-block; padding: 0.85rem 2rem;
       font-family: inherit; font-size: 0.78rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none; border-radius: 4px;
-      transition: all 0.3s; cursor: pointer; border: none;
+      text-decoration: none; border-radius: 999px;
+      transition: all 0.3s cubic-bezier(.22,.78,.22,1); cursor: pointer; border: none;
     }
     .btn-gold {
       background: var(--gold); color: var(--bg-primary);
       box-shadow: 0 4px 20px rgba(184, 157, 102, 0.3);
     }
-    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201, 168, 76, 0.35); }
     .btn-instagram {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.85rem 2rem;
@@ -243,9 +243,9 @@
       color: #fff; text-decoration: none;
       font-size: 0.78rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
-      border-radius: 4px; transition: all 0.3s;
+      border-radius: 999px; transition: all 0.3s cubic-bezier(.22,.78,.22,1);
     }
-    .btn-instagram:hover { transform: translateY(-2px); }
+    .btn-instagram:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(131, 58, 180, 0.3); }
     .btn-instagram svg {
       width: 16px; height: 16px; fill: currentColor;
     }
@@ -299,7 +299,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-label">À propos</div>
     <h1>Derrière Soul <span>Web</span> Studio</h1>
     <div class="divider"></div>
-    <p class="hero-intro">Je m'appelle Maaty Manchour. Je crée des sites web sur-mesure pour les artisans et commerces locaux qui veulent une vraie présence en ligne — sans prise de tête, sans intermédiaire.</p>
+    <p class="hero-intro">Je m'appelle Maaty Manchour. Je crée des sites web sur-mesure pour les artisans et commerces locaux qui veulent une vraie présence en ligne, sans prise de tête.</p>
   </section>
 
   <!-- ============================================ -->
@@ -310,17 +310,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="story-block">
       <h3>Autodidacte depuis le lycée</h3>
-      <p>J'ai découvert le développement web en cours de NSI au lycée. Ce qui devait être un simple cours est devenu une passion. J'ai appris seul, projet après projet, en construisant des sites de plus en plus ambitieux. Aujourd'hui, je transforme cette passion en quelque chose de concret pour les commerces locaux qui méritent une présence en ligne à la hauteur de leur travail.</p>
+      <p>J'ai découvert le développement web en cours de NSI au lycée. Ce qui devait être un simple cours m'a accroché. J'ai appris seul, projet après projet, en construisant des sites de plus en plus ambitieux. Aujourd'hui j'en fais mon métier, pour les commerces locaux qui veulent un vrai site sans se ruiner.</p>
     </div>
 
     <div class="story-block">
       <h3>Pourquoi les commerces locaux ?</h3>
-      <p>Parce que je sais ce que c'est de chercher un artisan ou un commerce sur Google et de tomber sur un site des années 2000 — ou pire, pas de site du tout. Les grandes agences facturent des milliers d'euros pour un WordPress générique. Je propose l'inverse : un site fait main, sur-mesure, à un prix accessible, livré rapidement.</p>
+      <p>Parce que je sais ce que c'est de chercher un artisan ou un commerce sur Google et de tomber sur un site des années 2000. Ou pire, pas de site du tout. Les grandes agences facturent des milliers d'euros pour un WordPress générique. Moi je fais l'inverse : un site codé à la main, à un prix correct, livré en quelques jours.</p>
     </div>
 
     <div class="story-block">
       <h3>Ma façon de travailler</h3>
-      <p>Pas d'agence, pas d'intermédiaire, pas de template. C'est moi qui conçois, code et livre votre site du premier message jusqu'à la mise en ligne. Chaque site est unique, pensé pour votre activité, vos clients, votre style. Je travaille vite — 3 à 5 jours ouvrés — parce que quand vous avez besoin d'un site, vous en avez besoin maintenant, pas dans 3 mois.</p>
+      <p>Pas d'agence, pas d'intermédiaire. C'est moi qui conçois, code et livre votre site du premier message jusqu'à la mise en ligne. Chaque site est pensé pour votre activité et vos clients. Je travaille vite, 3 à 5 jours ouvrés, parce que quand vous avez besoin d'un site, c'est pas dans 3 mois.</p>
     </div>
   </section>
 
@@ -343,21 +343,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <h3>Contact direct</h3>
-          <p>Vous parlez directement avec celui qui crée votre site. Pas de commercial, pas de chef de projet, pas de ticket support.</p>
+          <p>Vous parlez directement avec celui qui crée votre site. Pas de commercial, pas de chef de projet entre nous.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Code propre</h3>
-          <p>Pas de WordPress, pas de constructeur de pages. Du code HTML/CSS/JS écrit à la main, léger et rapide. Votre site charge en moins d'une seconde.</p>
+          <p>Zéro WordPress, zéro constructeur de pages. Du code HTML/CSS/JS écrit à la main. Votre site charge en moins d'une seconde.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">
             <svg viewBox="0 0 24 24"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           </div>
           <h3>Prix juste</h3>
-          <p>À partir de 400€ pour un site professionnel complet. Pas de frais cachés, pas d'abonnement obligatoire, pas de mauvaise surprise.</p>
+          <p>À partir de 400€ pour un site professionnel complet. Pas de frais cachés, pas d'abonnement obligatoire.</p>
         </div>
       </div>
     </div>

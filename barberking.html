@@ -16,12 +16,6 @@
     gtag('js', new Date());
     gtag('config', 'G-K5ZGMSM10H');
   </script>
-  <!-- ============================================ -->
-  <!-- HEAD : Métadonnées, SEO, polices             -->
-  <!-- Favicon SVG partagé avec le portfolio        -->
-  <!-- noindex/nofollow : page démo, pas indexée    -->
-  <!-- Polices : Oswald (titres) + Inter (corps)    -->
-  <!-- ============================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BarberKing — Barbier moderne</title>
@@ -36,21 +30,22 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #0a0a0a;
-      --bg-alt: #111111;
-      --bg-card: #161616;
+      --bg: #0b0908;
+      --bg-alt: #100e0c;
+      --bg-card: #1a1614;
       --red: #8B0000;
       --red-hover: #a50000;
-      --white: #ffffff;
-      --gray: #aaaaaa;
-      --gray-dim: #555555;
-      --border: rgba(255, 255, 255, 0.07);
+      --red-glow: rgba(139, 0, 0, .22);
+      --gold: #c9a24b;
+      --gold-dim: rgba(201, 162, 75, .15);
+      --white: #f2ede6;
+      --white-pure: #ffffff;
+      --gray: #bcb3a8;
+      --gray-dim: #7a7068;
+      --gray-muted: #5a5249;
+      --border: rgba(201, 162, 75, .1);
+      --border-strong: rgba(201, 162, 75, .2);
     }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--red-hover); }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
@@ -61,17 +56,31 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-    ::selection { background: var(--red); color: var(--white); }
+    ::selection { background: var(--red); color: var(--white-pure); }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--red-hover); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
 
     /* ── NAV TUBELIGHT ── */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: center;
-      padding: 1.25rem 1.5rem;
+      padding: 18px 24px;
       pointer-events: none;
       transform: translateY(0);
       opacity: 1;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+      transition: transform 0.4s cubic-bezier(.22,.78,.22,1), opacity 0.4s ease;
     }
     .nav.hidden {
       transform: translateY(-100%);
@@ -79,36 +88,36 @@
     }
     .nav-pill {
       pointer-events: all;
-      display: flex; align-items: center; gap: 0.25rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 0.3rem;
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(11, 9, 8, .82);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 5px;
       border-radius: 100px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
     }
     .nav-item {
       position: relative;
-      color: var(--gray); text-decoration: none;
+      color: var(--gray-dim); text-decoration: none;
       font-family: 'Oswald', sans-serif;
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.6rem 1.25rem;
+      font-size: 10.5px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 10px 20px;
       border-radius: 100px;
-      transition: color 0.3s, background 0.3s;
+      transition: color 0.3s cubic-bezier(.22,.78,.22,1), background 0.3s;
       white-space: nowrap;
     }
     .nav-item:hover { color: var(--white); }
     .nav-item.active {
       color: var(--white);
-      background: rgba(139, 0, 0, 0.15);
+      background: rgba(139, 0, 0, 0.12);
     }
     .nav-item.active::before {
       content: '';
       position: absolute;
       top: -1px; left: 50%; transform: translateX(-50%);
-      width: 30px; height: 3px;
+      width: 28px; height: 3px;
       background: var(--red);
       border-radius: 0 0 4px 4px;
     }
@@ -116,26 +125,29 @@
       content: '';
       position: absolute;
       top: -6px; left: 50%; transform: translateX(-50%);
-      width: 40px; height: 12px;
+      width: 36px; height: 12px;
       background: rgba(139, 0, 0, 0.35);
       border-radius: 50%;
       filter: blur(6px);
     }
     .nav-item.is-cta {
       background: var(--red);
-      color: var(--white);
+      color: var(--white-pure);
       font-weight: 600;
-      margin-left: 0.25rem;
+      margin-left: 4px;
+      box-shadow: 0 4px 18px rgba(139, 0, 0, .35);
+      transition: all .25s;
     }
     .nav-item.is-cta:hover {
       background: var(--red-hover);
+      box-shadow: 0 8px 28px rgba(139, 0, 0, .5);
     }
     .nav-item.is-cta::before,
     .nav-item.is-cta::after { display: none; }
 
     @media (max-width: 767px) {
       .nav-item.hide-mobile { display: none; }
-      .nav-item { padding: 0.6rem 1rem; font-size: 0.6rem; }
+      .nav-item { padding: 9px 14px; font-size: 9px; letter-spacing: 1.5px; }
     }
 
     /* ── HERO ── */
@@ -145,6 +157,7 @@
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -152,402 +165,463 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: linear-gradient(180deg, rgba(11,9,8,.72) 0%, rgba(11,9,8,.82) 100%);
+    }
+    .hero-glow1 {
+      position: absolute; top: -15%; right: -8%; width: 56vw; height: 56vw;
+      background: radial-gradient(circle, var(--red-glow) 0%, transparent 60%);
+      pointer-events: none; animation: shimmer 6s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -25%; left: -12%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(201,162,75,.06) 0%, transparent 60%);
+      pointer-events: none;
     }
     .hero-content {
-      position: relative; z-index: 1;
-      max-width: 800px; padding: 2rem;
+      position: relative; z-index: 2;
+      max-width: 860px; padding: 2rem;
+      animation: fadeUp .9s ease both;
     }
     .hero-badge {
-      display: inline-block;
-      padding: 0.4rem 1.5rem;
-      border: 1px solid rgba(139, 0, 0, 0.5);
-      color: var(--red);
+      display: inline-flex; align-items: center; gap: 14px;
+      margin-bottom: 32px;
+    }
+    .hero-badge-line { height: 1px; width: 44px; background: var(--red); }
+    .hero-badge-text {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 2rem;
-      border-radius: 2px;
+      color: var(--red);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase;
     }
     .hero h1 {
       font-family: 'Oswald', sans-serif;
       font-weight: 700; text-transform: uppercase;
-      line-height: 0.9; letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      line-height: 0.88; letter-spacing: -0.02em;
+      margin-bottom: 24px;
     }
     .hero h1 .line1 {
       display: block; color: var(--white);
-      font-size: clamp(5rem, 15vw, 10rem);
+      font-size: clamp(72px, 14vw, 160px);
     }
     .hero h1 .line2 {
       display: block; color: var(--red);
-      font-size: clamp(5rem, 15vw, 10rem);
+      font-size: clamp(72px, 14vw, 160px);
     }
     .hero-tagline {
-      font-size: 1rem; color: var(--gray);
+      font-size: clamp(15px, 1.8vw, 18px); color: var(--gray);
       font-weight: 300; line-height: 1.8;
-      max-width: 500px; margin: 0 auto 2.5rem;
+      max-width: 460px; margin: 0 auto 38px;
     }
     .hero-actions {
-      display: flex; flex-wrap: wrap; gap: 1rem;
-      justify-content: center;
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center; margin-bottom: 48px;
     }
     .btn {
-      display: inline-block; padding: 0.9rem 2.5rem;
+      display: inline-block;
       font-family: 'Oswald', sans-serif;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      text-decoration: none; border-radius: 2px;
-      transition: all 0.3s; cursor: pointer;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: all 0.3s cubic-bezier(.22,.78,.22,1);
+      cursor: pointer;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn-red {
-      background: var(--red); color: var(--white); border: none;
-      box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+      background: var(--red); color: var(--white-pure); border: none;
+      padding: 15px 38px;
+      box-shadow: 0 6px 24px rgba(139, 0, 0, 0.35);
     }
     .btn-red:hover {
       background: var(--red-hover);
-      box-shadow: 0 8px 30px rgba(139, 0, 0, 0.4);
+      box-shadow: 0 10px 34px rgba(139, 0, 0, 0.5);
     }
     .btn-outline {
       background: transparent; color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(242, 237, 230, .22);
+      padding: 15px 38px;
     }
     .btn-outline:hover {
-      border-color: var(--white);
-      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--gold);
+      color: var(--gold);
     }
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 30px; flex-wrap: wrap;
+    }
+    .hero-stat-val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px; font-weight: 700; line-height: 1;
+      color: var(--white);
+    }
+    .hero-stat-val.red { color: var(--red); }
+    .hero-stat-label {
+      font-size: 10px; letter-spacing: 2px; color: var(--gray-dim);
+      text-transform: uppercase; margin-top: 4px;
+    }
+    .hero-stat-sep { width: 1px; height: 36px; background: rgba(139, 0, 0, .28); }
     .hero-scroll {
       position: absolute; bottom: 2.5rem;
       left: 50%; transform: translateX(-50%);
       color: var(--gray-dim);
       animation: float 2.5s ease-in-out infinite;
     }
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
 
-    /* ── SECTION COMMON ── */
-    .section-label {
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700; text-transform: uppercase;
-      letter-spacing: -0.01em;
-    }
-    .section-subtitle {
-      font-size: 0.95rem; color: var(--gray);
-      font-weight: 300; line-height: 1.7;
-      max-width: 500px; margin: 1rem auto 0;
-    }
-    .section-header {
-      text-align: center; margin-bottom: 4rem;
-    }
-    .divider {
-      width: 40px; height: 2px;
-      background: var(--red);
-      margin: 1.25rem auto;
-    }
-
-    /* ── SERVICES ── */
-    .services {
-      background: var(--bg);
-      padding: 7rem 2rem;
-    }
-    .services-inner {
-      max-width: 1100px; margin: 0 auto;
-    }
-    .services-grid {
-      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
-    }
-    .service-card {
-      position: relative;
-      background: var(--bg-card);
-      padding: 2.5rem 2rem 2rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      transition: all 0.4s;
-    }
-    .service-card:hover {
-      border-color: rgba(139, 0, 0, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-    .service-num {
-      position: absolute; top: -15px; right: 15px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 6rem; font-weight: 700;
-      color: rgba(139, 0, 0, 0.06);
-      line-height: 1; pointer-events: none;
-    }
-    .service-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.2rem; font-weight: 600;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-      position: relative;
-    }
-    .service-desc {
-      font-size: 0.82rem; color: var(--gray);
-      font-weight: 300; line-height: 1.7;
-      position: relative;
-    }
-    .service-prices { margin-top: 1.5rem; position: relative; }
-    .service-price-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.5rem 0; border-bottom: 1px solid var(--border);
-      font-size: 0.82rem;
-    }
-    .service-price-row:last-child { border-bottom: none; }
-    .service-price-label { color: var(--gray); font-weight: 300; }
-    .service-price-val {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem; font-weight: 600; color: var(--red);
-    }
-    @media (min-width: 768px) {
-      .services-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ── INFO BAR ── */
+    /* ── INFO BAR / STRIP ── */
     .info-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: 44px; flex-wrap: wrap;
+      padding: 22px 24px;
       background: var(--bg-alt);
-      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 2rem;
-    }
-    .info-bar-inner {
-      max-width: 1000px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr;
-      gap: 1.5rem; text-align: center;
     }
     .info-bar-item {
-      display: flex; align-items: center; gap: 1rem;
-      justify-content: center;
+      display: flex; align-items: center; gap: 14px;
     }
     .info-bar-icon {
-      width: 40px; height: 40px;
-      border: 1px solid var(--border);
+      width: 42px; height: 42px;
+      border: 1px solid var(--border-strong);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
     .info-bar-icon svg {
-      width: 18px; height: 18px;
+      width: 17px; height: 17px;
       stroke: var(--red); fill: none; stroke-width: 1.5;
     }
     .info-bar-label {
-      font-size: 0.75rem; color: var(--gray-dim);
-      font-weight: 500; letter-spacing: 0.05em;
+      font-size: 10px; color: var(--gray-dim);
+      font-weight: 500; letter-spacing: 2.5px;
       text-transform: uppercase;
     }
     .info-bar-value {
-      font-size: 0.9rem; color: var(--white); font-weight: 500;
+      font-size: 14px; color: var(--white); font-weight: 400;
+    }
+    @media (max-width: 767px) {
+      .info-bar { gap: 24px; padding: 28px 24px; flex-direction: column; }
+    }
+
+    /* ── SECTION COMMON ── */
+    .section { max-width: 1280px; margin: 0 auto; padding: 112px 24px; }
+    @media (min-width: 768px) { .section { padding: 112px 56px; } }
+    .section-kicker {
+      font-family: 'Oswald', sans-serif; color: var(--red);
+      letter-spacing: 4px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase;
+      display: block; margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 700; text-transform: uppercase;
+      color: var(--white); letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      font-size: 15px; color: var(--gray);
+      font-weight: 300; line-height: 1.8;
+      max-width: 480px; margin: 14px auto 0;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .divider {
+      width: 44px; height: 2px;
+      background: var(--red);
+      margin: 16px auto;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--bg);
+      padding: 112px 24px;
+    }
+    @media (min-width: 768px) { .services { padding: 112px 56px; } }
+    .services-inner {
+      max-width: 1280px; margin: 0 auto;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr; gap: 22px;
+    }
+    .service-card {
+      position: relative;
+      background: var(--bg-card);
+      padding: 34px 30px 28px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(.22,.78,.22,1);
+    }
+    .service-card:hover {
+      border-color: rgba(139, 0, 0, .28);
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+    .service-num {
+      position: absolute; top: -18px; right: 18px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 7rem; font-weight: 700;
+      color: rgba(139, 0, 0, 0.05);
+      line-height: 1; pointer-events: none;
+    }
+    .service-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 8px;
+      position: relative; color: var(--white);
+    }
+    .service-desc {
+      font-size: 13.5px; color: var(--gray);
+      font-weight: 300; line-height: 1.78;
+      position: relative;
+    }
+    .service-prices { margin-top: 22px; position: relative; }
+    .service-price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .service-price-row:last-child { border-bottom: none; }
+    .service-price-label { color: var(--gray); font-weight: 300; }
+    .service-price-val {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px; font-weight: 600; color: var(--red);
     }
     @media (min-width: 768px) {
-      .info-bar-inner { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* ── HORAIRES ── */
     .horaires {
       background: var(--bg-alt);
-      padding: 7rem 2rem; text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 112px 24px;
+      text-align: center;
     }
-    .horaires-inner { max-width: 500px; margin: 0 auto; }
+    @media (min-width: 768px) { .horaires { padding: 112px 56px; } }
+    .horaires-inner { max-width: 520px; margin: 0 auto; }
     .hour-row {
       display: flex; justify-content: space-between;
-      padding: 0.9rem 0; border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px;
     }
-    .hour-day { font-weight: 600; letter-spacing: 0.03em; }
+    .hour-day { font-weight: 500; letter-spacing: 0.03em; color: var(--white); }
     .hour-time { color: var(--gray); font-weight: 300; }
     .hour-closed {
       color: var(--red); font-weight: 600;
-      font-size: 0.72rem; letter-spacing: 0.08em;
+      font-size: 11px; letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     /* ── LOCALISATION ── */
     .localisation {
       background: var(--bg);
-      padding: 7rem 2rem;
+      padding: 112px 24px;
     }
+    @media (min-width: 768px) { .localisation { padding: 112px 56px; } }
     .localisation-inner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
     }
     .localisation-grid {
-      display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+      display: grid; grid-template-columns: 1fr; gap: 40px;
     }
     .localisation-map {
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
       overflow: hidden;
     }
     .localisation-map iframe {
-      width: 100%; height: 350px; border: none;
+      width: 100%; height: 360px; border: none;
       filter: grayscale(1) invert(1) contrast(1.1) brightness(0.7);
     }
     .localisation-info {
       display: flex; flex-direction: column; justify-content: center;
     }
     .localisation-address {
-      font-size: 0.95rem; color: var(--gray); font-weight: 300; line-height: 2;
+      font-size: 15px; color: var(--gray); font-weight: 300; line-height: 2;
     }
     .localisation-address strong { color: var(--white); font-weight: 600; }
     .btn-maps {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-top: 1.5rem;
-      padding: 0.7rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: 2px;
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px;
+      padding: 13px 28px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
       color: var(--gray); text-decoration: none;
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      transition: all 0.3s;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(.22,.78,.22,1);
     }
     .btn-maps:hover {
       border-color: var(--red); color: var(--white);
       transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(139, 0, 0, .2);
     }
     .btn-maps svg {
       width: 14px; height: 14px;
       stroke: currentColor; fill: none; stroke-width: 1.5;
     }
     @media (min-width: 768px) {
-      .localisation-grid { grid-template-columns: 1.3fr 0.7fr; }
-      .localisation-map iframe { height: 100%; min-height: 320px; }
+      .localisation-grid { grid-template-columns: 1.3fr 0.7fr; gap: 56px; }
+      .localisation-map iframe { height: 100%; min-height: 340px; }
     }
 
     /* ── AVIS ── */
     .avis {
       background: var(--bg-alt);
-      padding: 7rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 112px 24px;
     }
-    .avis-inner { max-width: 1100px; margin: 0 auto; }
-    .avis-score {
+    @media (min-width: 768px) { .avis { padding: 112px 56px; } }
+    .avis-inner { max-width: 1280px; margin: 0 auto; }
+    .avis-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 30px; flex-wrap: wrap; margin-bottom: 54px;
+    }
+    .avis-score-block { display: flex; align-items: center; gap: 18px; }
+    .avis-score-num {
       font-family: 'Oswald', sans-serif;
-      font-size: 4rem; font-weight: 700; color: var(--white);
+      font-size: 72px; font-weight: 700; color: var(--red);
       line-height: 1;
     }
-    .avis-score span { font-size: 1.2rem; color: var(--gray-dim); font-weight: 400; }
-    .avis-stars { color: #f5a623; font-size: 1.3rem; margin: 0.5rem 0 0.25rem; }
-    .avis-count { font-size: 0.75rem; color: var(--gray-dim); }
+    .avis-score-stars { color: #f5a623; font-size: 18px; letter-spacing: 3px; }
+    .avis-score-count {
+      font-size: 11px; letter-spacing: 1.5px; color: var(--gray-dim);
+      text-transform: uppercase; margin-top: 5px;
+    }
     .avis-grid {
-      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+      display: grid; grid-template-columns: 1fr; gap: 22px;
     }
     .avis-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2rem;
-      transition: all 0.4s;
+      border-radius: 10px;
+      padding: 30px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: all 0.45s cubic-bezier(.22,.78,.22,1);
     }
     .avis-card:hover {
-      border-color: rgba(139, 0, 0, 0.2);
-      transform: translateY(-3px);
+      border-color: rgba(139, 0, 0, .22);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
     }
-    .avis-card-top {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 1rem;
+    .avis-author { display: flex; align-items: center; gap: 14px; }
+    .avis-avatar {
+      display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--red); color: var(--white-pure);
+      font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700;
+      flex-shrink: 0;
     }
-    .avis-card-name {
+    .avis-name {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 15px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--white);
     }
-    .avis-card-stars { color: #f5a623; font-size: 0.9rem; }
-    .avis-card-text {
-      font-size: 0.85rem; color: var(--gray); font-weight: 300; line-height: 1.7;
+    .avis-meta { color: var(--gray-dim); font-size: 11.5px; letter-spacing: .5px; }
+    .avis-rating { display: flex; align-items: center; gap: 10px; }
+    .avis-stars { color: #f5a623; font-size: 13px; letter-spacing: 2px; }
+    .avis-when { color: var(--gray-dim); font-size: 12px; }
+    .avis-text {
+      font-size: 14.5px; color: var(--gray); font-weight: 300; line-height: 1.78;
     }
     .avis-disclaimer {
-      text-align: center; margin-top: 2.5rem;
-      font-size: 0.65rem; color: var(--gray-dim); font-style: italic;
+      text-align: center; margin-top: 36px;
+      font-size: 11px; color: var(--gray-muted); font-style: italic;
     }
-    @media (min-width: 768px) {
-      .avis-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    @media (min-width: 640px) { .avis-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .avis-grid { grid-template-columns: repeat(3, 1fr); } }
 
     /* ── FOOTER ── */
     .footer {
-      background: #000000;
+      background: #080706;
       border-top: 1px solid var(--border);
-      padding: 4rem 2.5rem 2rem;
+      padding: 56px 24px 36px;
     }
+    @media (min-width: 768px) { .footer { padding: 56px 56px 36px; } }
     .footer-inner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
     }
     .footer-top {
       display: grid; grid-template-columns: 1fr;
-      gap: 2.5rem; align-items: start;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
+      gap: 40px; align-items: start;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
     .footer-brand {
       font-family: 'Oswald', sans-serif;
-      font-size: 2rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.04em;
+      font-size: clamp(28px, 3vw, 36px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 4px;
+      color: var(--white);
     }
     .footer-brand span { color: var(--red); }
+    .footer-brand-sub {
+      font-size: 9px; letter-spacing: 3px; color: var(--gray-dim);
+      text-transform: uppercase; margin-top: 4px;
+    }
     .footer-newsletter h4 {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2.5px;
+      margin-bottom: 12px; color: var(--gray);
     }
     .footer-newsletter-form {
       display: flex; gap: 0;
     }
     .footer-newsletter-form input {
-      flex: 1; padding: 0.7rem 1rem;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+      flex: 1; padding: 12px 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-strong);
       border-right: none;
-      border-radius: 2px 0 0 2px;
+      border-radius: 999px 0 0 999px;
       color: var(--white);
-      font-family: inherit; font-size: 0.8rem;
+      font-family: inherit; font-size: 13px;
       outline: none;
       transition: border-color 0.3s;
     }
     .footer-newsletter-form input::placeholder { color: var(--gray-dim); }
     .footer-newsletter-form input:focus { border-color: var(--red); }
     .footer-newsletter-form button {
-      padding: 0.7rem 1.25rem;
+      padding: 12px 22px;
       background: var(--red);
-      color: var(--white); border: none;
+      color: var(--white-pure); border: none;
       font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      border-radius: 0 2px 2px 0;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      border-radius: 0 999px 999px 0;
       cursor: pointer;
       transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(139, 0, 0, .25);
     }
     .footer-newsletter-form button:hover {
       background: var(--red-hover);
+      box-shadow: 0 6px 24px rgba(139, 0, 0, .4);
     }
     .footer-social h4 {
       font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2.5px;
+      margin-bottom: 12px; color: var(--gray);
     }
     .footer-social-links {
-      display: flex; gap: 0.75rem;
+      display: flex; gap: 10px;
     }
     .footer-social-links a {
-      width: 40px; height: 40px;
-      border: 1px solid var(--border);
+      width: 42px; height: 42px;
+      border: 1px solid var(--border-strong);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--gray); text-decoration: none;
-      transition: all 0.3s;
+      color: var(--gray-dim); text-decoration: none;
+      transition: all 0.3s cubic-bezier(.22,.78,.22,1);
     }
     .footer-social-links a:hover {
       border-color: var(--red); color: var(--white);
       transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(139, 0, 0, .2);
     }
     .footer-social-links svg {
       width: 16px; height: 16px; fill: currentColor;
@@ -555,30 +629,30 @@
     .footer-bottom {
       display: flex; flex-wrap: wrap;
       justify-content: space-between; align-items: center;
-      padding-top: 1.5rem; gap: 1rem;
+      padding-top: 20px; gap: 16px;
     }
     .footer-copy {
-      font-size: 0.68rem; color: var(--gray-dim); font-weight: 300;
+      font-size: 11.5px; color: var(--gray-muted); font-weight: 300;
     }
-    .footer-copy a { color: var(--gray-dim); text-decoration: none; }
-    .footer-copy a:hover { color: var(--gray); }
+    .footer-copy a { color: var(--gray-muted); text-decoration: none; transition: color .2s; }
+    .footer-copy a:hover { color: var(--gold); }
     .footer-legal-links {
-      display: flex; gap: 1.5rem; list-style: none;
+      display: flex; gap: 24px; list-style: none;
     }
     .footer-legal-links a {
-      color: var(--gray-dim); text-decoration: none;
-      font-size: 0.68rem; font-weight: 300;
-      transition: color 0.3s;
+      color: var(--gray-muted); text-decoration: none;
+      font-size: 11.5px; font-weight: 300;
+      transition: color 0.2s;
     }
-    .footer-legal-links a:hover { color: var(--gray); }
+    .footer-legal-links a:hover { color: var(--gold); }
     @media (min-width: 768px) {
       .footer-top { grid-template-columns: 1fr 1.2fr auto; }
     }
 
     /* ── FADE IN ── */
     .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,.78,.22,1);
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -589,12 +663,7 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ============================================ -->
-  <!-- NAV TUBELIGHT : Barre de navigation flottante -->
-  <!-- Effet pilule glassmorphism avec backdrop-filter -->
-  <!-- Le lien actif a un effet "tubelight" rouge     -->
-  <!-- Se cache au scroll > 200px, réapparaît au hover -->
-  <!-- ============================================ -->
+  <!-- NAV TUBELIGHT -->
   <nav class="nav" id="nav">
     <div class="nav-pill">
       <a href="#" class="nav-item active" data-section="hero">Accueil</a>
@@ -606,24 +675,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </nav>
 
-  <!-- ============================================ -->
-  <!-- HERO : Plein écran avec image de fond Unsplash -->
-  <!-- Overlay sombre + titre BARBER/KING en gros     -->
-  <!-- Boutons CTA + flèche de scroll animée           -->
-  <!-- ============================================ -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-content fade-in">
-      <div class="hero-badge">Paris 11e — Barbershop</div>
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-line"></span>
+        <span class="hero-badge-text">Paris 11e — Barbershop</span>
+        <span class="hero-badge-line"></span>
+      </div>
       <h1>
         <span class="line1">BARBER</span>
         <span class="line2">KING</span>
       </h1>
-      <p class="hero-tagline">Le barbier moderne pour l'homme qui sait ce qu'il veut. Pas de compromis.</p>
+      <p class="hero-tagline">Coupes nettes, barbe soignée, sans chichis.</p>
       <div class="hero-actions">
         <a href="#services" class="btn btn-red">Nos prestations</a>
         <a href="#horaires" class="btn btn-outline">Horaires</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val red">4.9 ★</div>
+          <div class="hero-stat-label">47 avis</div>
+        </div>
+        <span class="hero-stat-sep"></span>
+        <div>
+          <div class="hero-stat-val">15–35€</div>
+          <div class="hero-stat-label">par prestation</div>
+        </div>
+        <span class="hero-stat-sep"></span>
+        <div>
+          <div class="hero-stat-val">Paris</div>
+          <div class="hero-stat-label">11e arrondissement</div>
+        </div>
       </div>
     </div>
     <div class="hero-scroll">
@@ -631,60 +718,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- BARRE D'INFO : Adresse, téléphone, horaires  -->
-  <!-- 3 colonnes avec icônes SVG                    -->
-  <!-- ============================================ -->
+  <!-- INFO BAR -->
   <div class="info-bar fade-in">
-    <div class="info-bar-inner">
-      <div class="info-bar-item">
-        <div class="info-bar-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div>
-          <div class="info-bar-label">Adresse</div>
-          <div class="info-bar-value">47 Rue du Faubourg Saint-Antoine, Paris</div>
-        </div>
+    <div class="info-bar-item">
+      <div class="info-bar-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
-      <div class="info-bar-item">
-        <div class="info-bar-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <div>
-          <div class="info-bar-label">Téléphone</div>
-          <div class="info-bar-value">01 46 00 00 00</div>
-        </div>
+      <div>
+        <div class="info-bar-label">Adresse</div>
+        <div class="info-bar-value">47 Rue du Faubourg Saint-Antoine, Paris</div>
       </div>
-      <div class="info-bar-item">
-        <div class="info-bar-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div>
-          <div class="info-bar-label">Horaires</div>
-          <div class="info-bar-value">Mar – Sam : 09:30 – 20:00</div>
-        </div>
+    </div>
+    <div class="info-bar-item">
+      <div class="info-bar-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="info-bar-label">Téléphone</div>
+        <div class="info-bar-value">01 46 00 00 00</div>
+      </div>
+    </div>
+    <div class="info-bar-item">
+      <div class="info-bar-icon">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="info-bar-label">Horaires</div>
+        <div class="info-bar-value">Mar – Sam : 09:30 – 20:00</div>
       </div>
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- SERVICES : 3 cartes (Coupes, Barbe, Combos)  -->
-  <!-- Grille responsive 1 col mobile → 3 col desktop -->
-  <!-- Chaque carte a un numéro décoratif en fond     -->
-  <!-- ============================================ -->
+  <!-- SERVICES -->
   <section class="services" id="services">
     <div class="services-inner">
       <div class="section-header fade-in">
-        <div class="section-label">Prestations</div>
+        <span class="section-kicker">Prestations</span>
         <h2 class="section-title">Nos services</h2>
         <div class="divider"></div>
-        <p class="section-subtitle">Des coupes précises, un rasage soigné et un service à la hauteur de vos attentes.</p>
+        <p class="section-subtitle">On coupe, on rase, on soigne les finitions.</p>
       </div>
       <div class="services-grid">
         <div class="service-card fade-in">
           <div class="service-num">01</div>
           <h3 class="service-name">Coupes</h3>
-          <p class="service-desc">Classique, tendance ou dégradé. Chaque coupe est pensée pour votre style.</p>
+          <p class="service-desc">Classique, tendance ou dégradé. Dites-nous ce que vous voulez, on s'en occupe.</p>
           <div class="service-prices">
             <div class="service-price-row"><span class="service-price-label">Coupe homme</span><span class="service-price-val">25€</span></div>
             <div class="service-price-row"><span class="service-price-label">Dégradé / Fade</span><span class="service-price-val">30€</span></div>
@@ -703,7 +781,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="service-card fade-in" style="transition-delay: 0.2s;">
           <div class="service-num">03</div>
           <h3 class="service-name">Combos</h3>
-          <p class="service-desc">Le meilleur des deux mondes. Coupe et barbe, en une seule séance.</p>
+          <p class="service-desc">Coupe + barbe en une séance. Le combo qui va bien.</p>
           <div class="service-prices">
             <div class="service-price-row"><span class="service-price-label">Coupe + Barbe</span><span class="service-price-val">35€</span></div>
           </div>
@@ -712,14 +790,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- HORAIRES : Tableau des jours et heures        -->
-  <!-- Lundi fermé, Mar-Ven 09:30-20:00, etc.        -->
-  <!-- ============================================ -->
+  <!-- HORAIRES -->
   <section class="horaires" id="horaires">
     <div class="horaires-inner">
       <div class="section-header fade-in">
-        <div class="section-label">Infos pratiques</div>
+        <span class="section-kicker">Infos pratiques</span>
         <h2 class="section-title">Horaires & adresse</h2>
         <div class="divider"></div>
       </div>
@@ -732,15 +807,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- LOCALISATION : Carte OpenStreetMap + adresse  -->
-  <!-- Carte en grayscale inversé pour thème sombre  -->
-  <!-- Grille 1 col mobile → 2 col desktop           -->
-  <!-- ============================================ -->
+  <!-- LOCALISATION -->
   <section class="localisation" id="localisation">
     <div class="localisation-inner">
       <div class="section-header fade-in">
-        <div class="section-label">Nous trouver</div>
+        <span class="section-kicker">Nous trouver</span>
         <h2 class="section-title">Localisation</h2>
         <div class="divider"></div>
       </div>
@@ -767,56 +838,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- AVIS CLIENTS : Note 4.9/5 + 3 cartes avis    -->
-  <!-- Avis illustratifs (personnalisables)           -->
-  <!-- ============================================ -->
+  <!-- AVIS -->
   <section class="avis" id="avis">
     <div class="avis-inner">
-      <div class="section-header fade-in">
-        <div class="section-label">Témoignages</div>
-        <h2 class="section-title">Avis clients</h2>
-        <div class="divider"></div>
-        <div class="avis-stars">★★★★★</div>
-        <div class="avis-score">4.9<span>/5</span></div>
-        <div class="avis-count">Basé sur 47 avis</div>
+      <div class="avis-top fade-in">
+        <div>
+          <span class="section-kicker">Témoignages</span>
+          <h2 class="section-title">Avis clients</h2>
+        </div>
+        <div class="avis-score-block">
+          <span class="avis-score-num">4.9</span>
+          <div>
+            <div class="avis-score-stars">★★★★★</div>
+            <div class="avis-score-count">47 avis · Google</div>
+          </div>
+        </div>
       </div>
       <div class="avis-grid">
         <div class="avis-card fade-in">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Mehdi</span>
-            <span class="avis-card-stars">★★★★★</span>
-          </div>
-          <p class="avis-card-text">Meilleur barbier du quartier. Le dégradé est toujours impeccable, l'ambiance est top et le résultat parle de lui-même. J'y vais toutes les 3 semaines.</p>
+          <div class="avis-author"><span class="avis-avatar">M</span><div><div class="avis-name">Mehdi</div><div class="avis-meta">Client régulier</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★★</span><span class="avis-when">il y a 2 semaines</span></div>
+          <p class="avis-text">Meilleur barbier du quartier. Le dégradé est toujours impeccable, l'ambiance est top et le résultat parle de lui-même. J'y vais toutes les 3 semaines.</p>
         </div>
         <div class="avis-card fade-in" style="transition-delay: 0.1s;">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Lucas</span>
-            <span class="avis-card-stars">★★★★★</span>
-          </div>
-          <p class="avis-card-text">Première visite et clairement pas la dernière. Accueil pro, écoute du client et la coupe est exactement ce que je voulais. Je recommande à 100%.</p>
+          <div class="avis-author"><span class="avis-avatar">L</span><div><div class="avis-name">Lucas</div><div class="avis-meta">Nouveau client</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★★</span><span class="avis-when">il y a 1 mois</span></div>
+          <p class="avis-text">Première visite et clairement pas la dernière. Accueil pro, écoute du client et la coupe est exactement ce que je voulais. Je recommande à 100%.</p>
         </div>
         <div class="avis-card fade-in" style="transition-delay: 0.2s;">
-          <div class="avis-card-top">
-            <span class="avis-card-name">Karim</span>
-            <span class="avis-card-stars">★★★★☆</span>
-          </div>
-          <p class="avis-card-text">Très bon travail sur la barbe et la coupe. Un peu d'attente le samedi mais ça vaut le coup. L'équipe est sympa et le rendu est propre.</p>
+          <div class="avis-author"><span class="avis-avatar">K</span><div><div class="avis-name">Karim</div><div class="avis-meta">3 avis</div></div></div>
+          <div class="avis-rating"><span class="avis-stars">★★★★☆</span><span class="avis-when">il y a 3 mois</span></div>
+          <p class="avis-text">Très bon travail sur la barbe et la coupe. Un peu d'attente le samedi mais ça vaut le coup. L'équipe est sympa et le rendu est propre.</p>
         </div>
       </div>
       <p class="avis-disclaimer">Avis à titre illustratif — section personnalisable</p>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- FOOTER : Logo, newsletter, réseaux sociaux   -->
-  <!-- Lien vers Soul Web Studio (créateur du site)  -->
-  <!-- ============================================ -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
         <div>
           <div class="footer-brand">BARBER<span>KING</span></div>
+          <div class="footer-brand-sub">Barbershop · Paris 11e</div>
         </div>
         <div class="footer-newsletter">
           <h4>Rejoignez notre newsletter</h4>
@@ -848,10 +913,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <script>
-    // ============================================
-    // FADE-IN : Ajoute 'visible' aux éléments
-    // quand ils entrent dans le viewport
-    // ============================================
+    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -859,10 +921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ============================================
-    // NAV AUTO-HIDE : Cache la navbar au scroll > 200px
-    // Réapparaît quand la souris passe en haut (< 80px)
-    // ============================================
+    // Nav auto-hide on scroll, reappear on mouse near top
     const navEl = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -877,11 +936,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     });
 
-    // ============================================
-    // TUBELIGHT NAV : Suivi de section active au scroll
-    // Un 2e IntersectionObserver détecte quelle section
-    // est visible et déplace l'effet tubelight rouge
-    // ============================================
+    // Tubelight active section tracking
     const navItems = document.querySelectorAll('.nav-item[data-section]');
     const sections = [];
     navItems.forEach(item => {
