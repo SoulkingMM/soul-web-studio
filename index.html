@@ -2090,35 +2090,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       mm.add('(prefers-reduced-motion: no-preference)', function() {
 
         // ── HERO ENTRANCE ──
-        var heroTl = gsap.timeline({ delay: 0.2 });
+        var heroTl = gsap.timeline({ delay: 0.1 });
 
         heroTl.from('.hero-badge', {
-          y: -30,
+          y: -20,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.35,
           ease: 'power2.out'
         });
 
         heroTl.from('.hero-word', {
-          y: 40,
+          y: 30,
           opacity: 0,
-          stagger: 0.03,
-          duration: 0.6,
+          stagger: 0.02,
+          duration: 0.35,
           ease: 'power3.out'
         });
 
         heroTl.from('.hero-tagline', {
-          y: 20,
+          y: 15,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.35,
           ease: 'power2.out'
         });
 
         heroTl.from('.hero-buttons > *', {
-          y: 20,
+          y: 15,
           opacity: 0,
-          duration: 0.4,
-          stagger: 0.15,
+          duration: 0.25,
+          stagger: 0.08,
           ease: 'power2.out'
         });
 
@@ -2128,9 +2128,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             gsap.to(elements, {
               opacity: 1,
               y: 0,
-              duration: 0.8,
+              duration: 0.45,
               ease: 'power2.out',
-              stagger: 0.15,
+              stagger: 0.08,
               overwrite: true
             });
           },
@@ -2146,9 +2146,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             gsap.to(elements, {
               opacity: 1,
               y: 0,
-              duration: 0.6,
+              duration: 0.35,
               ease: 'power2.out',
-              stagger: 0.1,
+              stagger: 0.06,
               overwrite: true
             });
           },
@@ -2167,17 +2167,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               gsap.to(elements, {
                 opacity: 1,
                 x: 0,
-                duration: 0.6,
+                duration: 0.35,
                 ease: 'power2.out',
-                stagger: 0.2,
+                stagger: 0.1,
                 overwrite: true
               });
               gsap.to(Array.from(elements).map(function(el) { return el.querySelector('.process-num'); }), {
                 scale: 1,
-                duration: 0.4,
+                duration: 0.25,
                 ease: 'back.out(1.7)',
-                stagger: 0.2,
-                delay: 0.1,
+                stagger: 0.1,
+                delay: 0.05,
                 overwrite: true
               });
             },
@@ -2199,9 +2199,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.8,
+                duration: 0.45,
                 ease: 'power3.out',
-                stagger: 0.2,
+                stagger: 0.1,
                 overwrite: true
               });
               if (badge) {
@@ -2209,9 +2209,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   opacity: 1,
                   scale: 1,
                   rotation: 0,
-                  duration: 0.5,
+                  duration: 0.3,
                   ease: 'back.out(2)',
-                  delay: 0.6
+                  delay: 0.3
                 });
               }
             },
